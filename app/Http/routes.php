@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//后台模块
+Route::group([], function(){
+    //后台主页面
+    Route::resource('/admin/index', 'Admin\IndexController');
+    //后台欢迎页
+    Route::get('/admin/welcome','Admin\IndexController@welcome');
+});
