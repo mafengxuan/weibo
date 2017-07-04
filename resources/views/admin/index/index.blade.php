@@ -112,7 +112,7 @@
 			<dt><i class="Hui-iconfont">&#xe720;</i> 广告管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="feedback-list.html" data-title="广告列表" href="javascript:void(0)">广告列表</a></li>
+					<li><a data-href="{{url('admin/ads')}}" data-title="广告列表" href="javascript:void(0)">广告列表</a></li>
 					<li><a data-href="feedback-list.html" data-title="广告位管理" href="javascript:void(0)">广告位管理</a></li>
 					<li><a data-href="feedback-list.html" data-title="广告审核" href="javascript:void(0)">广告审核</a></li>
 					<li><a data-href="feedback-list.html" data-title="收费管理" href="javascript:void(0)">收费管理</a></li>
