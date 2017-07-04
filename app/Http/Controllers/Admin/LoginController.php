@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Model\User_admins;
+
+use App\Http\Model\User_admin;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -57,7 +58,7 @@ class LoginController extends Controller
                    return back()->with('errors','验证码错误')->withInput();
             }
             //获取用户名
-            $user = User_admins::where('username',$input['username'])->first();
+            $user = User_admin::where('username',$input['username'])->first();
             //验证用户名
             if(!$user){
                 return back()->with('errors','该用户不存在')->withInput();
