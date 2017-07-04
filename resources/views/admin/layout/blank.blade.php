@@ -16,7 +16,10 @@
 <link href="{{asset('/admin')}}/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
 <link href="{{asset('/admin')}}/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
 <link href="{{asset('/admin')}}/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
-
+@section('css')
+@show
+@section('js')
+@show
 <!--[if IE 6]>
 <script type="text/javascript" src="{{asset('/admin')}}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
