@@ -21,4 +21,6 @@ Route::group([], function(){
     Route::resource('/admin/index', 'Admin\IndexController');
     //后台欢迎页
     Route::get('/admin/welcome','Admin\IndexController@welcome');
+    //后台微博管理
+    Route::resource('/admin/microblog','Admin\MicroblogController@index');
 });
