@@ -33,6 +33,7 @@ Route::group([], function(){
 
     //后台企业用户
     Route::resource('/admin/company','Admin\CompanyController');
+    Route::get('/admin/notaudited','Admin\CompanyController@notaudited');
 });
 
 

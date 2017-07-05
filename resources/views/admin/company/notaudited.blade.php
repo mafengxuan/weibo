@@ -8,9 +8,8 @@
 
 @endsection
 @section('body')
-
     <body>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a class="btn btn-primary radius" href="{{url('admin/notaudited')}}"><i class="Hui-iconfont"></i> 未审核</a></span>
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a class="btn btn-primary radius" href="{{url('admin/company')}}"><i class="Hui-iconfont"></i> 已审核</a></span>
     <div class="page-container">
 
         <form action="{{url('admin/company')}}" mehtod="get">
@@ -32,9 +31,9 @@
                     <th width="40">申请人</th>
                     <th width="90">营业执照</th>
                     <th width="150">收费金额</th>
-                    <th width="150">审核人</th>
-                    <th width="130">审核通过时间</th>
+                    <th width="130">申请提交时间</th>
                     <th width="70">审核状态</th>
+                    <th width="50">操作</th>
 
                 </tr>
                 </thead>
@@ -46,14 +45,14 @@
                     <td>{{$v->username}}</td>
                     <td><img src=""></td>
                     <td>{{$v->price}}</td>
-                    <td class="text-l">{{$v->auditor}}</td>
                     <td>{{date('Y-m-d H:i:s',$v->p_time)}}</td>
-                    @if($v->status==1)
-                    <td class="td-status">已审核</td>
+                    @if($v->status != 1)
+                    <td class="td-status">未审核</td>
                     @endif
-                    @if($v->status==3)
-                    <td class="td-status">已驳回</td>
-                    @endif
+                    <td>
+                        <a href="javascript:;" onclick="yaudited({{$v->company_id}})">通过</a>&nbsp
+                        <a href="javascript:;" onclick="naudited({{$v->company_id}})">驳回</a>
+                    </td>
                 </tr>
                 @endforeach
 
@@ -64,7 +63,56 @@
 
         </div>
     </div>
+<script>
 
+
+
+    function yaudited(company_id){
+
+        //询问框
+        layer.confirm('是否确认审核通过？', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            $.post("{{url('admin/company')}}/"+company_id,{'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                if(data.status==0){
+                    layer.msg(data.msg,{icon:6});
+                    location.href = location.href;
+                }else{
+                    layer.msg(data.msg,{icon:5});
+                    location.href = location.href;
+                }
+            });
+        }, function(){
+
+        });
+
+
+    }
+</script>
+
+
+<script>
+    function naudited(company_id){
+        //询问框
+        layer.confirm('是否确认审核驳回？', {
+            btn: ['确认','取消'] //按钮
+        }, function(){
+            $.post("{{url('admin/company')}}/"+company_id,{'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                if(data.status==0){
+                    layer.msg(data.msg,{icon:6});
+                    location.href = location.href;
+                }else{
+                    layer.msg(data.msg,{icon:5});
+                    location.href = location.href;
+                }
+            });
+        }, function(){
+
+        });
+    }
+
+
+</script>
     </body>
 
 @endsection
