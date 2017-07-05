@@ -4,7 +4,7 @@
 <div class="page-container">
     <div class="text-c">
         <form action="{{url('admin/ad')}}" method="get">
-            <input type="text" name="keywords" id="" placeholder=" 广告名称" style="width:250px" class="input-text" value="@if(empty($key)) @else {{$key}} @endif">
+            <input type="text" name="keywords" id="" placeholder=" 广告名称" style="width:250px" class="input-text" value="@if(empty($key))@else{{$key}}@endif">
             {{--<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>--}}
             <input class="btn btn-success" type="submit" value="搜索">
         </form>
@@ -44,12 +44,9 @@
             @endforeach
             </tbody>
         </table>
-        <?php
-           $key = empty($key)?'':$key;
-         ?>
-        <div class="pagination">
-            {!! $data->appends(['keywords'=>$key])->render() !!}
-        </div>
+
+            {!! $data->appends(['key'=>$key])->render() !!}
+
     </div>
 </div>
 @endsection
