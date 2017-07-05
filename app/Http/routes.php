@@ -33,6 +33,13 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::get('quit','IndexController@quit');
     //后台欢迎页
     Route::get('welcome','IndexController@welcome');
-    //后台用户页面
+    //后台普通用户页面
     Route::resource('user','UserController');
+    //后台管理员
+    Route::resource('member','MemberController');
+    //后台企业用户
+    Route::resource('company','CompanyController');
 });
+
+
+

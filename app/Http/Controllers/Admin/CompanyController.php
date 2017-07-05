@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Model\User_info;
+
+use App\Http\Model\User_company;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        //查询出user表的所有数据
-        $user = User_info::orderBy('id','asc')->paginate(1);
-        //向前台模板传变量
-       return view('admin.user.index',['data'=>$user]);
+        //显示已审核企业用户列表
+        $data = User_company::where('status',1)->orderBy('p_time','desc')->paginate(4);
+
+        return view('admin.company.audited',['data'=>$data]);
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.add');
+        //
     }
 
     /**
