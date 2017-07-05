@@ -24,15 +24,17 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 Route::get('/admin/code','Admin\LoginController@code');
 
 //后台模块
-Route::group([], function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     //后台主页面
-    Route::resource('/admin/index', 'Admin\IndexController@index');
+    Route::resource('index', 'IndexController');
     //后台欢迎页
-    Route::get('/admin/welcome','Admin\IndexController@welcome');
+    Route::get('welcome','IndexController@welcome');
 
+    //管理员日志
+    Route::get('log','LogController@index');
 
     //后台企业用户
-    Route::resource('/admin/company','Admin\CompanyController');
+    Route::resource('company','CompanyController');
 });
 
 

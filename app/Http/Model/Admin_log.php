@@ -10,4 +10,5 @@ class Admin_log extends Model
     protected $table = 'admin_logs';
     protected $primaryKey = 'id';
     public $timestamps = false;
+    protected $guarded = [];
 }
