@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-
-use App\Http\Model\Microblog;
+use App\Http\Model\Comment;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
-class MicroblogController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,21 +19,21 @@ class MicroblogController extends Controller
     public function index(Request $request)
     {
 
-        //如果请求携带keywords参数说明是通过查询跳转进入index方法 否则通过导航栏进入
+        ////如果请求携带keywords参数说明是通过查询跳转进入index方法 否则通过导航栏进入
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             //查询数据并分页
-            $microblog = Microblog::where('content','like',"%".$key."%")->paginate(2);
-            return view('admin.microblog.index',['data'=>$microblog,'key'=>$key]);
+            $comment = Comment::where('content','like',"%".$key."%")->paginate(2);
+            return view('admin.comment.index',['data'=>$comment,'key'=>$key]);
         }else{
 
-            //查询出microblog表的所有数据
-            $microblog = Microblog::orderBy('mid','asc')->paginate(2);
-            //添加微博管理视图
-            return view('admin.microblog.index',['data'=>$microblog]);
+            //查询出comments表的所有数据
+            $comment = Comment::orderBy('cid','asc')->paginate(2);
+            //添加评论视图
+            return view('admin.comment.index',['data'=>$comment]);
         }
-
     }
+
     /**
      * Show the form for creating a new resource.
      *

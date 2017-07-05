@@ -22,5 +22,12 @@ Route::group([], function(){
     //后台欢迎页
     Route::get('/admin/welcome','Admin\IndexController@welcome');
     //后台微博管理
-    Route::resource('/admin/microblog','Admin\MicroblogController@index');
+    Route::resource('/admin/microblog','Admin\MicroblogController');
+    //后台评论管理
+    Route::resource('/admin/comment','Admin\CommentController');
+    //后台回复管理
+    Route::resource('/admin/reply','Admin\ReplyController');
+    //后台导航管理
+    Route::resource('/admin/navigation','Admin\NavigationController');
+
 });
