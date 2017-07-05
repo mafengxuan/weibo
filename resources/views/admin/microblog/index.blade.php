@@ -64,13 +64,8 @@
                 </tbody>
 
             </table>
-            <?php
-            $key = empty($key)?'':$key;
-            ?>
 
                 {!! $data->appends(['keywords' => $key])->render() !!}
-
-
         </div>
     </div>
 
