@@ -65,8 +65,7 @@
 
             </table>
 
-                {!! $data->appends(['keywords' => $key])->render() !!}
+                {!! $data->appends(['key' => $key])->render() !!}
         </div>
     </div>
-
 @endsection

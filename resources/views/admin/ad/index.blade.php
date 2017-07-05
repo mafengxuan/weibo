@@ -47,6 +47,7 @@
 
             {!! $data->appends(['key'=>$key])->render() !!}
 
+
     </div>
 </div>
 @endsection

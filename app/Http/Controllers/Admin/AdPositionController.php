@@ -24,14 +24,15 @@ class AdPositionController extends Controller
             $key = trim($request->input('keywords'));
             $data = Ad_position::where('ad_name','like','%'.$key.'%')->get();
             $status = array(1=>'占用',2=>'闲置');
-            return view('admin/ad_position/index',['data'=>$data,'status'=>$status,'key'=>$key]);
+            return view('admin/ad/adPosition',['data'=>$data,'status'=>$status,'key'=>$key]);
         }else{
+            $key = '';
             // 获取所有数据
             $data = Ad_position::orderBy('aid','asc')->get();
             $status = array(1=>'占用',2=>'闲置');
 
             //添加到列表页
-            return view('admin/ad_position/index',['data'=>$data,'status'=>$status]);
+            return view('admin/ad/adPosition',['data'=>$data,'status'=>$status,'key'=>$key]);
         }
     }
 
