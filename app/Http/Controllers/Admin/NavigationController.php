@@ -23,13 +23,13 @@ class NavigationController extends Controller
             $key = trim($request->input('keywords'));
             //查询数据并分页
             $navigation = Navigation::where('nav_name','like',"%".$key."%")->paginate(2);
-            return view('admin.navigation.index',['data'=>$navigation,'key'=>$key]);
+            return view('admin.microblog.navigation',['data'=>$navigation,'key'=>$key]);
         }else{
-
+            $key = '';
             //查询出navigations表的所有数据
             $navigation = Navigation::orderBy('nid','asc')->paginate(2);
             //添加导航管理视图
-            return view('admin.navigation.index',['data'=>$navigation]);
+            return view('admin.microblog.navigation',['data'=>$navigation,'key'=>$key]);
         }
     }
 

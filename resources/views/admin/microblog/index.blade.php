@@ -64,33 +64,7 @@
                 </tbody>
 
             </table>
-            <?php
-            $key = empty($key)?'':$key;
-            ?>
-            <div class="page_list">
-                {{--{!! $data->render() !!}--}}
                 {!! $data->appends(['keywords' => $key])->render() !!}
-            </div>
-            {{--<div class="page_list">--}}
-                {{--{!! $data->appends(['keywords' => $key])->render() !!}--}}
-            {{--</div>--}}
-
         </div>
     </div>
-
-    <style>
-        .page_list ul li {
-            margin-top:5px;
-            float:left;
-            border:1px solid #ccc;
-            font-size: 15px;
-            padding: 6px 12px;
-            color:blue;
-        }
-        /*.result_content ul li span {*/
-            /*float:left;*/
-            /*font-size: 15px;*/
-            /*padding: 6px 12px;*/
-        /*}*/
-    </style>
 @endsection
