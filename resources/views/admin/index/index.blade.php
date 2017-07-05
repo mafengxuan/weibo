@@ -91,7 +91,8 @@
 					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
 					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
 					<li><a data-href="{{url('admin/member')}}" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
-					<li><a data-href="admin-list.html" data-title="管理员日志" href="javascript:void(0)">管理员日志</a></li>
+					<li><a data-href="{{url('admin/log')}}" data-title="管理员日志" href="javascript:void(0)">管理员日志</a></li>
+
 				</ul>
 			</dd>
 		</dl>
@@ -100,8 +101,8 @@
 			<dt><i class="Hui-iconfont">&#xe622;</i> 微博管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="feedback-list.html" data-title="微博列表" href="javascript:void(0)">微博列表</a></li>
-					<li><a data-href="feedback-list.html" data-title="导航分类" href="javascript:void(0)">导航分类</a></li>
+					<li><a data-href="{{url('admin/microblog')}}" data-title="微博列表" href="javascript:void(0)">微博列表</a></li>
+					<li><a data-href="{{url('admin/navigation')}}" data-title="导航分类" href="javascript:void(0)">导航分类</a></li>
 					<li><a data-href="feedback-list.html" data-title="标签管理" href="javascript:void(0)">标签管理</a></li>
 					<li><a data-href="feedback-list.html" data-title="热门" href="javascript:void(0)">热门</a></li>
 			</ul>
@@ -112,9 +113,9 @@
 			<dt><i class="Hui-iconfont">&#xe720;</i> 广告管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="feedback-list.html" data-title="广告列表" href="javascript:void(0)">广告列表</a></li>
-					<li><a data-href="feedback-list.html" data-title="广告位管理" href="javascript:void(0)">广告位管理</a></li>
-					<li><a data-href="feedback-list.html" data-title="广告审核" href="javascript:void(0)">广告审核</a></li>
+					<li><a data-href="{{url('admin/ad')}}" data-title="广告列表" href="javascript:void(0)">广告列表</a></li>
+					<li><a data-href="{{url('admin/adPosition')}}" data-title="广告位管理" href="javascript:void(0)">广告位管理</a></li>
+					<li><a data-href="{{url('admin/audit')}}" data-title="广告审核" href="javascript:void(0)">广告审核</a></li>
 					<li><a data-href="feedback-list.html" data-title="收费管理" href="javascript:void(0)">收费管理</a></li>
 					<li><a data-href="feedback-list.html" data-title="收益统计" href="javascript:void(0)">收益统计</a></li>
 					<li><a data-href="feedback-list.html" data-title="友情链接" href="javascript:void(0)">友情链接</a></li>

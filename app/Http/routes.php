@@ -27,19 +27,44 @@ Route::get('/admin/code','Admin\LoginController@code');
 //后台模块
 //Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
 Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
+
+
+
     //后台主页面
-    Route::resource('index', 'IndexController@index');
-    //退出登录
-    Route::get('quit','IndexController@quit');
+    Route::resource('index', 'IndexController');
     //后台欢迎页
     Route::get('welcome','IndexController@welcome');
+    //退出登录
+    Route::get('quit','IndexController@quit');
+
     //后台普通用户页面
     Route::resource('user','UserController');
-    //后台管理员
-    Route::resource('member','MemberController');
+
+
+
+    //管理员日志
+    Route::get('log','LogController@index');
+
+
     //后台企业用户
     Route::resource('company','CompanyController');
-});
 
+    //后台微博管理
+    Route::resource('microblog','MicroblogController');
+    //后台评论管理
+    Route::resource('comment','CommentController');
+    //后台回复管理
+    Route::resource('reply','ReplyController');
+    //后台导航管理
+    Route::resource('navigation','NavigationController');
+
+
+    //后台广告管理
+    Route::resource('ad','AdController');
+    //后台广告位管理
+    Route::resource('adPosition','AdPositionController');
+    //后台广告审核
+    Route::resource('audit','AuditController');
+});
 
 
