@@ -28,6 +28,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     //后台主页面
     Route::resource('index', 'IndexController');
     //后台欢迎页
+
     Route::get('welcome','IndexController@welcome');
 
     //管理员日志
@@ -35,6 +36,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
     //后台企业用户
     Route::resource('company','CompanyController');
-});
 
+    //后台微博管理
+    Route::resource('microblog','MicroblogController');
+    //后台评论管理
+    Route::resource('comment','CommentController');
+    //后台回复管理
+    Route::resource('reply','ReplyController');
+    //后台导航管理
+    Route::resource('navigation','NavigationController');
+
+});
 
