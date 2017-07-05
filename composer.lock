@@ -1078,7 +1078,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/symfony/console/9227d7607b1b42b55bc46610afe3d516b5e89fa2.zip",
+=======
+                "url": "https://api.github.com/repos/symfony/console/zipball/9227d7607b1b42b55bc46610afe3d516b5e89fa2",
+>>>>>>> origin/libing520
                 "reference": "9227d7607b1b42b55bc46610afe3d516b5e89fa2",
                 "shasum": ""
             },
@@ -1412,7 +1416,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/symfony/http-foundation/37317dd4d377a36ecc84bd7c9638d7c09c9d5837.zip",
+=======
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/37317dd4d377a36ecc84bd7c9638d7c09c9d5837",
+>>>>>>> origin/libing520
                 "reference": "37317dd4d377a36ecc84bd7c9638d7c09c9d5837",
                 "shasum": ""
             },
@@ -1468,7 +1476,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/symfony/http-kernel/3a6e7cdd11d3210f4b0c5c88a15597a2b9a3c9d9.zip",
+=======
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/3a6e7cdd11d3210f4b0c5c88a15597a2b9a3c9d9",
+>>>>>>> origin/libing520
                 "reference": "3a6e7cdd11d3210f4b0c5c88a15597a2b9a3c9d9",
                 "shasum": ""
             },
@@ -1718,7 +1730,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/symfony/process/95c5ed0b9ec2a03fc6247d0455c008e96e97fbb4.zip",
+=======
+                "url": "https://api.github.com/repos/symfony/process/zipball/95c5ed0b9ec2a03fc6247d0455c008e96e97fbb4",
+>>>>>>> origin/libing520
                 "reference": "95c5ed0b9ec2a03fc6247d0455c008e96e97fbb4",
                 "shasum": ""
             },
@@ -1767,7 +1783,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/symfony/routing/ebb0b3eb0be5a9f418e12e9234d1644f65d4c791.zip",
+=======
+                "url": "https://api.github.com/repos/symfony/routing/zipball/ebb0b3eb0be5a9f418e12e9234d1644f65d4c791",
+>>>>>>> origin/libing520
                 "reference": "ebb0b3eb0be5a9f418e12e9234d1644f65d4c791",
                 "shasum": ""
             },
@@ -1841,7 +1861,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/symfony/translation/d52cb2413f339a9eb19e625c6a0ee9476fc7e2af.zip",
+=======
+                "url": "https://api.github.com/repos/symfony/translation/zipball/d52cb2413f339a9eb19e625c6a0ee9476fc7e2af",
+>>>>>>> origin/libing520
                 "reference": "d52cb2413f339a9eb19e625c6a0ee9476fc7e2af",
                 "shasum": ""
             },
@@ -1904,7 +1928,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/symfony/var-dumper/4ff94e7b24aef29d20e41d741f1ed7d507998455.zip",
+=======
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/4ff94e7b24aef29d20e41d741f1ed7d507998455",
+>>>>>>> origin/libing520
                 "reference": "4ff94e7b24aef29d20e41d741f1ed7d507998455",
                 "shasum": ""
             },
@@ -3295,7 +3323,11 @@
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
                 "url": "https://files.phpcomposer.com/files/symfony/yaml/1f93a8d19b8241617f5074a123e282575b821df8.zip",
+=======
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/1f93a8d19b8241617f5074a123e282575b821df8",
+>>>>>>> origin/libing520
                 "reference": "1f93a8d19b8241617f5074a123e282575b821df8",
                 "shasum": ""
             },
