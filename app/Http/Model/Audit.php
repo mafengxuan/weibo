@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Model\Admin;
+namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ads extends Model
+class Audit extends Model
 {
     protected $table = 'ads';
     protected $primaryKey = 'aid';
+    public $timestamps = false;
 }

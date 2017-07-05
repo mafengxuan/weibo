@@ -22,5 +22,9 @@ Route::group([], function(){
     //后台欢迎页
     Route::get('/admin/welcome','Admin\IndexController@welcome');
     //后台广告管理
-    Route::resource('/admin/ads','Admin\AdsController');
+    Route::resource('/admin/ad','Admin\AdController');
+    // 后台广告位管理
+    Route::resource('/admin/adPosition','Admin\AdPositionController');
+    //后台广告审核
+    Route::resource('/admin/audit','Admin\AuditController');
 });
