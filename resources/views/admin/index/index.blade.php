@@ -77,7 +77,7 @@
 			<dd>
 				<ul>
 					<li><a data-href="{{url('admin/welcome')}}" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
-					<li><a data-href="{{url('admin/welcome')}}" data-title="企业用户" href="javascript:void(0)">企业用户</a></li>
+					<li><a data-href="{{url('admin/company')}}" data-title="企业用户" href="javascript:void(0)">企业用户</a></li>
 					<li><a data-href="{{url('admin/welcome')}}" data-title="商业用户" href="javascript:void(0)">商业用户</a></li>
 					<li><a data-href="{{url('admin/welcome')}}" data-title="广告用户" href="javascript:void(0)">广告用户</a></li>
 					<li><a data-href="{{url('admin/welcome')}}" data-title="大V用户" href="javascript:void(0)">大V用户</a></li>
