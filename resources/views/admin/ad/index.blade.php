@@ -44,12 +44,9 @@
             @endforeach
             </tbody>
         </table>
-        <?php
-           $key = empty($key)?'':$key;
-         ?>
-        <div class="pagination">
+
             {!! $data->appends(['keywords'=>$key])->render() !!}
-        </div>
+
     </div>
 </div>
 @endsection

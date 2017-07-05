@@ -25,14 +25,15 @@ class AuditController extends Controller
             $data = Ad::where('status',2)->where('ad_name','like','%'.$key.'%')->paginate(10);
 
             $status = array(1=>'已发布',2=>'未发布');
-            return view('admin/audit/index',['data'=>$data,'status'=>$status,'key'=>$key]);
+            return view('admin/ad/audit',['data'=>$data,'status'=>$status,'key'=>$key]);
         }else{
+            $key = '';
             // 获取所有状态为未发布的数据
             $data = Ad::where('status',2)->orderBy('aid','asc')->paginate(10);
 
             $status = array(1=>'已发布',2=>'未发布');
             //添加到列表页
-            return view('admin/audit/index',['data'=>$data,'status'=>$status]);
+            return view('admin/ad/audit',['data'=>$data,'status'=>$status,'key'=>$key]);
         }
     }
 

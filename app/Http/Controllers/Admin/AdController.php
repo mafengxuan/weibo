@@ -25,12 +25,13 @@ class AdController extends Controller
             $status = array(1=>'已发布',2=>'未发布');
             return view('admin/ad/index',['data'=>$data,'status'=>$status,'key'=>$key]);
         }else{
+            $key = '';
             // 获取所有数据
             $data = Ad::orderBy('aid','asc')->paginate(2);
             $status = array(1=>'已发布',2=>'未发布');
 
             //添加到列表页
-            return view('admin/ad/index',['data'=>$data,'status'=>$status]);
+            return view('admin/ad/index',['data'=>$data,'status'=>$status,'key'=>$key]);
         }
     }
 
