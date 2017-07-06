@@ -14,9 +14,9 @@
 
         <form action="{{url('admin/company')}}" mehtod="get">
         <div class="text-c"> 日期范围：
-            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;" name="sd">
+            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;" name="s_time">
             -
-            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;" name="ed">
+            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;" name="e_time">
             <input type="text" class="input-text" style="width:250px" placeholder="输入公司名称" id="" name="keyword">
             <input type="submit" class="btn btn-success radius" id="" name="sub" value="查询"><i class="Hui-iconfont">&#xe665;</i>
         </div>
@@ -63,6 +63,8 @@
 
         </div>
     </div>
+    </div>
+    </body>
 <script>
 
 
@@ -113,6 +115,6 @@
 
 
 </script>
-    </body>
+
 
 @endsection

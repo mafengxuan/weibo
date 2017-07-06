@@ -4,10 +4,9 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Audit extends Model
 {
-    //
-    protected $table = 'comments';
-    protected $primaryKey = 'cid';
+    protected $table = 'ads';
+    protected $primaryKey = 'aid';
     public $timestamps = false;
 }

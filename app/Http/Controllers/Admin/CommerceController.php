@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Model\User_company;
+use App\Http\Model\User_commerce;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
-class CompanyController extends Controller
+class CommerceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $log = (new User_company);
+        //显示已审核商业用户列表
+        $log = (new User_commerce);
         $res = Input::except('page');
         if($res){
             if($res['company_name']){
@@ -40,29 +41,22 @@ class CompanyController extends Controller
             }
             $data = $log->paginate(4);
             return view('admin.company.audited',['data'=>$data,'res'=>$res]);
-        }else{
-            //显示已审核企业用户列表
-            $data = User_company::where('status','<>',2)->orderBy('p_time','desc')->paginate(4);
-
-            return view('admin.company.audited',['data'=>$data,'res'=>$res]);
+        }
+        else{
+        $data = User_commerce::where('status', '<>', 2)->orderBy('p_time', 'desc')->paginate(4);
+        return view('admin.commerce.audited', ['data' => $data,'res'=>$res]);
         }
     }
 
-
-
     /**
-     * 显示未审核企业申请列表
+     * 显示未审核商业用户申请列表
      */
     public function notaudited()
-
     {
+        $data = User_commerce::where('status',2)->orderBy('p_time','asc')->paginate(4);
 
-        $data = User_company::where('status',2)->orderBy('p_time','asc')->paginate(4);
-
-        return view('admin.company.notaudited',['data'=>$data]);
+        return view('admin.commerce.notaudited',['data'=>$data]);
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -72,7 +66,6 @@ class CompanyController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -120,7 +113,7 @@ class CompanyController extends Controller
         //
         $sta = Input::get('sta');
         if($sta== 1){
-            $res = User_company::where('company_id',$id)->update(['status'=>1,'a_time'=>time()]);
+            $res = User_commerce::where('commerce_id',$id)->update(['status'=>1,'a_time'=>time()]);
             if($res){
                 $data = [
                     'status' => 0,
@@ -135,7 +128,7 @@ class CompanyController extends Controller
             return $data;
         }
         if($sta == 2){
-            $res = User_company::where('company_id',$id)->update(['status'=>3,'a_time'=>time()]);
+            $res = User_commerce::where('commerce_id',$id)->update(['status'=>3,'a_time'=>time()]);
             if($res){
                 $data = [
                     'status' => 0,
@@ -149,7 +142,6 @@ class CompanyController extends Controller
             }
             return $data;
         }
-
     }
 
     /**
