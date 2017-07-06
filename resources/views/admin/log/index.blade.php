@@ -14,10 +14,10 @@
 	<form action="" id="search_form">
 	<div class="text-c"> 日期范围：
 
-		<input type="text" name="s_time" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;" value="@if(!empty($res)){{$res['s_time']}}@endif">
+		<input type="text" name="s_time" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" class="input-text Wdate" style="width:120px;" value="@if(!empty($s_time)){{$s_time}}@endif">
 		-
-		<input type="text" name="e_time" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;" value="@if(!empty($res)){{$res['e_time']}}@endif">
-		<input type="text" name="content" id="" placeholder="日志名称" style="width:250px" class="input-text" value="@if(!empty($res)){{$res['content']}}@endif">
+		<input type="text" name="e_time" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" class="input-text Wdate" style="width:120px;" value="@if(!empty($e_time)){{$e_time}}@endif">
+		<input type="text" name="content" id="" placeholder="日志名称" style="width:250px" class="input-text" value="@if(!empty($content)){{$content}}@endif">
 		<button name="" id="btn_search" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜日志</button>
 
 	</div>
@@ -56,7 +56,7 @@
 		@endforeach
 		</tbody>
 	</table>
-	{!! $data->appends(['res' => $res])->render() !!}
+	{!! $data->appends(['content' => $content,'s_time'=>$s_time,'e_time'=>$e_time])->render() !!}
 </div>
 @endsection
 @section('js')
