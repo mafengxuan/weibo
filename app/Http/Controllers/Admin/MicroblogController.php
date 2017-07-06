@@ -27,11 +27,11 @@ class MicroblogController extends Controller
             $microblog = Microblog::where('content','like',"%".$key."%")->paginate(2);
             return view('admin.microblog.index',['data'=>$microblog,'key'=>$key]);
         }else{
-
+            $key = '';
             //查询出microblog表的所有数据
             $microblog = Microblog::orderBy('mid','asc')->paginate(2);
             //添加微博管理视图
-            return view('admin.microblog.index',['data'=>$microblog]);
+            return view('admin.microblog.index',['data'=>$microblog,'key'=>$key]);
         }
 
     }

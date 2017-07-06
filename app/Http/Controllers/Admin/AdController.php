@@ -27,6 +27,7 @@ class AdController extends Controller
         }else{
             $key = '';
             // 获取所有数据
+            $key = '';
             $data = Ad::orderBy('aid','asc')->paginate(2);
             $status = array(1=>'已发布',2=>'未发布');
 

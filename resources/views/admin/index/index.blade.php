@@ -51,7 +51,7 @@
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
 							<li><a href="#">切换账户</a></li>
-							<li><a href="#">退出</a></li>
+							<li><a href="{{url('admin/quit')}}">退出</a></li>
 					</ul>
 				</li>
 					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
@@ -76,7 +76,7 @@
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="{{url('admin/welcome')}}" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
+					<li><a data-href="{{url('admin/user')}}" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
 					<li><a data-href="{{url('admin/company')}}" data-title="企业用户" href="javascript:void(0)">企业用户</a></li>
 					<li><a data-href="{{url('admin/welcome')}}" data-title="商业用户" href="javascript:void(0)">商业用户</a></li>
 					<li><a data-href="{{url('admin/welcome')}}" data-title="广告用户" href="javascript:void(0)">广告用户</a></li>
@@ -90,8 +90,9 @@
 				<ul>
 					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
 					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-					<li><a data-href="admin-list.html" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="{{url('admin/member')}}" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 					<li><a data-href="{{url('admin/log')}}" data-title="管理员日志" href="javascript:void(0)">管理员日志</a></li>
+
 				</ul>
 			</dd>
 		</dl>
