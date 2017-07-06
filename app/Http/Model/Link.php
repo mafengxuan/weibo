@@ -4,10 +4,10 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ad_blogroll extends Model
+class Link extends Model
 {
     //
-    protected $table = 'ad_blogrolls';
-    protected $primaryKey = 'bid';
+    protected $table = 'links';
+    protected $primaryKey = 'lid';
     public $timestamps = false;
 }

@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index.index');
 });
 
 //后台登录页
@@ -67,4 +67,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::resource('audit','AuditController');
 });
 
+
+//前台模块
+Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
+
+    //前台首页
+    Route::get('index','IndexController@index');
+});
 
