@@ -16,7 +16,7 @@
                 <tr class="text-c">
                     <th ><input type="checkbox" name="" value=""></th>
                     <th >id</th>
-                    <th >导航名称</th>
+                    <th >标签名称</th>
                     <th >操作</th>
                 </tr>
                 </thead>
@@ -25,8 +25,8 @@
                     <tr class="text-c">
 
                         <td><input type="checkbox" value="1" name=""></td>
-                        <td>{{$v->nid}}</td>
-                        <td>{{$v->nav_name}}</td>
+                        <td>{{$v->tid}}</td>
+                        <td>{{$v->tname}}</td>
                         <td class="td-manage">
                             <a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">
                                 <i class="Hui-iconfont">&#xe6df;</i>
@@ -40,7 +40,7 @@
                 </tbody>
 
             </table>
-                {!! $data->appends(['keywords' => $key])->render() !!}
+            {!! $data->appends(['keywords' => $key])->render() !!}
         </div>
     </div>
 @endsection
