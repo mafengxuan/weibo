@@ -15,11 +15,9 @@
                 <thead>
                 <tr class="text-c">
                     <th ><input type="checkbox" name="" value=""></th>
-                    <th >微博id</th>
-                    <th >用户</th>
-                    <th >导航id</th>
-                    <th >标签id</th>
-                    <th >显示状态</th>
+                    <th >id</th>
+                    <th >登录邮箱</th>
+                    <th >登录手机号</th>
                     <th >内容</th>
                     <th >发表时间</th>
                     <th >阅读量</th>
@@ -27,7 +25,7 @@
                     <th >转发次数</th>
                     <th >点赞数</th>
                     <th >评论</th>
-                    <th >回复</th>
+                    <th >显示状态</th>
                     <th >操作</th>
                 </tr>
                 </thead>
@@ -36,25 +34,21 @@
                 <tr class="text-c">
 
                     <td><input type="checkbox" value="1" name=""></td>
-
                     <td>{{$v->mid}}</td>
-                    <td>{{$v->uid}}</td>
-                    <td>{{$v->nid}}</td>
-                    <td>{{$v->tid}}</td>
-                    <td>{{$v->status}}</td>
-                    <td>{{$v->content}}</td>
+                    <td>{{$v->email}}</td>
+                    <td>{{$v->phone}}</td>
+                    <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/content')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
                     <td>{{$v->ctime}}</td>
                     <td>{{$v->mcount}}</td>
                     <td>{{$v->c_count}}</td>
                     <td>{{$v->t_count}}</td>
                     <td>{{$v->p_count}}</td>
-                    <td><a href="{{url('admin/comment')}}">评论详情</a></td>
-                    <td><a href="{{url('admin/reply')}}">回复详情</a></td>
-
+                    <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/comment')}}','10002')" href="javascript:;" title="查看">评论详情</a></td>
+                    <td>{{$v->status}}</td>
                     <td class="td-manage">
-                        <a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">
-                            <i class="Hui-iconfont">&#xe6df;</i>
-                        </a>
+                        {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
+                            {{--<i class="Hui-iconfont">&#xe6df;</i>--}}
+                        {{--</a>--}}
                         <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none">
                             <i class="Hui-iconfont">&#xe6e2;</i>
                         </a>
@@ -67,4 +61,22 @@
                 {!! $data->appends(['keywords' => $key])->render() !!}
         </div>
     </div>
+
+
+    <!--请在下方写此页面业务相关的脚本-->
+
+    <script type="text/javascript" src="{{asset('/admin')}}lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript"></script>
+
+        <script>
+        function article_edit(title,url,id,w,h){
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+
+    </script>
 @endsection
