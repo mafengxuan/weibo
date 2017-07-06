@@ -29,7 +29,12 @@ class LogController extends Controller
 
         $log = (new Admin_log);
         $res = Input::except('page');
-
+        if(!empty($res['res'])){
+            $res['content'] = $res['res']['content'];
+            $res['s_time'] = $res['res']['s_time'];
+            $res['e_time'] = $res['res']['e_time'];
+        }
+         //   dump($res);
         if($res){
           if($res['content']){
 
