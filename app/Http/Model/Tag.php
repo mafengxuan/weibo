@@ -8,6 +8,6 @@ class Tag extends Model
 {
     //
     protected $table = 'tags';
-    protected $primaryKey = 'mid';
+    protected $primaryKey = 'tid';
     public $timestamps = false;
 }

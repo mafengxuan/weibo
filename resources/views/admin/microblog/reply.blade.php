@@ -15,10 +15,9 @@
                 <thead>
                 <tr class="text-c">
                     <th ><input type="checkbox" name="" value=""></th>
-                    <th >回复id</th>
-                    <th >用户id</th>
-                    <th >评论id</th>
-                    <th >微博id</th>
+                    <th >id</th>
+                    <th >登录邮箱</th>
+                    <th >登录手机号</th>
                     <th >回复内容</th>
                     <th >回复时间</th>
                     <th >回复点赞数</th>
@@ -31,16 +30,15 @@
 
                         <td><input type="checkbox" value="1" name=""></td>
                         <td>{{$v->rid}}</td>
-                        <td>{{$v->uid}}</td>
-                        <td>{{$v->cid}}</td>
-                        <td>{{$v->mid}}</td>
+                        <td>{{$v->email}}</td>
+                        <td>{{$v->phone}}</td>
                         <td>{{$v->content}}</td>
                         <td>{{$v->ctime}}</td>
                         <td>{{$v->p_count}}</td>
                         <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">
-                                <i class="Hui-iconfont">&#xe6df;</i>
-                            </a>
+                            {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
+                                {{--<i class="Hui-iconfont">&#xe6df;</i>--}}
+                            {{--</a>--}}
                             <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none">
                                 <i class="Hui-iconfont">&#xe6e2;</i>
                             </a>
