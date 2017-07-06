@@ -49,6 +49,14 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::resource('content','ContentController');
     //后台标签管理
     Route::resource('label','LabelController');
+    //后台热门管理
+    Route::resource('hot','HotController');
+    //后台每日热门管理
+    Route::resource('hotcontent','HotcontentController');
+
+    //后台时事热门管理
+    Route::resource('currentevent','CurrenteventController');
+
 
 
     //后台广告管理

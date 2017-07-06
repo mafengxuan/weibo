@@ -3,9 +3,15 @@
     <div class="page-container">
         <form class="form form-horizontal" id="form-article-add">
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-2">导航id：</label>
+                <label class="form-label col-xs-4 col-sm-2">邮箱登录：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="" placeholder="" id="" name="nid">
+                    <input type="text" class="input-text" value="" placeholder="" id="" name="email">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">手机登录：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" value="" placeholder="" id="" name="phone">
                 </div>
             </div>
             <div class="row cl">

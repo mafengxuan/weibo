@@ -103,7 +103,7 @@
 					<li><a data-href="{{url('admin/microblog')}}" data-title="微博列表" href="javascript:void(0)">微博列表</a></li>
 					<li><a data-href="{{url('admin/navigation')}}" data-title="导航分类" href="javascript:void(0)">导航分类</a></li>
 					<li><a data-href="{{url('admin/label')}}" data-title="标签管理" href="javascript:void(0)">标签管理</a></li>
-					<li><a data-href="feedback-list.html" data-title="热门" href="javascript:void(0)">热门</a></li>
+					<li><a data-href="{{url('admin/hot')}}" data-title="热门" href="javascript:void(0)">热门</a></li>
 			</ul>
 		</dd>
 	</dl>
