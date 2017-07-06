@@ -28,19 +28,19 @@ Route::get('/admin/code','Admin\LoginController@code');
 //Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
 Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
-
-
     //后台主页面
     Route::resource('index', 'IndexController');
     //后台欢迎页
     Route::get('welcome','IndexController@welcome');
     //退出登录
     Route::get('quit','IndexController@quit');
-
-    //后台普通用户页面
+    //修改密码
+    Route::get('repass','PwdController@repass');
+    Route::post('dorepass','PwdController@dorepass');
+    //后台普通用户
     Route::resource('user','UserController');
-
-
+    //后台管理员
+    Route::resource('admin','AdminController');
 
     //管理员日志
     Route::get('log','LogController@index');
