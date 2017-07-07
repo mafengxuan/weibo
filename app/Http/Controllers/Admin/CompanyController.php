@@ -18,33 +18,35 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $log = (new User_company);
-        $res = Input::except('page');
-        if($res){
-            if($res['company_name']){
+        $old_company_name = '';
+        $old_s_time = '';
+        $old_e_time = '';
+        if (!empty($request->except('page'))) {
+            $log = User_company::orderBy('company_id', 'desc');
 
-                $log = $log->where("company_name",'like','%'.trim($res['company_name']).'%');
+            if ($request->has('company_name')) {
+                $company_name = trim($request['company_name']);
+                $log = $log->where("company_name", 'like', "%{$company_name}%");
+                $old_company_name = $company_name;
             }
-            if($res['s_time'] && $res['e_time']){
-                $s_time = strtotime($res['s_time']);
-                $e_time = strtotime($res['e_time'])+86400;
-                $log = $log->whereBetween("p_time",[$s_time,$e_time]);
+            if ($request->has('s_time')) {
+                $s_time = strtotime($request['s_time']);
+                $log = $log->where("p_time", '>', $s_time);
+                $old_s_time = $request->get('s_time');
             }
-            if($res['s_time'] && !$res['e_time']){
-                $s_time = strtotime($res['s_time']);
-                $log = $log->where("p_time",'>',$s_time);
+            if ($request->has('e_time')) {
+                $e_time = strtotime($request['e_time']) + 86400;
+                $log = $log->where("p_time", '<', $e_time);
+                $old_e_time = $request->get('e_time');
             }
-            if(!$res['s_time'] && $res['e_time']){
-                $e_time = strtotime($res['e_time'])+86400;
-                $log = $log->where("p_time",'<',$e_time);
-            }
+            $log = $log->where('status','<>',2);
             $data = $log->paginate(4);
-            return view('admin.company.audited',['data'=>$data,'res'=>$res]);
+            return view('admin.company.audited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }else{
             //显示已审核企业用户列表
             $data = User_company::where('status','<>',2)->orderBy('p_time','desc')->paginate(4);
 
-            return view('admin.company.audited',['data'=>$data,'res'=>$res]);
+            return view('admin.company.audited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }
     }
 
@@ -53,13 +55,38 @@ class CompanyController extends Controller
     /**
      * 显示未审核企业申请列表
      */
-    public function notaudited()
-
+    public function notaudited(Request $request)
     {
+        $old_company_name = '';
+        $old_s_time = '';
+        $old_e_time = '';
+        if (!empty($request->except('page'))) {
+            $log = User_company::orderBy('company_id', 'desc');
 
-        $data = User_company::where('status',2)->orderBy('p_time','asc')->paginate(4);
+            if ($request->has('company_name')) {
+                $company_name = trim($request['company_name']);
+                $log = $log->where("company_name", 'like', "%{$company_name}%");
+                $old_company_name = $company_name;
+            }
+            if ($request->has('s_time')) {
+                $s_time = strtotime($request['s_time']);
+                $log = $log->where("p_time", '>', $s_time);
+                $old_s_time = $request->get('s_time');
+            }
+            if ($request->has('e_time')) {
+                $e_time = strtotime($request['e_time']) + 86400;
+                $log = $log->where("p_time", '<', $e_time);
+                $old_e_time = $request->get('e_time');
+            }
+            $log = $log->where('status',2);
+            $data = $log->paginate(4);
+            return view('admin.company.notaudited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+        }else{
+            //显示已审核企业用户列表
+            $data = User_company::where('status',2)->orderBy('p_time','desc')->paginate(4);
 
-        return view('admin.company.notaudited',['data'=>$data]);
+            return view('admin.company.notaudited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+        }
     }
 
 

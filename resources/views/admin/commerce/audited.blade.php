@@ -56,8 +56,7 @@
 
                     </tbody>
                 </table>
-                @
-                {!! $data->appends(['res' => $res])->render() !!}
+                {!! $data->appends(['company_name'=>$company_name,'s_time'=>$s_time,'e_time'=>$e_time])->render() !!}
 
             </div>
         </div>

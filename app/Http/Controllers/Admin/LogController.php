@@ -18,7 +18,7 @@ class LogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 //        $arr = [];
 //        $arr['username'] = 'admin';
@@ -26,35 +26,40 @@ class LogController extends Controller
 //        $arr['content'] = '查看管理员日志';
 //        $arr['ip'] = ip2long($_SERVER["REMOTE_ADDR"]);
 //        Admin_log::create($arr);
+//        $res = $request->all();
+//        if($request->has('res')){
+//            $res['content'] = $request['res']['content'];
+//            $res['s_time'] = $request['res']['s_time'];
+//            $res['e_time'] = $request['res']['e_time'];
+//        }
+        $old_content = '';
+        $old_s_time = '';
+        $old_e_time = '';
+        if (!empty($request->except('page'))) {
+            $log = Admin_log::orderBy('id', 'desc');
 
-        $log = (new Admin_log);
-        $res = Input::except('page');
-
-        if($res){
-          if($res['content']){
-
-              $log = $log->where("content",'like','%'.trim($res['content']).'%');
-          }
-          if($res['s_time'] && $res['e_time']){
-              $s_time = strtotime($res['s_time']);
-              $e_time = strtotime($res['e_time'])+86400;
-              $log = $log->whereBetween("ctime",[$s_time,$e_time]);
-          }
-          if($res['s_time'] && !$res['e_time']){
-              $s_time = strtotime($res['s_time']);
-              $log = $log->where("ctime",'>',$s_time);
-          }
-            if(!$res['s_time'] && $res['e_time']){
-                $e_time = strtotime($res['e_time'])+86400;
-                $log = $log->where("ctime",'<',$e_time);
+            if ($request->has('content')) {
+                $content = trim($request['content']);
+                $log = $log->where("content", 'like', "%{$content}%");
+                $old_content = $content;
             }
-
+            if ($request->has('s_time')) {
+                $s_time = strtotime(trim($request['s_time']));
+                $log = $log->where("ctime", '>', $s_time);
+                $old_s_time = $request->get('s_time');
+            }
+            if ($request->has('e_time')) {
+                $e_time = strtotime(trim($request['e_time'])) + 86400;
+                $log = $log->where("ctime", '<', $e_time);
+                $old_e_time = $request->get('e_time');
+            }
+            $data = $log->paginate(3);
+            return view('admin.log.index', ['data' => $data, 'content' => $old_content, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+        } else {
+            $data = Admin_log::orderBy('id', 'desc')->paginate(3);
+            return view('admin.log.index', ['data' => $data, 'content' => $old_content, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }
-        $data = $log->paginate(3);
 
-        return view('admin.log.index',['data'=>$data,'res'=>$res]);
 
     }
-
-
 }

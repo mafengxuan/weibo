@@ -10,7 +10,7 @@
 @section('body')
 
     <body>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a class="btn btn-primary radius" href="{{url('admin/companynotaudited')}}"><i class="Hui-iconfont"></i> 未审核</a></span>
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a class="btn btn-primary radius" href="{{url('admin/companynotaudited')}}"><i class="Hui-iconfont"></i> 待审核</a></span>
     <div class="page-container">
 
         <form action="{{url('admin/company')}}" mehtod="get">
@@ -60,7 +60,7 @@
                 </tbody>
             </table>
 
-            {!! $data->appends(['res' => $res])->render() !!}
+            {!! $data->appends(['company_name'=>$company_name,'s_time'=>$s_time,'e_time'=>$e_time])->render() !!}
 
         </div>
     </div>

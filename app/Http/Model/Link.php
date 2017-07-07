@@ -4,9 +4,10 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Audit extends Model
+class Link extends Model
 {
-    protected $table = 'ads';
-    protected $primaryKey = 'aid';
+    //
+    protected $table = 'links';
+    protected $primaryKey = 'lid';
     public $timestamps = false;
 }

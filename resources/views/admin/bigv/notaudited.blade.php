@@ -57,7 +57,7 @@
                     </tbody>
                 </table>
 
-                {!! $data->render() !!}
+                {!! $data->appends(['v_name'=>$v_name,'s_time'=>$s_time,'e_time'=>$e_time])->render() !!}
 
             </div>
         </div>
