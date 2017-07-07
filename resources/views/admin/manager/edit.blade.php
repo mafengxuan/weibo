@@ -22,13 +22,13 @@
     @endif
 
     <article class="page-container">
-        <form class="form form-horizontal" id="form-admin-add" action="{{url('admin/dorepass')}}" method="post">
+        <form class="form form-horizontal" id="form-admin-add" action="{{url('admin/update')}}" method="post">
             {{csrf_field()}}
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
 
                 <div class="formControls col-xs-4 col-sm-3">
-                    <input type="text" disabled class="input-text" value="{{session('user')->username}}" placeholder="" id="username" name="username">
+                    <input type="text" disabled class="input-text" value="{{$data->username}}" placeholder="" id="username" name="username">
                 </div>
             </div>
             <div class="row cl">

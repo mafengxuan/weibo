@@ -40,7 +40,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     //后台普通用户
     Route::resource('user','UserController');
     //后台管理员
-    Route::resource('admin','AdminController');
+    Route::resource('manager','ManagerController');
 
     //管理员日志
     Route::get('log','LogController@index');

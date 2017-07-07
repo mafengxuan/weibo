@@ -92,7 +92,7 @@
 				<ul>
 					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
 					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-					<li><a data-href="{{url('admin/admin')}}" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="{{url('admin/manager')}}" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 					<li><a data-href="{{url('admin/log')}}" data-title="管理员日志" href="javascript:void(0)">管理员日志</a></li>
 
 				</ul>
