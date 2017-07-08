@@ -1,7 +1,8 @@
 @extends('admin.layout.blank')
 @section('body')
 <div class="page-container">
-    <form class="form form-horizontal" id="form-article-add">
+    <form class="form form-horizontal" id="art_form" action="{{url('admin/ad')}}" method="post">
+        {{csrf_field()}}
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户名：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -19,12 +20,9 @@
             <div class="formControls col-xs-8 col-sm-9">
 				<span class="select-box">
 				<select name="pid" class="select">
-					<option value="1">上方广告</option>
-					<option value="2">下方广告</option>
-					<option value="3">左侧广告</option>
-					<option value=4>右侧广告</option>
-					<option value="5">浮动广告</option>
-                    <option value="7">右侧轮播</option>
+                    @foreach($adPosition as $k=>$v)
+					<option value="{{$v->pid}}">{{$v->p_name}}</option>
+					@endforeach
 				</select>
 				</span>
             </div>
@@ -32,7 +30,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">广告链接：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="0" placeholder="" id="" name="ad_url">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="ad_url">
             </div>
         </div>
         <div class="row cl">
@@ -45,21 +43,77 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">上传图片：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="0" placeholder="" id="" name="ad_img" style="width:200px;"><button id="btn-star" class="btn btn-default btn-uploadstar radius ml-10">选择图片</button>
+                <input type="text" name="ad_img" id="ad_img" style="width:200px;" value="">
+                <input type="file" name="file_upload" id="file_upload" value="">
+
+                <script type="text/javascript">
+                    $(function () {
+                        $("#file_upload").change(function () {
+
+                            uploadImage();
+                        });
+                    });
+
+                    function uploadImage() {
+//                            判断是否有选择上传文件
+                        var imgPath = $("#file_upload").val();
+                        if (imgPath == "") {
+                            alert("请选择上传图片！");
+                            return;
+                        }
+                        //判断上传文件的后缀名
+                        var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
+                        if (strExtension != 'jpg' && strExtension != 'gif'
+                            && strExtension != 'png' && strExtension != 'bmp') {
+                            alert("请选择图片文件");
+                            return;
+                        }
+
+                        var formData = new FormData($('#art_form')[0]);
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/admin/upload",
+                            data: formData,
+                            async: true,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function(data) {
+//                                    console.log(data);
+//                                    alert("上传成功");
+                                $('#pic').attr('src','/'+data);
+                                $('#pic').show();
+                                $('#ad_img').val(data);
+
+                            },
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert("上传失败，请检查网络后重试");
+                            }
+                        });
+                    }
+
+                </script>
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">缩略图：</label>
+            <td>
+                <img src="" alt="" name="pic" id="pic" style="width:100px;display:none;" >
+            </td>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">购买天数：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <div class="uploader-thum-container">
-
-
-                </div>
+                <input type="text" class="input-text" value="1" placeholder="" id="number" name="num">
             </div>
         </div>
         <div class="row cl">
-
+            <label class="form-label col-xs-4 col-sm-2">总价：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="price" name="price" style="border:none; width:100px;">
+            </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发布日期：</label>
@@ -74,12 +128,18 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
-                <button onClick="article_save_submit();" class="btn btn-primary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button>
-                <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button>
-                <button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            <label class="form-label col-xs-4 col-sm-2">下单人：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="number" name="auditor">
             </div>
         </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <input type="submit" class="btn btn-primary radius" value="提交">
+                <input type="button" class="btn btn-default" onclick="history.go(-2)" value="返回">
+            </div>
+        </div>
+
     </form>
 </div>
 

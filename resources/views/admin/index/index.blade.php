@@ -116,9 +116,9 @@
 					<li><a data-href="{{url('admin/ad')}}" data-title="广告列表" href="javascript:void(0)">广告列表</a></li>
 					<li><a data-href="{{url('admin/adPosition')}}" data-title="广告位管理" href="javascript:void(0)">广告位管理</a></li>
 					<li><a data-href="{{url('admin/audit')}}" data-title="广告审核" href="javascript:void(0)">广告审核</a></li>
-					<li><a data-href="feedback-list.html" data-title="收费管理" href="javascript:void(0)">收费管理</a></li>
-					<li><a data-href="feedback-list.html" data-title="收益统计" href="javascript:void(0)">收益统计</a></li>
-					<li><a data-href="feedback-list.html" data-title="友情链接" href="javascript:void(0)">友情链接</a></li>
+					<li><a data-href="{{url('admin/order')}}" data-title="收费管理" href="javascript:void(0)">收费管理</a></li>
+					<li><a data-href="{{url('admin/lineChart')}}" data-title="收益统计" href="javascript:void(0)">收益统计</a></li>
+					<li><a data-href="{{url('admin/link')}}" data-title="友情链接" href="javascript:void(0)">友情链接</a></li>
 				</ul>
 			</dd>
 		</dl>
