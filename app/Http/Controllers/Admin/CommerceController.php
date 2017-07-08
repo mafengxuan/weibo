@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Model\User_company;
+use App\Http\Model\User_commerce;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
-class CompanyController extends Controller
+class CommerceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class CompanyController extends Controller
         $old_s_time = '';
         $old_e_time = '';
         if (!empty($request->except('page'))) {
-            $log = User_company::orderBy('company_id', 'desc');
+            $log = User_commerce::orderBy('commerce_id', 'desc');
 
             if ($request->has('company_name')) {
                 $company_name = trim($request['company_name']);
@@ -39,21 +39,18 @@ class CompanyController extends Controller
                 $log = $log->where("p_time", '<', $e_time);
                 $old_e_time = $request->get('e_time');
             }
-            $log = $log->where('status','<>',2);
             $data = $log->paginate(4);
-            return view('admin.company.audited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+            return view('admin.commerce.audited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }else{
-            //显示已审核企业用户列表
-            $data = User_company::where('status','<>',2)->orderBy('p_time','desc')->paginate(4);
+            //显示已审核商业用户列表
+            $data = User_commerce::where('status','<>',2)->orderBy('p_time','desc')->paginate(4);
 
-            return view('admin.company.audited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+            return view('admin.commerce.audited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }
     }
 
-
-
     /**
-     * 显示未审核企业申请列表
+     * 显示未审核商业用户申请列表
      */
     public function notaudited(Request $request)
     {
@@ -61,7 +58,7 @@ class CompanyController extends Controller
         $old_s_time = '';
         $old_e_time = '';
         if (!empty($request->except('page'))) {
-            $log = User_company::orderBy('company_id', 'desc');
+            $log = User_commerce::orderBy('commerce_id', 'desc');
 
             if ($request->has('company_name')) {
                 $company_name = trim($request['company_name']);
@@ -80,15 +77,14 @@ class CompanyController extends Controller
             }
             $log = $log->where('status',2);
             $data = $log->paginate(4);
-            return view('admin.company.notaudited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+            return view('admin.commerce.notaudited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }else{
-            //显示已审核企业用户列表
-            $data = User_company::where('status',2)->orderBy('p_time','desc')->paginate(4);
+            //显示未审核企业用户列表
+            $data = User_commerce::where('status',2)->orderBy('p_time','desc')->paginate(4);
 
-            return view('admin.company.notaudited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+            return view('admin.commerce.notaudited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }
     }
-
 
 
     /**
@@ -99,7 +95,6 @@ class CompanyController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -147,7 +142,7 @@ class CompanyController extends Controller
         //
         $sta = Input::get('sta');
         if($sta== 1){
-            $res = User_company::where('company_id',$id)->update(['status'=>1,'a_time'=>time()]);
+            $res = User_commerce::where('commerce_id',$id)->update(['status'=>1,'a_time'=>time()]);
             if($res){
                 $data = [
                     'status' => 0,
@@ -162,7 +157,7 @@ class CompanyController extends Controller
             return $data;
         }
         if($sta == 2){
-            $res = User_company::where('company_id',$id)->update(['status'=>3,'a_time'=>time()]);
+            $res = User_commerce::where('commerce_id',$id)->update(['status'=>3,'a_time'=>time()]);
             if($res){
                 $data = [
                     'status' => 0,
@@ -176,7 +171,6 @@ class CompanyController extends Controller
             }
             return $data;
         }
-
     }
 
     /**
