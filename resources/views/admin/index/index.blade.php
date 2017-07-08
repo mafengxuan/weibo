@@ -47,12 +47,14 @@
 				<ul class="cl">
 					<li>超级管理员</li>
 					<li class="dropDown dropDown_hover">
-						<a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+						<a href="#" class="dropDown_A">{{session('user')->username}} <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
-							<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
+
+							<li><a  data-href="{{url('admin/repass')}}" data-title="修改密码" href="javascript:void(0)" onclick="Hui_admin_tab(this);">修改密码</a></li>
 							<li><a href="#">切换账户</a></li>
 							<li><a href="{{url('admin/quit')}}">退出</a></li>
 					</ul>
+
 				</li>
 					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
 					<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
@@ -90,7 +92,7 @@
 				<ul>
 					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
 					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-					<li><a data-href="{{url('admin/member')}}" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+					<li><a data-href="{{url('admin/admin')}}" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 					<li><a data-href="{{url('admin/log')}}" data-title="管理员日志" href="javascript:void(0)">管理员日志</a></li>
 
 				</ul>
@@ -103,8 +105,8 @@
 				<ul>
 					<li><a data-href="{{url('admin/microblog')}}" data-title="微博列表" href="javascript:void(0)">微博列表</a></li>
 					<li><a data-href="{{url('admin/navigation')}}" data-title="导航分类" href="javascript:void(0)">导航分类</a></li>
-					<li><a data-href="feedback-list.html" data-title="标签管理" href="javascript:void(0)">标签管理</a></li>
-					<li><a data-href="feedback-list.html" data-title="热门" href="javascript:void(0)">热门</a></li>
+					<li><a data-href="{{url('admin/label')}}" data-title="标签管理" href="javascript:void(0)">标签管理</a></li>
+					<li><a data-href="{{url('admin/hot')}}" data-title="热门" href="javascript:void(0)">热门</a></li>
 			</ul>
 		</dd>
 	</dl>

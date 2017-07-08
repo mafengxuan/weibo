@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index.index');
 });
 
 //后台登录页
@@ -28,19 +28,19 @@ Route::get('/admin/code','Admin\LoginController@code');
 //Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
 Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
-
-
     //后台主页面
     Route::resource('index', 'IndexController');
     //后台欢迎页
     Route::get('welcome','IndexController@welcome');
     //退出登录
     Route::get('quit','IndexController@quit');
-
-    //后台普通用户页面
+    //修改密码
+    Route::get('repass','PwdController@repass');
+    Route::post('dorepass','PwdController@dorepass');
+    //后台普通用户
     Route::resource('user','UserController');
-
-
+    //后台管理员
+    Route::resource('admin','AdminController');
 
     //管理员日志
     Route::get('log','LogController@index');
@@ -57,6 +57,18 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::resource('reply','ReplyController');
     //后台导航管理
     Route::resource('navigation','NavigationController');
+    //后台内容详情管理
+    Route::resource('content','ContentController');
+    //后台标签管理
+    Route::resource('label','LabelController');
+    //后台热门管理
+    Route::resource('hot','HotController');
+    //后台每日热门管理
+    Route::resource('hotcontent','HotcontentController');
+
+    //后台时事热门管理
+    Route::resource('currentevent','CurrenteventController');
+
 
 
     //后台广告管理
@@ -74,4 +86,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::resource('link','LinkController');
 });
 
+
+//前台模块
+Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
+
+    //前台首页
+    Route::get('index','IndexController@index');
+});
 
