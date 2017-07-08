@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Model\User_company;
+use App\Http\Model\User_v;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
-class CompanyController extends Controller
+class BigvController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,16 +18,16 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $old_company_name = '';
+        $old_v_name = '';
         $old_s_time = '';
         $old_e_time = '';
         if (!empty($request->except('page'))) {
-            $log = User_company::orderBy('company_id', 'desc');
+            $log = User_v::orderBy('v_id','desc');
 
-            if ($request->has('company_name')) {
-                $company_name = trim($request['company_name']);
-                $log = $log->where("company_name", 'like', "%{$company_name}%");
-                $old_company_name = $company_name;
+            if ($request->has('v_name')) {
+                $v_name = trim($request['v_name']);
+                $log = $log->where("v_name", 'like', "%{$v_name}%");
+                $old_v_name = $v_name;
             }
             if ($request->has('s_time')) {
                 $s_time = strtotime($request['s_time']);
@@ -41,12 +41,12 @@ class CompanyController extends Controller
             }
             $log = $log->where('status','<>',2);
             $data = $log->paginate(4);
-            return view('admin.company.audited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+            return view('admin.bigv.audited', ['data' => $data, 'v_name' => $old_v_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }else{
             //显示已审核企业用户列表
-            $data = User_company::where('status','<>',2)->orderBy('p_time','desc')->paginate(4);
+            $data = User_v::where('status','<>',2)->orderBy('p_time','desc')->paginate(4);
 
-            return view('admin.company.audited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+            return view('admin.bigv.audited',['data'=>$data,'v_name' => $old_v_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }
     }
 
@@ -56,17 +56,19 @@ class CompanyController extends Controller
      * 显示未审核企业申请列表
      */
     public function notaudited(Request $request)
+
     {
-        $old_company_name = '';
+
+        $old_v_name = '';
         $old_s_time = '';
         $old_e_time = '';
         if (!empty($request->except('page'))) {
-            $log = User_company::orderBy('company_id', 'desc');
+            $log = User_v::orderBy('v_id','desc');
 
-            if ($request->has('company_name')) {
-                $company_name = trim($request['company_name']);
-                $log = $log->where("company_name", 'like', "%{$company_name}%");
-                $old_company_name = $company_name;
+            if ($request->has('v_name')) {
+                $v_name = trim($request['v_name']);
+                $log = $log->where("v_name", 'like', "%{$v_name}%");
+                $old_v_name = $v_name;
             }
             if ($request->has('s_time')) {
                 $s_time = strtotime($request['s_time']);
@@ -80,12 +82,12 @@ class CompanyController extends Controller
             }
             $log = $log->where('status',2);
             $data = $log->paginate(4);
-            return view('admin.company.notaudited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+            return view('admin.bigv.notaudited', ['data' => $data, 'v_name' => $old_v_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }else{
             //显示已审核企业用户列表
-            $data = User_company::where('status',2)->orderBy('p_time','desc')->paginate(4);
+            $data = User_v::where('status',2)->orderBy('p_time','desc')->paginate(4);
 
-            return view('admin.company.notaudited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
+            return view('admin.bigv.notaudited',['data'=>$data,'v_name' => $old_v_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }
     }
 
@@ -99,7 +101,6 @@ class CompanyController extends Controller
     public function create()
     {
         //
-
     }
 
     /**
@@ -147,7 +148,7 @@ class CompanyController extends Controller
         //
         $sta = Input::get('sta');
         if($sta== 1){
-            $res = User_company::where('company_id',$id)->update(['status'=>1,'a_time'=>time()]);
+            $res = User_v::where('v_id',$id)->update(['status'=>1,'a_time'=>time()]);
             if($res){
                 $data = [
                     'status' => 0,
@@ -162,7 +163,7 @@ class CompanyController extends Controller
             return $data;
         }
         if($sta == 2){
-            $res = User_company::where('company_id',$id)->update(['status'=>3,'a_time'=>time()]);
+            $res = User_v::where('v_id',$id)->update(['status'=>3,'a_time'=>time()]);
             if($res){
                 $data = [
                     'status' => 0,
@@ -176,7 +177,6 @@ class CompanyController extends Controller
             }
             return $data;
         }
-
     }
 
     /**

@@ -46,8 +46,19 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::get('log','LogController@index');
 
 
-    //后台企业用户
+    //后台企业用户 company
     Route::resource('company','CompanyController');
+    Route::get('companynotaudited','CompanyController@notaudited');
+
+
+    //后台商业用户 commerce
+    Route::resource('commerce','CommerceController');
+    Route::get('commercenotaudited','CommerceController@notaudited');
+
+    //后台大V用户 bigv
+    Route::resource('bigv','BigvController');
+    Route::get('bigvnotaudited','BigvController@notaudited');
+
 
     //后台微博管理
     Route::resource('microblog','MicroblogController');
@@ -68,6 +79,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
     //后台时事热门管理
     Route::resource('currentevent','CurrenteventController');
+
 
 
 
