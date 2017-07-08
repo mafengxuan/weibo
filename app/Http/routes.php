@@ -73,10 +73,17 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
     //后台广告管理
     Route::resource('ad','AdController');
+    Route::any('upload','AdController@upload');
     //后台广告位管理
     Route::resource('adPosition','AdPositionController');
     //后台广告审核
     Route::resource('audit','AuditController');
+    //后台广告收费管理
+    Route::resource('order','OrderController');
+    //后台收益管理
+    Route::get('lineChart','LineChartController@index');
+    //后台友情链接管理
+    Route::resource('link','LinkController');
 });
 
 
