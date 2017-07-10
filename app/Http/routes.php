@@ -105,5 +105,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
+    //前台详情页
+    Route::get('details','DetailsController@index');
 });
 

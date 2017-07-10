@@ -592,16 +592,17 @@ h3.title-head {
     border: none;
 }
 .article-left {
-    width: 50%;
+    width: 27%;
     float: left;
 	margin-right:3%;
 }
 .article-right {
     float: right;
-    width: 47%;
+    width: 70%;
 }
 .article-left img {
-    width: 100%;
+    width: 150px;
+	height: 150px;
 	opacity:0.8;
     transition:0.5s all;
 	-webkit-transition:0.5s all;
@@ -631,7 +632,7 @@ a.title:hover {
     margin: 0.5em 0;
 	text-transform: uppercase;
 }
-span.glyphicon.glyphicon-comment,span.glyphicon.glyphicon-eye-open,span.glyphicon.glyphicon-thumbs-up,.glyphicon.glyphicon-time {
+span.glyphicon.glyphicon-comment,span.glyphicon.glyphicon-eye-open,span.glyphicon.glyphicon-share,span.glyphicon.glyphicon-thumbs-up,.glyphicon.glyphicon-time {
     font-size: 10px;
     margin: 0 4px 0 20px;
 }
