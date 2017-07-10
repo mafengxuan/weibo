@@ -39,16 +39,14 @@
                 <td>{{$v['type']}}</td>
                 <td>{{$v['status']}}</td>
                 <td>{{date('Y-m-d H:i:s',$v['login_time'])}}</td>
-                <td>{{$v['birth']}}</td>
+                <td>{{date('Y年m月d日',$v['birth'])}}</td>
                 <td>{{$v['realname']}}</td>
                 <td>{{$v['qq']}}</td>
                 <td>{{$v['address']}}</td>
-                <td>{{$v['age']}}</td>
-                <td>{{$v['rtime']}}</td>
+                 <td>{{$v['age']}}</td>
+                <td>{{date('Y-m-d H:i:s',$v['rtime'])}}</td>
                 {{--<td class="td-manage"><a href="">修改</a>--}}
                     {{--<a href="">删除</a></td>--}}
-
-
             </tr>
             @endforeach
             </tbody>
