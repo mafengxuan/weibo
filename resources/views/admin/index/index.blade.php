@@ -51,7 +51,6 @@
 						<ul class="dropDown-menu menu radius box-shadow">
 
 							<li><a  data-href="{{url('admin/repass')}}" data-title="修改密码" href="javascript:void(0)" onclick="Hui_admin_tab(this);">修改密码</a></li>
-							<li><a href="#">切换账户</a></li>
 							<li><a href="{{url('admin/quit')}}">退出</a></li>
 					</ul>
 

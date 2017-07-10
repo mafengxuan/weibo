@@ -4,54 +4,60 @@
 
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
-    <div class="text-c"> 日期范围：
-        <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
-        -
-        <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
-        <input type="text" class="input-text" style="width:250px" placeholder="输入用户名、电话、邮箱" id="" name="">
-        <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
-    </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加用户</a></span> <span class="r">共有数据：<strong>8</strong> 条</span> </div>
+    {{--<form action="{{url('admin/user')}}" method="get">--}}
+    {{--<div class="text-c">--}}
+        {{--<input type="text" class="input-text" style="width:250px" placeholder="输入真实姓名" value="@if(empty($key)) @else{{$key}}  @endif" id="" name="keywords">--}}
+        {{--<button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>--}}
+    {{--</div>--}}
+    {{--</form>--}}
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"></span> <span class="r">共有数据：<strong>8</strong> 条</span> </div>
     <div class="mt-20">
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
             <tr class="text-c">
-                <th width="25"><input type="checkbox" name="" value=""></th>
-                <th width="50">ID</th>
-                <th width="50">uid</th>
-                <th width="50">生日</th>
-                <th width="60">QQ</th>
-                <th width="70">地址</th>
-                <th width="40">性别</th>
-                <th width="50">年龄</th>
-                <th width="100">简介</th>
-                <th width="60">注册时间</th>
-                <th width="90">操作</th>
+                <th>uid</th>
+                <th>邮箱</th>
+                <th>手机号</th>
+                <th>用户类型</th>
+                <th>用户状态</th>
+                <th>最后一次登录时间</th>
+                <th>生日</th>
+                <th>真实姓名</th>
+                <th>QQ</th>
+                <th>地址</th>
+                <th>年龄</th>
+                <th>注册时间</th>
+                {{--<th>操作</th>--}}
             </tr>
             </thead>
             <tbody>
+            @foreach($user as $k=>$v)
             <tr class="text-c">
-                @foreach($data as $k=>$v)
-                <td><input type="checkbox" value="1" name=""></td>
-                <td>{{$v->id}}</td>
-                <td>{{$v->uid}}</td>
-                {{--<td><u style="cursor:pointer" class="text-primary" onclick="member_show('张三','member-show.html','10001','360','400')">张三</u></td>--}}
-                <td>{{$v->birth}}</td>
-                <td>{{$v->qq}}</td>
-                <td>{{$v->address}}</td>
-                <td>{{$v->sex}}</td>
-                <td>{{$v->age}}</td>
-                <td>{{$v->introduction}}</td>
-                <td>{{date('Y-m-d H:i:s')}}</td>
-                <td class="td-manage"><a href="">修改</a>
-                    <a href="">删除</a></td>
-                @endforeach
+                <td>{{$v['uid']}}</td>
+                <td>{{$v['email']}}</td>
+                <td>{{$v['phone']}}</td>
+                <td>{{$v['type']}}</td>
+                <td>{{$v['status']}}</td>
+                <td>{{date('Y-m-d H:i:s',$v['login_time'])}}</td>
+                <td>{{$v['birth']}}</td>
+                <td>{{$v['realname']}}</td>
+                <td>{{$v['qq']}}</td>
+                <td>{{$v['address']}}</td>
+                <td>{{$v['age']}}</td>
+                <td>{{$v['rtime']}}</td>
+                {{--<td class="td-manage"><a href="">修改</a>--}}
+                    {{--<a href="">删除</a></td>--}}
+
+
             </tr>
+            @endforeach
             </tbody>
         </table>
+
     </div>
+
 </div>
-{!! $data->render() !!}
+{{--{!! $user->render() !!}--}}
 
 @endsection
 @section('js')

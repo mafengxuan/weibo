@@ -1,65 +1,142 @@
-@extends('admin.layout.blank')
-<style>
-    .xxoo{
-        margin-left:330px;
-        /*margin-top:50px;*/
-    }
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{asset('/admin/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset('/admin/bootstrap/css/bootstrapValidator.css')}}" rel="stylesheet">
+    <script src="{{asset('/admin/bootstrap/js/jquery.min.js')}}"></script>
+    <script src="{{asset('/admin/bootstrap/js/bootstrap.js')}}"></script>
+    <script src="{{asset('/admin/bootstrap/js/bootstrapValidator.js')}}"></script>
 
-</style>
-@section('body')
-    @if (count($errors) > 0)
-        <div class="mark"  style="color:red">
-            <ul>
-                @if(is_object($errors))
-                    @foreach ($errors->all() as $error)
-                        <li class="xxoo">{{ $error }}</li>
-                    @endforeach
-                @else
-                    <li class="xxoo">{{ $errors }}</li>
-                @endif
-            </ul>
-        </div>
-    @endif
+</head>
 
-    <article class="page-container">
-        <form class="form form-horizontal" id="form-admin-add" action="{{url('admin/update')}}" method="post">
+<div class="container col-lg-3 col-lg-offset-3">
+    <div class="page-header">
+
+    </div>
+    <div>
+        <form id="registerForm" method="post" class="form-horizontal" action="">
+            <input type="hidden" name="_method" value="PUT">
             {{csrf_field()}}
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
-
-                <div class="formControls col-xs-4 col-sm-3">
-                    <input type="text" disabled class="input-text" value="{{$data->username}}" placeholder="" id="username" name="username">
-                </div>
+            {{--用户名--}}
+            <div class="form-group" col-xs-4 col-sm-3>
+                <label class="control-label" for="username">*用户名:</label>
+                <input type="text" class="form-control" placeholder="" disabled name="username" value="{{$data->username}}" id="username">
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>原密码：</label>
-                <div class="formControls col-xs-4 col-sm-3">
-                    <input type="password" class="input-text" autocomplete="off" value="" placeholder="请输入原始密码" id="password" name="password_o">
-                </div>
+            <div class="form-group">
+                <!--密码-->
+                <label class="control-label" for="password">*请输入新密码:</label>
+                <input type="password" class="form-control" placeholder="请输入新密码" name="password" id="password">
             </div>
-
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>新密码：</label>
-                <div class="formControls col-xs-4 col-sm-3">
-                    <input type="password" class="input-text" autocomplete="off" value="" placeholder="新密码6-18位" id="password" name="password">
-                </div>
+            <div class="form-group">
+                <!--确认密码-->
+                <label class="control-label" for="repassword">*请输入确认密码:</label>
+                <input type="password" class="form-control" placeholder="请输入确认密码" name="repassword" id="repassword">
             </div>
-            <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
-                <div class="formControls col-xs-4 col-sm-3">
-                    <input type="password" class="input-text" autocomplete="off" value="" placeholder="再次确认密码" id="password" name="password_c">
-                </div>
-            </div>
-            <div class="row cl">
-                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                    <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
-                </div>
+            <div class="form-group">
+                <button class="btn btn-primary form-control" onclick="EditPwd({{$data->id}})">重置密码</button>
             </div>
         </form>
-    </article>
+    </div>
+</div>
 
 
+<script type="text/javascript" src="{{asset('/admin')}}/lib/layer/2.4/layer.js"></script>
+<script>
+
+        function EditPwd(id){
+
+            //询问框
+            layer.confirm('确定重置密码吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.post("{{url('admin/manager')}}/"+id,$('form').serialize(),function(data){
+                    if(data.status == 0){
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 6});
+                    }else{
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 5});
+                    }
+                });
 
 
+            }, function(){
 
-@endsection
+            });
+
+        }
+</script>
+
+
+<script>
+        <!--数据验证-->
+        $("#registerForm").bootstrapValidator({
+            message:'This value is not valid',
+//            定义未通过验证的状态图标
+            feedbackIcons: {/*输入框不同状态，显示图片的样式*/
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+//            字段验证
+            fields:{
+//                密码
+                password:{
+                    message:'密码非法',
+                    validators:{
+                        notEmpty:{
+                            message:'密码不能为空'
+                        },
+//                        限制字符串长度
+                        stringLength:{
+                            min:6,
+                            max:18,
+                            message:'密码长度必须位于6到18之间'
+                        },
+//                        相同性检测
+                        identical:{
+//                            需要验证的field
+                            field:'password',
+                            message:'两次密码输入不一致'
+                        },
+//                        基于正则表达是的验证
+                        regexp:{
+                            regexp:/^[a-zA-Z0-9_\.]+$/,
+                            message:'密码由数字字母下划线和.组成'
+                        }
+                    }
+                },
+
+                //                确认密码
+                repassword:{
+                    message:'密码非法',
+                    validators:{
+                        notEmpty:{
+                            message:'密码不能为空'
+                        },
+//                        限制字符串长度
+                        stringLength:{
+                            min:6,
+                            max:18,
+                            message:'密码长度必须位于6到18之间'
+                        },
+//                        相同性检测
+                        identical:{
+//                            需要验证的field
+                            field:'password',
+                            message:'两次密码输入不一致'
+                        },
+//                        基于正则表达是的验证
+                        regexp:{
+                            regexp:/^[a-zA-Z0-9_\.]+$/,
+                            message:'密码由数字字母下划线和.组成'
+                        }
+                    }
+                },
+            }
+        })
+</script>
+

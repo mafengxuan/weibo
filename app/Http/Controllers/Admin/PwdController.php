@@ -21,6 +21,8 @@ class PwdController extends Controller
 
     public function dorepass(Request $request)
     {
+
+
         //接收提交的数据
         $input = $request->except('_token');
         $role = [
@@ -46,7 +48,7 @@ class PwdController extends Controller
                 $res =  $user->update(['password'=>$pass]);
                 if($res){
                     //更新密码
-                    return redirect('admin/admin');
+                    return redirect('admin/manager');
                 }else{
                     return back()->with('errors','密码修改失败');
                 }

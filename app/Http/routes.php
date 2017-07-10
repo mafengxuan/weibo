@@ -25,8 +25,8 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 Route::get('/admin/code','Admin\LoginController@code');
 
 //后台模块
-//Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
-Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
+//Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
     //后台主页面
     Route::resource('index', 'IndexController');

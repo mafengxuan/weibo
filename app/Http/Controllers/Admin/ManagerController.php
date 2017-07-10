@@ -26,7 +26,6 @@ class ManagerController extends Controller
             $key = trim($request->input('keywords')) ;
             //从表里查询含有关键字的数据
             $user = User_admin::where('username','like',"%".$key."%")->paginate(2);
-//            dd($user);
             return view('admin.manager.index',['data'=>$user,'key'=>$key]);
         }else {
             //查询用户的所有数据
@@ -119,16 +118,22 @@ class ManagerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input =  $request->except(['_token',"_method"]);
-        $res = User_admin::where('id',$id)->update($input);
-        //更新是否成功
+        //修改对应id的用户
+        $input = $request->only('password');
+        $res =  User_admin::where('id',$id)->update($input);
+        // 0表示成功 其他表示失败
         if($res){
-            //如果成功，返回到管理员列表页
-            return redirect('admin/manager/index');
+            $data = [
+                'status'=>0,
+                'msg'=>'重置成功！'
+            ];
         }else{
-            //如果失败，返回去
-            return back()->with('errors',"修改失败");
+            $data = [
+                'status'=>1,
+                'msg'=>'重置失败！'
+            ];
         }
+        return $data;
     }
 
     /**
