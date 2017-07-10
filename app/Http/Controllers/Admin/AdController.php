@@ -39,14 +39,13 @@ class AdController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             $data = Ad::where('ad_name','like','%'.$key.'%')->paginate(10);
-            $status = array(1=>'已发布',2=>'未发布');
+            $status = array(1=>'已发布',2=>'未发布',3=>'审核已驳回');
             return view('admin/ad/index',['data'=>$data,'status'=>$status,'key'=>$key]);
         }else{
             $key = '';
             // 获取所有数据
             $data = Ad::orderBy('aid','asc')->paginate(10);
-            $status = array(1=>'已发布',2=>'未发布');
-
+            $status = array(1=>'已发布',2=>'未发布',3=>'审核已驳回');
             //添加到列表页
             return view('admin/ad/index',['data'=>$data,'status'=>$status,'key'=>$key]);
         }
@@ -75,6 +74,8 @@ class AdController extends Controller
         //  获取请求中的所有数据，除了_token  file_upload
         $input = Input::except('_token','file_upload','num','price');
         $adOrder = Ad_order::orderBy('oid','desc')->max('oid');
+        $input['ad_ctime'] = strtotime($input['ad_ctime']);
+        $input['ad_etime'] = strtotime($input['ad_etime']);
         $input['oid'] = $adOrder+1;
         $input['a_time'] = $input['ad_ctime'];
         //        通过ad模型的create  or   save 添加到数据库
@@ -137,6 +138,7 @@ class AdController extends Controller
         $art = Ad::find($id);
         //根据请求传过来的参数获取到要修改成的记录
         $input = Input::except('_token','_method','file_upload','num','price');
+        $input['ad_ctime'] = time();
         //更新
         $re = $art->update($input);
 

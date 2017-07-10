@@ -28,6 +28,12 @@
             </div>
         </div>
         <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">单价/天：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="10" placeholder="" id="uprice" name="" style="border:none; width:30px;">元
+            </div>
+        </div>
+        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">广告链接：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" value="" placeholder="" id="" name="ad_url">
@@ -93,6 +99,27 @@
                         });
                     }
 
+                    $(".select").bind('change',function(){
+                        if($(this).val() == 1){
+                            $('#uprice').val('10');
+                        }else if($(this).val() == 2){
+                            $('#uprice').val('9');
+                        }else if($(this).val() == 3){
+                            $('#uprice').val('8');
+                        }else if($(this).val() == 4){
+                            $('#uprice').val('8');
+                        }else if($(this).val() == 5){
+                            $('#uprice').val('8');
+                        }
+                    });
+
+
+                    $('.select').blur(function(){
+                        var uPrice =  $('#uprice').val();
+                        var numb = $('#number').val();
+                        $('#price').val(uPrice * numb);
+                    });
+
                 </script>
             </div>
         </div>
@@ -109,6 +136,19 @@
                 <input type="text" class="input-text" value="1" placeholder="" id="number" name="num">
             </div>
         </div>
+        <script>
+            $('#number').blur(function(){
+                var uPrice =  $('#uprice').val();
+                var numb = $('#number').val();
+                $('#price').val(uPrice * numb);
+            });
+        </script>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">日期范围：</label>&nbsp;&nbsp;&nbsp;
+            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" name="ad_ctime" class="input-text Wdate" style="width:120px;">
+            -
+            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" name="ad_etime" class="input-text Wdate" style="width:120px;">
+        </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">总价：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -116,21 +156,9 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发布日期：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" name="ad_ctime" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>结束日期：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" name="ad_etime" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'datemin\')}' })" id="datemax" class="input-text Wdate">
-            </div>
-        </div>
-        <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">下单人：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="number" name="auditor">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="auditor">
             </div>
         </div>
         <div class="row cl">
@@ -142,5 +170,13 @@
 
     </form>
 </div>
+@section('js')
+
+    <!--请在下方写此页面业务相关的脚本-->
+    <script type="text/javascript" src="{{asset('/admin')}}/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="{{asset('/admin')}}/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{asset('/admin')}}/lib/laypage/1.2/laypage.js"></script>
+
+@endsection
 
 @endsection

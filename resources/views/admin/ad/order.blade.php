@@ -6,12 +6,10 @@
         <div class="text-c">
             <form action="{{url('admin/order')}}" method="get">
                 <input type="text" name="keywords" id="" placeholder=" 购买人名称" style="width:250px" class="input-text" value="@if(empty($key))@else{{$key}}@endif">
-                {{--<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>--}}
                 <input class="btn btn-success" type="submit" value="搜索">
             </form>
         </div>
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" > <a onclick="article_edit('查看','{{url('admin/ad/create')}}','10002')" href="javascript:;"></a></span> <span class="r">共有数据：<strong>45</strong> 条</span> </div>
-        {{--<div class="mt-20">                                                                                                                                                                                              <a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/ad/create')}}','10002')" href="javascript:;" title="查看">添加广告</a>                                                                                               --}}
+        <div class="cl pd-5 bg-1 bk-gray mt-20"> </div>
         <table class="table table-border table-bordered table-bg table-hover table-sort">
             <thead>
             <tr class="text-c">
@@ -35,7 +33,7 @@
                     <td>{{$v->username}}</td>
                     <td>{{$v->num}}</td>
                     <td>{{$v->price}}</td>
-                    <td>{{$v->o_time}}</td>
+                    <td>{{date('Y-m-d H:i:s',$v->o_time)}}</td>
             @endforeach
             </tbody>
         </table>

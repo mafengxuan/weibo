@@ -8,12 +8,11 @@
                 <input class="btn btn-success" type="submit" value="搜索">
             </form>
         </div>
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a href="javascript:;"></a></span> <span class="r">共有数据：<strong>45</strong> 条</span> </div>
+
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
                 <thead>
                 <tr class="text-c">
-                    <th><input name="" type="checkbox" value=""></th>
                     <th>ID</th>
                     <th>广告位</th>
                     <th>广告图片</th>
@@ -27,18 +26,17 @@
                 <tbody>
                 @foreach ($data as $k=>$v)
                     <tr class="text-c">
-                        <td><input name="" type="checkbox" value=""></td>
-
                         <td>{{$v->aid}}</td>
                         <td>{{$v->pid}}</td>
                         <td>{{$v->ad_img}}</td>
                         <td>{{$v->ad_name}}</td>
                         <td>{{$v->username}}</td>
-                        <td>{{$v->ad_ctime}}</td>
+                        <td>{{date('Y-m-d H:i:s',$v->ad_ctime)}}</td>
                         <td class="td-status"><span class="label label-success radius">{{$status[$v->status]}}</span></td>
-                        <td class="td-manage"><a style="text-decoration:none" class="ml-5" onClick="picture_edit('图库编辑','picture-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="picture_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-
-                        {{--<img width="210" class="picture-thumb" src="temp/200x150.jpg">--}}
+                        <td>
+                            <a href="javascript:;" onclick="Editaudit({{$v->aid}})">通过</a>&nbsp
+                            <a href="javascript:;" onclick="Delaudit({{$v->aid}})">驳回</a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -46,6 +44,49 @@
 
 
                 {!! $data->appends(['keywords'=>$key])->render() !!}
+            <script>
+                function Editaudit(aid){
+                    //询问框
+                    layer.confirm('是否确认审核通过？', {
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        //           url ==> admin/user/{user}   http://project182.com/admin/user/2
+                        $.post("{{url('admin/audit/')}}/"+aid,{'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                            if(data.status == 0){
+                                location.href = location.href;
+                                layer.msg(data.msg, {icon: 6});
+                            }else{
+                                location.href = location.href;
+                                layer.msg(data.msg, {icon: 5});
+                            }
+                        });
+
+
+                    }, function(){
+
+                    });
+
+                }
+                function Delaudit(aid){
+                    //询问框
+                    layer.confirm('是否确认审核驳回？', {
+                        btn: ['确认','取消'] //按钮
+                    }, function(){
+                        $.post("{{url('admin/audit/')}}/"+aid,{'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                            if(data.status==0){
+                                layer.msg(data.msg,{icon:6});
+                                location.href = location.href;
+                            }else{
+                                layer.msg(data.msg,{icon:5});
+                                location.href = location.href;
+                            }
+                        });
+                    }, function(){
+
+                    });
+                }
+
+            </script>
 
         </div>
     </div>

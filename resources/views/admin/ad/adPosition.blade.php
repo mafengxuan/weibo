@@ -2,18 +2,12 @@
 @section('body')
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 广告管理 <span class="c-gray en">&gt;</span> 广告位管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
     <div class="page-container">
-        <div class="text-c">
-            <form action="{{url('admin/adPosition')}}" method="get">
-                <input type="text" name="keywords" id="" placeholder=" 广告名称" style="width:250px" class="input-text" value="@if(empty($key)) @else {{$key}} @endif">
-                <input class="btn btn-success" type="submit" value="搜索">
-            </form>
-        </div>
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="article_edit('查看','{{url('admin/adPosition/create')}}','10002')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加广告位</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+
+        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" ></a> <a class="btn btn-primary radius" onclick="article_edit('查看','{{url('admin/adPosition/create')}}','10002')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加广告位</a></span> </div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-bg table-hover table-sort">
                 <thead>
                 <tr class="text-c">
-                    <th><input name="" type="checkbox" value=""></th>
                     <th>ID</th>
                     <th>版位名称</th>
                     <th>广告id</th>
@@ -27,8 +21,6 @@
                 <tbody>
                 @foreach ($data as $k=>$v)
                     <tr class="text-c">
-                        <td><input name="" type="checkbox" value=""></td>
-
                         <td>{{$v->pid}}</td>
                         <td>{{$v->p_name}}</td>
                         <td>{{$v->aid}}</td>

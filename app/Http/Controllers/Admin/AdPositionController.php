@@ -19,27 +19,19 @@ class AdPositionController extends Controller
      */
     public function index(Request $request)
     {
+            $data = Ad_position::all();
+            $ap = Ad_position::lists('pid')->all();
+            $ad = Ad::lists('pid')->all();
 
-        // 根据keywords搜索
-        if($request->has('keywords')){
-            $key = trim($request->input('keywords'));
-            $data = Ad_position::where('ad_name','like','%'.$key.'%')->get();
-//            $ad = Ad::lists('pid')->all();
-
-
+            foreach ($ap as $k=>$v){
+                if(in_array($v,$ad)){
+                    Ad_position::where('pid',$v)->update(['status'=>1]);
+                }else{
+                    Ad_position::where('pid',$v)->update(['status'=>2]);
+                }
+            }
             $status = array(1=>'占用',2=>'闲置');
-            return view('admin/ad/adPosition',['data'=>$data,'status'=>$status,'key'=>$key]);
-        }else{
-            $key = '';
-            // 获取所有数据
-            $data = Ad_position::orderBy('aid','asc')->get();
-//            $ad = Ad::lists('pid')->all();
-
-            $status = array(1=>'占用',2=>'闲置');
-
-            //添加到列表页
-            return view('admin/ad/adPosition',['data'=>$data,'status'=>$status,'key'=>$key]);
-        }
+            return view('admin/ad/adPosition',['data'=>$data,'status'=>$status]);
     }
 
     /**

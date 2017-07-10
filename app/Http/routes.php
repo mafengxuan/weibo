@@ -96,6 +96,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::get('lineChart','LineChartController@index');
     //后台友情链接管理
     Route::resource('link','LinkController');
+    Route::any('link/changeorder','LinkController@changeOrder');
 });
 
 

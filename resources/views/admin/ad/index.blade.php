@@ -10,7 +10,7 @@
             <input class="btn btn-success" type="submit" value="搜索">
         </form>
     </div>
-    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="article_edit('查看','{{url('admin/ad/create')}}','10002')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加广告</a></span> <span class="r">共有数据：<strong>45</strong> 条</span> </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> <a class="btn btn-primary radius" onclick="article_edit('查看','{{url('admin/ad/create')}}','10002')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加广告</a></span></div>
     {{--<div class="mt-20">                                                                                                                                                                                              <a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/ad/create')}}','10002')" href="javascript:;" title="查看">添加广告</a>                                                                                               --}}
         <table class="table table-border table-bordered table-bg table-hover table-sort">
             <thead>
@@ -35,7 +35,7 @@
                 <td><img src="/{{$v->ad_img}}" width="100"></td>
                 <td>{{$v->ad_name}}</td>
                 <td>{{$v->username}}</td>
-                <td>{{$v->ad_ctime}}</td>
+                <td>{{date('Y-m-d H:i:s',$v->ad_ctime)}}</td>
                 <td class="td-status"><span class="label label-success radius">{{$status[$v->status]}}</span></td>
                 <td class="td-manage"><a style="text-decoration:none" class="ml-5" onclick="article_edit('查看','{{url('admin/ad/'.$v->aid.'/edit')}}','10002')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onclick="Delarticle({{$v->aid}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
             {{--</tr>                                                                                           <a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/ad/create')}}','10002')" href="javascript:;" title="查看">添加广告</a>--}}
