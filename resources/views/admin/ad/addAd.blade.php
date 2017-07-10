@@ -158,7 +158,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2">下单人：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="auditor">
+                <input type="text" class="input-text" value="{{$session['username']}}" placeholder="" id="" name="auditor">
             </div>
         </div>
         <div class="row cl">

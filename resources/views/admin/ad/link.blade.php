@@ -30,7 +30,7 @@
                     <td>{{$v->link_url}}</td>
                     <td>{{$v->link_title}}</td>
                     <td>{{$v->link_sort}}</td>
-                    <td>{{$status[$v->status]}}</td>
+                    <td class="td-status"><span class="label label-success radius">{{$status[$v->status]}}</span></td>
                     <td class="td-manage"><a style="text-decoration:none" class="ml-5" onclick="article_edit('查看','{{url('admin/link/'.$v->lid.'/edit')}}','10002')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onclick="Delarticle({{$v->lid}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                 </tr>
             @endforeach

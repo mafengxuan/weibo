@@ -56,11 +56,14 @@ class AdController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+//        $data = $request->session()->get('user');
+//        dd($data);
         $adPosition = Ad_position::all();
+        $session = $request->session()->get('user');
 
-        return view('admin.ad.addAd',compact('adPosition'));
+        return view('admin.ad.addAd',compact('adPosition','session'));
     }
 
     /**
