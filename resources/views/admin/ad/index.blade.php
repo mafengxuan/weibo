@@ -30,7 +30,7 @@
             <tr style="line-height:20px;" class="text-c">
                 <td>{{$v->aid}}</td>
                 <td>{{$v->pid}}</td>
-                <td><img src="/{{$v->ad_img}}" width="100"></td>
+                <td><img src="{{$v->ad_img}}" width="100"></td>
                 <td>{{$v->ad_name}}</td>
                 <td>{{$v->username}}</td>
                 <td>{{date('Y-m-d H:i:s',$v->ad_ctime)}}</td>

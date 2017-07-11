@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
+use App\Services\OSS;
 
 class AdController extends Controller
 {
@@ -22,10 +23,17 @@ class AdController extends Controller
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
             $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
 //            将图片上传到本地服务器
-            $path = $file->move(public_path() . '/uploads', $newName);
+//            $path = $file->move(public_path() . '/uploads', $newName);
+            // 将图片上传到OSS 阿里云
+            $result = OSS::upload('uploads/'.date('Ymd',time()).'/'.$newName, $file->getRealPath());
+//            echo OSS::getUrl($newName);
+
+
+            //   http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/201707101650488960.jpg?OSSAccessKeyId=LTAIarkhwbI0b0KS&Signature=D150E1jCqLh%2FinstnfQddzPKqpw%3D&Expires=1499763052
 //        返回文件的上传路径
-            $filepath = 'uploads/' . $newName;
-            return $filepath;
+            $filepath = 'uploads/'.date('Ymd',time()).'/' . $newName;
+            $res = OSS::getUrl($filepath);
+            return $res;
         }
     }
     /**
