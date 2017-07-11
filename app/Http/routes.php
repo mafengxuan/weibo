@@ -59,6 +59,14 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::resource('bigv','BigvController');
     Route::get('bigvnotaudited','BigvController@notaudited');
 
+    //后台网站配置
+    Route::get('config/putfile','ConfigController@putfile');
+    Route::resource('config','ConfigController');
+
+    Route::post('config/change','ConfigController@change');
+    Route::post('config/{id}','ConfigController@del');
+
+
 
     //后台微博管理
     Route::resource('microblog','MicroblogController');
@@ -68,6 +76,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::resource('reply','ReplyController');
     //后台导航管理
     Route::resource('navigation','NavigationController');
+    Route::any('navigation/changeorder','NavigationController@changeOrder');
     //后台内容详情管理
     Route::resource('content','ContentController');
     //后台标签管理
@@ -107,5 +116,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
+    //前台详情页
+    Route::get('details','DetailsController@index');
 });
 

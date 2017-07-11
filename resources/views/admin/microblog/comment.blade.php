@@ -9,7 +9,7 @@
                 <input type="submit" value="搜索" class="btn btn-success radius">
             </div>
         </form>
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a></span> <span class="r">共有数据：<strong>88</strong> 条</span> </div>
+        {{--<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a></span> <span class="r"></div>--}}
         <div class="mt-20">
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
@@ -34,7 +34,7 @@
                         <td>{{$v->email}}</td>
                         <td>{{$v->phone}}</td>
                         <td>{{$v->content}}</td>
-                        <td>{{$v->ctime}}</td>
+                        <td>{{date('Y-m-d H:i:s',($v->ctime))}}</td>
                         <td>{{$v->p_count}}</td>
                         <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/reply')}}','10002')" href="javascript:;" title="查看">回复详情</a></td>
                         <td class="td-manage">

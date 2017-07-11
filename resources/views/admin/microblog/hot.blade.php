@@ -38,7 +38,7 @@
                                     <td>{{$v->mcount}}</td>
                                     <td>{{$v->c_count}}</td>
                                     <td>{{$v->p_count}}</td>
-                                    <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/hotcontent')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
+                                    <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/hotcontent/'.$v->mid.'/edit')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
                                     <td class="td-manage">
                                         {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
                                         {{--<i class="Hui-iconfont">&#xe6df;</i>--}}
@@ -76,8 +76,8 @@
 
                                 <td><input type="checkbox" value="1" name=""></td>
                                 <td>{{$v->mid}}</td>
-                                <td>{{date('Y-m-d H:i:s',$v->ctime)}}</td>
-                                <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/currentevent')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
+                                <td>{{date('Y-m-d H:i:s',time($v->ctime))}}</td>
+                                <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/currentevent/'.$v->mid.'/edit')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
                                 <td class="td-manage">
                                     {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
                                     {{--<i class="Hui-iconfont">&#xe6df;</i>--}}
@@ -100,7 +100,7 @@
 
     <!--请在下方写此页面业务相关的脚本-->
 
-    <script type="text/javascript" src="{{asset('/admin')}}lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript" src="{{asset('/admin')}}/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript"></script>
 
     <script>

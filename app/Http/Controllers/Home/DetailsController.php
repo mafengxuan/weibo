@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class IndexController extends Controller
+class DetailsController extends Controller
 {
     /**
-     * 前台首页
+     * 详情页
      *
      *
      */
     public function index()
     {
-        return view('home.index.index');
+        return view('home.details.index');
     }
 
 

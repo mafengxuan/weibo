@@ -9,7 +9,18 @@
                 <input type="submit" value="搜索" class="btn btn-success radius">
             </div>
         </form>
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a></span> <span class="r">共有数据：<strong>88</strong> 条</span> </div>
+        <div class="cl pd-5 bg-1 bk-gray mt-20">
+            <span class="l">
+                <a class="btn btn-primary radius" onclick="article_edit('查看','{{url('admin/navigation/create')}}','10002')" href="javascript:;">
+                    <i class="Hui-iconfont">&#xe600;</i> 添加导航
+                </a>
+            </span>
+            {{--<span class="r">--}}
+                {{--<a class="btn btn-primary radius" onclick="article_edit('查看','{{url('admin/navigation/create')}}','10002')" href="javascript:;">--}}
+                    {{--<i class="Hui-iconfont"></i> 排序--}}
+                {{--</a>--}}
+            {{--</span>--}}
+        </div>
         <div class="mt-20">
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
@@ -17,21 +28,23 @@
                     <th ><input type="checkbox" name="" value=""></th>
                     <th >id</th>
                     <th >导航名称</th>
+                    <th >排序</th>
                     <th >操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($data as $k=>$v)
                     <tr class="text-c">
-
-                        <td><input type="checkbox" value="1" name=""></td>
+                        <td><input type="text" value="{{$v->nav_sort}}" onchange="changeOrder(this,{{$v->nid}})" style="width:15px;"></td>
                         <td>{{$v->nid}}</td>
                         <td>{{$v->nav_name}}</td>
+                        <td>{{$v->nav_sort}}</td>
                         <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">
+                            <a title="编辑" href="javascript:;" onclick="article_edit('编辑','{{url('admin/navigation/'.$v->nid.'/edit')}}','4','','510')" class="ml-5" style="text-decoration:none">
                                 <i class="Hui-iconfont">&#xe6df;</i>
                             </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none">
+                            {{--<a style="text-decoration:none" class="ml-5" onclick="article_edit('查看','{{url('admin/navigation/'.$v->nid.'/edit')}}','10002')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>--}}
+                            <a style="text-decoration:none" class="ml-5" onclick="Delarticle({{$v->nid}})" href="javascript:;" title="删除">
                                 <i class="Hui-iconfont">&#xe6e2;</i>
                             </a>
                         </td>
@@ -43,4 +56,55 @@
                 {!! $data->appends(['keywords' => $key])->render() !!}
         </div>
     </div>
+    <script type="text/javascript" src="{{asset('/admin')}}/lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+        function article_edit(title,url,id,w,h){
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
+        function Delarticle(nid) {
+            //询问框
+            layer.confirm('是否确认删除？', {
+                btn: ['确定', '取消'] //按钮
+            }, function () {
+                //           url ==> admin/user/{user}   http://project182.com/admin/user/2
+                $.post("{{url('admin/navigation/')}}/" + nid, {
+                    '_method': 'DELETE',
+                    '_token': "{{csrf_token()}}"
+                }, function (data) {
+                    if (data.status == 0) {
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 6});
+                    } else {
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 5});
+                    }
+                });
+
+
+            }, function () {
+
+            });
+        }
+
+        function changeOrder(obj,nid){
+//            获取修改后的排序号
+            var nav_sort =  $(obj).val();
+            $.post('{{url('admin/navigation/changeorder')}}',{'_token':"{{csrf_token()}}",'nid':nid,'nav_sort':nav_sort},function(data){
+                if(data.status == 0){
+                    location.href = location.href;
+                    layer.msg(data.msg, {icon: 6});
+                }else{
+                    location.href = location.href;
+                    layer.msg(data.msg, {icon: 5});
+                }
+            })
+        }
+
+    </script>
 @endsection

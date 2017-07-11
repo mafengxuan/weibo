@@ -9,5 +9,6 @@ class Tag extends Model
     //
     protected $table = 'tags';
     protected $primaryKey = 'tid';
+    protected $guarded = [];
     public $timestamps = false;
 }

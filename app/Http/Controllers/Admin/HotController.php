@@ -20,6 +20,8 @@ class HotController extends Controller
     {
         //如果请求携带keywords参数说明是通过查询跳转进入index方法 否则通过导航栏进入
 
+
+
             //查询数据并分页
             $hot1 = Microblog::orderBy('mcount','desc')->take(3)->get();
 
