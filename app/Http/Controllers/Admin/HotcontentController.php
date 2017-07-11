@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Microblog;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class HotcontentController extends Controller
 {
@@ -16,8 +18,10 @@ class HotcontentController extends Controller
      */
     public function index()
     {
+
+
         //加载每日热门视图
-        return view('admin.microblog.hotcontent');
+//        return view('admin.microblog.hotcontent');
     }
 
     /**
@@ -60,7 +64,9 @@ class HotcontentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Microblog::where('mid',$id)->get();
+
+        return view('admin.microblog.hotcontent',compact('data'));
     }
 
     /**

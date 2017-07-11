@@ -76,6 +76,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::resource('reply','ReplyController');
     //后台导航管理
     Route::resource('navigation','NavigationController');
+    Route::any('navigation/changeorder','NavigationController@changeOrder');
     //后台内容详情管理
     Route::resource('content','ContentController');
     //后台标签管理

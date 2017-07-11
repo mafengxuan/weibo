@@ -26,7 +26,7 @@ class LinkController extends Controller
     public function changeOrder(Request $request)
     {
 
-//        先找到要修改排序的记录
+//      先找到要修改排序的记录
         $input =  $request->except('_token');
 
         $link = Link::where('lid',$input['lid'])->first();
