@@ -41,7 +41,8 @@ class LabelController extends Controller
      */
     public function create()
     {
-        //
+        //加载添加标签页面
+        return view('admin/microblog/addlab');
     }
 
     /**
@@ -52,7 +53,16 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //去除token值
+        $input = Input::except('_token');
+
+        $re = Tag::create($input);
+
+        if($re){
+            return redirect('admin/label');
+        }else{
+            return back()->with('error','添加失败');
+        }
     }
 
     /**
@@ -74,7 +84,8 @@ class LabelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Tag::where('tid',$id)->first();
+        return view('admin.microblog.editlab',compact('data'));
     }
 
     /**
@@ -86,7 +97,14 @@ class LabelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //去除token值
+        $input = Input::except('_token','_method');
+        $re = Tag::where('tid',$id)->update($input);
+        if($re){
+            return redirect('admin/label');
+        }else{
+            return back()->with('error','添加失败');
+        }
     }
 
     /**
@@ -97,6 +115,21 @@ class LabelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //删除对应id的用户
+        $re =  Tag::where('tid',$id)->delete();
+        //       0表示成功 其他表示失败
+        if($re){
+            $data = [
+                'status'=>0,
+                'msg'=>'删除成功！'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'msg'=>'删除失败！'
+            ];
+        }
+        return $data;
     }
+
 }

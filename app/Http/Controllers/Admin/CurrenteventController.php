@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Microblog;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class CurrenteventController extends Controller
 {
@@ -17,7 +19,7 @@ class CurrenteventController extends Controller
     public function index()
     {
         //加载时事热门视图
-        return view('admin.microblog.currentevent');
+//        return view('admin.microblog.currentevent');
     }
 
     /**
@@ -60,7 +62,9 @@ class CurrenteventController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Microblog::where('mid',$id)->get();
+
+        return view('admin.microblog.hotcontent',compact('data'));
     }
 
     /**

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Microblog;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class ContentController extends Controller
 {
@@ -16,7 +18,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return view('admin.microblog.content');
+
     }
 
     /**
@@ -59,7 +61,9 @@ class ContentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Microblog::where('mid',$id)->get();
+
+        return view('admin.microblog.content',compact('data'));
     }
 
     /**
