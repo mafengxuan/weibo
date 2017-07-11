@@ -122,6 +122,17 @@
 			</dd>
 		</dl>
 
+		<dl id="menu-comments">
+			<dt><i class="Hui-iconfont">&#xe720;</i> 网站配置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="{{url('admin/config/create')}}" data-title="广告列表" href="javascript:void(0)">添加配置</a></li>
+					<li><a data-href="{{url('admin/config')}}" data-title="广告位管理" href="javascript:void(0)">配置列表</a></li>
+
+				</ul>
+			</dd>
+		</dl>
+
 </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>

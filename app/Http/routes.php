@@ -59,6 +59,14 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::resource('bigv','BigvController');
     Route::get('bigvnotaudited','BigvController@notaudited');
 
+    //后台网站配置
+    Route::get('config/putfile','ConfigController@putfile');
+    Route::resource('config','ConfigController');
+
+    Route::post('config/change','ConfigController@change');
+    Route::post('config/{id}','ConfigController@del');
+
+
 
     //后台微博管理
     Route::resource('microblog','MicroblogController');
