@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Ad;
 use App\Http\Model\Ad_position;
 use Illuminate\Http\Request;
 
@@ -18,22 +19,19 @@ class AdPositionController extends Controller
      */
     public function index(Request $request)
     {
+            $data = Ad_position::all();
+            $ap = Ad_position::lists('pid')->all();
+            $ad = Ad::lists('pid')->all();
 
-        // 根据keywords搜索
-        if($request->has('keywords')){
-            $key = trim($request->input('keywords'));
-            $data = Ad_position::where('ad_name','like','%'.$key.'%')->get();
+            foreach ($ap as $k=>$v){
+                if(in_array($v,$ad)){
+                    Ad_position::where('pid',$v)->update(['status'=>1]);
+                }else{
+                    Ad_position::where('pid',$v)->update(['status'=>2]);
+                }
+            }
             $status = array(1=>'占用',2=>'闲置');
-            return view('admin/ad/adPosition',['data'=>$data,'status'=>$status,'key'=>$key]);
-        }else{
-            $key = '';
-            // 获取所有数据
-            $data = Ad_position::orderBy('aid','asc')->get();
-            $status = array(1=>'占用',2=>'闲置');
-
-            //添加到列表页
-            return view('admin/ad/adPosition',['data'=>$data,'status'=>$status,'key'=>$key]);
-        }
+            return view('admin/ad/adPosition',['data'=>$data,'status'=>$status]);
     }
 
     /**
@@ -43,7 +41,7 @@ class AdPositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.ad.adPositionadd');
     }
 
     /**
@@ -54,7 +52,16 @@ class AdPositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 获取表单所有数据
+        $input = Input::except('_token');
+        // 插入广告位表
+        $res = Ad_position::create($input);
+        // 如果成功跳转到广告列表页  如果失败 返回添加页面
+        if($res){
+            return redirect('admin/adPosition');
+        }else{
+            return back()->with('error','添加失败');
+        }
     }
 
     /**
@@ -76,7 +83,10 @@ class AdPositionController extends Controller
      */
     public function edit($id)
     {
-        //
+        //根据传入的要修改的记录的ID 获取广告记录
+
+        $data = Ad_position::find($id);
+        return view('admin.ad.adPositionEdit',compact('data'));
     }
 
     /**
@@ -88,7 +98,21 @@ class AdPositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        //根据id获取修改记录
+        $ad = Ad_position::find($id);
+        //根据请求传过来的参数获取到要修改成的记录
+        $input = Input::except('_token','_method');
+        //更新
+
+        $res = $ad->update($input);
+
+        //如果成功跳转到列表页  失败返回修改页
+        if($res){
+            return redirect('admin/adPosition');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
@@ -99,6 +123,20 @@ class AdPositionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //删除对应id的广告位
+        $re =  Ad_position::where('pid',$id)->delete();
+        //0表示成功 其他表示失败
+        if($re){
+            $data = [
+                'status'=>0,
+                'msg'=>'删除成功！'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'msg'=>'删除失败！'
+            ];
+        }
+        return $data;
     }
 }

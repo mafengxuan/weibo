@@ -43,7 +43,7 @@
 <script type="text/javascript" src="{{asset('/admin')}}/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript" src="{{asset('/admin')}}/static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="{{asset('/admin')}}/static/h-ui.admin/js/H-ui.admin.js"></script>
-<script type="text/javascript" src="{{asset('/admin')}}/layer/layer.js"></script>
+{{--<script type="text/javascript" src="{{asset('/admin')}}/layer/layer.js"></script>--}}
 @section('js')
 @show
 </body>

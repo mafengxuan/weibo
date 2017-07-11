@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\User;
 use App\Http\Model\User_info;
 use Illuminate\Http\Request;
 
@@ -18,10 +19,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //查询出user表的所有数据
-        $user = User_info::orderBy('id','asc')->paginate(1);
-        //向前台模板传变量
-       return view('admin.user.index',['data'=>$user]);
+//        查询出user表的所有数据
+          $user = DB::table('users')
+              ->join('user_infos','users.uid','=','user_infos.uid')
+              ->get();
+         return view('admin.user.index',['user'=>$user]);
     }
 
     /**

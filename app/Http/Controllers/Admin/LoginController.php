@@ -67,13 +67,15 @@ class LoginController extends Controller
             if($input['password']  != $user['password']){
                 return back()->with('errors','密码错误')->withInput();
             }
+            //将用户信息添加到session中
+            session(['user'=>$user]);
             //登录成功跳到首页
-            return redirect('admin/index/index');
+            return redirect('admin/index');
         }else{
             return back()->withErrors($validate);
         }
-        //将用户信息添加到session中
-        session(['user'=>$user]);
+
+
 
     }
 

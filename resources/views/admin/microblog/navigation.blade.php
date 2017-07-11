@@ -15,7 +15,7 @@
                 <thead>
                 <tr class="text-c">
                     <th ><input type="checkbox" name="" value=""></th>
-                    <th >导航id</th>
+                    <th >id</th>
                     <th >导航名称</th>
                     <th >操作</th>
                 </tr>

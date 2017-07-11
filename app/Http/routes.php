@@ -25,10 +25,8 @@ Route::post('/admin/dologin','Admin\LoginController@dologin');
 Route::get('/admin/code','Admin\LoginController@code');
 
 //后台模块
-//Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
-Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
-
-
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
+//Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
     //后台主页面
     Route::resource('index', 'IndexController');
@@ -36,11 +34,13 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::get('welcome','IndexController@welcome');
     //退出登录
     Route::get('quit','IndexController@quit');
-
-    //后台普通用户页面
+    //修改密码
+    Route::get('repass','PwdController@repass');
+    Route::post('dorepass','PwdController@dorepass');
+    //后台普通用户
     Route::resource('user','UserController');
-
-
+    //后台管理员
+    Route::resource('manager','ManagerController');
 
     //管理员日志
     Route::get('log','LogController@index');
@@ -76,15 +76,35 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
     Route::resource('reply','ReplyController');
     //后台导航管理
     Route::resource('navigation','NavigationController');
+    //后台内容详情管理
+    Route::resource('content','ContentController');
+    //后台标签管理
+    Route::resource('label','LabelController');
+    //后台热门管理
+    Route::resource('hot','HotController');
+    //后台每日热门管理
+    Route::resource('hotcontent','HotcontentController');
+
+    //后台时事热门管理
+    Route::resource('currentevent','CurrenteventController');
+
 
 
 
     //后台广告管理
     Route::resource('ad','AdController');
+    Route::any('upload','AdController@upload');
     //后台广告位管理
     Route::resource('adPosition','AdPositionController');
     //后台广告审核
     Route::resource('audit','AuditController');
+    //后台广告收费管理
+    Route::resource('order','OrderController');
+    //后台收益管理
+    Route::get('lineChart','LineChartController@index');
+    //后台友情链接管理
+    Route::resource('link','LinkController');
+    Route::any('link/changeorder','LinkController@changeOrder');
 });
 
 
@@ -93,5 +113,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
+    //前台详情页
+    Route::get('details','DetailsController@index');
 });
 
