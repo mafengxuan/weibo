@@ -110,11 +110,26 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
 
 
 //前台模块
+
+//前台注册
+Route::controller('/home/zhuce','Home\ZhuceController');
+
+//前台登录
+Route::get('/home/login/login','Home\LoginController@login');
+
+//处理登录
+Route::post('/home/login/dologin','Home\LoginController@dologin');
+
+//退出登录
+Route::get('/home/quit','Home\LoginController@quit');
+
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
+
     //前台详情页
     Route::get('details','DetailsController@index');
+
 });
 

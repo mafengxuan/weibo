@@ -56,9 +56,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
-				<div class="num">
-					<p> Call us : 032 2352 782</p>
-				</div>
+
+				@if(session('user'))
+					<div class="num">
+						<a href="{{url('home/login/login')}}">个人中心</a>
+						<a href="{{url('home/quit')}}">退出</a>
+					</div>
+				@else
+					<div class="num">
+						<a href="{{url('home/zhuce/add')}}">注册</a>
+						<a href="{{url('home/login/login')}}">登录</a>
+					</div>
+				@endif
 				<div class="clearfix"></div>
 			</div>
 		</div>
