@@ -142,7 +142,7 @@ class CommerceController extends Controller
         //
         $sta = Input::get('sta');
         if($sta== 1){
-            $res = User_commerce::where('commerce_id',$id)->update(['status'=>1,'a_time'=>time()]);
+            $res = User_commerce::where('commerce_id',$id)->update(['status'=>1,'a_time'=>time(),'auditor'=>session('user')->username]);
             if($res){
                 $data = [
                     'status' => 0,
@@ -157,7 +157,7 @@ class CommerceController extends Controller
             return $data;
         }
         if($sta == 2){
-            $res = User_commerce::where('commerce_id',$id)->update(['status'=>3,'a_time'=>time()]);
+            $res = User_commerce::where('commerce_id',$id)->update(['status'=>3,'a_time'=>time(),'auditor'=>session('user')->username]);
             if($res){
                 $data = [
                     'status' => 0,

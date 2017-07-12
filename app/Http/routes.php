@@ -51,6 +51,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::get('companynotaudited','CompanyController@notaudited');
 
 
+    Route::get('abc','CompanyController@abc');
+
+
     //后台商业用户 commerce
     Route::resource('commerce','CommerceController');
     Route::get('commercenotaudited','CommerceController@notaudited');
