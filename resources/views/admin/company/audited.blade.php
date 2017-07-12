@@ -10,15 +10,18 @@
 @section('body')
 
     <body>
-
+    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a class="btn btn-primary radius" href="{{url('admin/companynotaudited')}}"><i class="Hui-iconfont"></i> 待审核</a></span>
     <div class="page-container">
+
+        <form action="{{url('admin/company')}}" mehtod="get">
         <div class="text-c"> 日期范围：
-            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;">
+            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate" style="width:120px;" name="s_time">
             -
-            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;">
-            <input type="text" class="input-text" style="width:250px" placeholder="输入会员名称、电话、邮箱" id="" name="">
-            <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 查找</button>
+            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'datemin\')}',maxDate:'%y-%M-%d' })" id="datemax" class="input-text Wdate" style="width:120px;" name="e_time">
+            <input type="text" class="input-text" style="width:250px" placeholder="输入公司名称" id="" name="company_name">
+            <input type="submit" class="btn btn-success radius" id="" name="sub" value="查询"><i class="Hui-iconfont">&#xe665;</i>
         </div>
+        </form>
 
         <div class="mt-20">
             <table class="table table-border table-bordered table-hover table-bg table-sort">
@@ -48,17 +51,20 @@
                     @if($v->status==1)
                     <td class="td-status">已审核</td>
                     @endif
+                    @if($v->status==3)
+                    <td class="td-status">已驳回</td>
+                    @endif
                 </tr>
                 @endforeach
 
                 </tbody>
             </table>
 
-            {!! $data->render() !!}
+            {!! $data->appends(['company_name'=>$company_name,'s_time'=>$s_time,'e_time'=>$e_time])->render() !!}
 
         </div>
     </div>
-
+    </div>
     </body>
 
 @endsection

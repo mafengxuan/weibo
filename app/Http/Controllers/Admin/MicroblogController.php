@@ -24,7 +24,7 @@ class MicroblogController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             //查询数据并分页
-            $microblog = Microblog::where('ctime','like',"%".$key."%")->paginate(2);
+            $microblog = Microblog::where('phone','like',"%".$key."%")->paginate(2);
             return view('admin.microblog.index',['data'=>$microblog,'key'=>$key]);
         }else{
             $key = '';

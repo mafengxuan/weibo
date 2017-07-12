@@ -9,7 +9,7 @@
             <input type="submit" value="搜索" class="btn btn-success radius">
         </div>
         </form>
-        <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a></span> <span class="r">共有数据：<strong>88</strong> 条</span> </div>
+        {{--<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a></span> <span class="r"></span> </div>--}}
         <div class="mt-20">
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
@@ -37,8 +37,8 @@
                     <td>{{$v->mid}}</td>
                     <td>{{$v->email}}</td>
                     <td>{{$v->phone}}</td>
-                    <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/content')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
-                    <td>{{$v->ctime}}</td>
+                    <td><a style="cursor:pointer" class="text-primary" onclick="article_conten('查看','{{url('admin/content/'.$v->mid.'/edit')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
+                    <td>{{date('Y-m-d H:i:s',($v->ctime))}}</td>
                     <td>{{$v->mcount}}</td>
                     <td>{{$v->c_count}}</td>
                     <td>{{$v->t_count}}</td>
@@ -66,7 +66,7 @@
 
     <!--请在下方写此页面业务相关的脚本-->
 
-    <script type="text/javascript" src="{{asset('/admin')}}lib/laypage/1.2/laypage.js"></script>
+    <script type="text/javascript" src="{{asset('/admin')}}/lib/laypage/1.2/laypage.js"></script>
     <script type="text/javascript"></script>
 
         <script>
@@ -78,6 +78,13 @@
             });
             layer.full(index);
         }
-
+        function article_conten(title,url,id,w,h){
+            var index = layer.open({
+                type: 2,
+                title: title,
+                content: url
+            });
+            layer.full(index);
+        }
     </script>
 @endsection

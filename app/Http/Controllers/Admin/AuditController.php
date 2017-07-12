@@ -89,8 +89,40 @@ class AuditController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sta = Input::get('sta');
+        if($sta== 1){
+            $res = Ad::where('aid',$id)->update(['status'=>1,'ad_ctime'=>time()]);
+            if($res){
+                $data = [
+                    'status' => 0,
+                    'msg'    =>'审核已通过!'
+                ];
+            }else{
+                $data = [
+                    'status' => 4,
+                    'msg'    =>'审核未通过!'
+                ];
+            }
+            return $data;
+        }
+        if($sta == 2){
+            $res = Ad::where('aid',$id)->update(['status'=>3,'ad_ctime'=>time()]);
+            if($res){
+                $data = [
+                    'status' => 0,
+                    'msg'    =>'审核已驳回!'
+                ];
+            }else{
+                $data = [
+                    'status' => 4,
+                    'msg'    =>'审核驳回失败!'
+                ];
+            }
+            return $data;
+        }
     }
+
+
 
     /**
      * Remove the specified resource from storage.

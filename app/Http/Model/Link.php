@@ -9,5 +9,6 @@ class Link extends Model
     //
     protected $table = 'links';
     protected $primaryKey = 'lid';
+    protected $guarded = [];
     public $timestamps = false;
 }

@@ -79,9 +79,8 @@
 				<ul>
 					<li><a data-href="{{url('admin/user')}}" data-title="用户列表" href="javascript:void(0)">用户列表</a></li>
 					<li><a data-href="{{url('admin/company')}}" data-title="企业用户" href="javascript:void(0)">企业用户</a></li>
-					<li><a data-href="{{url('admin/welcome')}}" data-title="商业用户" href="javascript:void(0)">商业用户</a></li>
-					<li><a data-href="{{url('admin/welcome')}}" data-title="广告用户" href="javascript:void(0)">广告用户</a></li>
-					<li><a data-href="{{url('admin/welcome')}}" data-title="大V用户" href="javascript:void(0)">大V用户</a></li>
+					<li><a data-href="{{url('admin/commerce')}}" data-title="商业用户" href="javascript:void(0)">商业用户</a></li>
+					<li><a data-href="{{url('admin/bigv')}}" data-title="大V用户" href="javascript:void(0)">大V用户</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -117,9 +116,20 @@
 					<li><a data-href="{{url('admin/ad')}}" data-title="广告列表" href="javascript:void(0)">广告列表</a></li>
 					<li><a data-href="{{url('admin/adPosition')}}" data-title="广告位管理" href="javascript:void(0)">广告位管理</a></li>
 					<li><a data-href="{{url('admin/audit')}}" data-title="广告审核" href="javascript:void(0)">广告审核</a></li>
-					<li><a data-href="feedback-list.html" data-title="收费管理" href="javascript:void(0)">收费管理</a></li>
-					<li><a data-href="feedback-list.html" data-title="收益统计" href="javascript:void(0)">收益统计</a></li>
-					<li><a data-href="feedback-list.html" data-title="友情链接" href="javascript:void(0)">友情链接</a></li>
+					<li><a data-href="{{url('admin/order')}}" data-title="收费管理" href="javascript:void(0)">收费管理</a></li>
+					<li><a data-href="{{url('admin/lineChart')}}" data-title="收益统计" href="javascript:void(0)">收益统计</a></li>
+					<li><a data-href="{{url('admin/link')}}" data-title="友情链接" href="javascript:void(0)">友情链接</a></li>
+				</ul>
+			</dd>
+		</dl>
+
+		<dl id="menu-comments">
+			<dt><i class="Hui-iconfont">&#xe720;</i> 网站配置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="{{url('admin/config/create')}}" data-title="广告列表" href="javascript:void(0)">添加配置</a></li>
+					<li><a data-href="{{url('admin/config')}}" data-title="广告位管理" href="javascript:void(0)">配置列表</a></li>
+
 				</ul>
 			</dd>
 		</dl>

@@ -46,8 +46,27 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::get('log','LogController@index');
 
 
-    //后台企业用户
+    //后台企业用户 company
     Route::resource('company','CompanyController');
+    Route::get('companynotaudited','CompanyController@notaudited');
+
+
+    //后台商业用户 commerce
+    Route::resource('commerce','CommerceController');
+    Route::get('commercenotaudited','CommerceController@notaudited');
+
+    //后台大V用户 bigv
+    Route::resource('bigv','BigvController');
+    Route::get('bigvnotaudited','BigvController@notaudited');
+
+    //后台网站配置
+    Route::get('config/putfile','ConfigController@putfile');
+    Route::resource('config','ConfigController');
+
+    Route::post('config/change','ConfigController@change');
+    Route::post('config/{id}','ConfigController@del');
+
+
 
     //后台微博管理
     Route::resource('microblog','MicroblogController');
@@ -57,6 +76,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::resource('reply','ReplyController');
     //后台导航管理
     Route::resource('navigation','NavigationController');
+    Route::any('navigation/changeorder','NavigationController@changeOrder');
     //后台内容详情管理
     Route::resource('content','ContentController');
     //后台标签管理
@@ -71,12 +91,21 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
 
 
 
+
     //后台广告管理
     Route::resource('ad','AdController');
+    Route::any('upload','AdController@upload');
     //后台广告位管理
     Route::resource('adPosition','AdPositionController');
     //后台广告审核
     Route::resource('audit','AuditController');
+    //后台广告收费管理
+    Route::resource('order','OrderController');
+    //后台收益管理
+    Route::get('lineChart','LineChartController@index');
+    //后台友情链接管理
+    Route::resource('link','LinkController');
+    Route::any('link/changeorder','LinkController@changeOrder');
 });
 
 
@@ -94,11 +123,18 @@ Route::post('/home/login/dologin','Home\LoginController@dologin');
 //退出登录
 Route::get('/home/quit','Home\LoginController@quit');
 
+//个人中心路由
+Route::get('/home/userinfo','Home\UserController@index');
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
 
+
+
+
+    //前台详情页
+    Route::get('details','DetailsController@index');
 
 });
 

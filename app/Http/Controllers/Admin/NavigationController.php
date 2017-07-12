@@ -27,12 +27,38 @@ class NavigationController extends Controller
         }else{
             $key = '';
             //查询出navigations表的所有数据
-            $navigation = Navigation::orderBy('nid','asc')->paginate(2);
+            $navigation = Navigation::orderBy('nav_sort','asc')->paginate(2);
             //添加导航管理视图
             return view('admin.microblog.navigation',['data'=>$navigation,'key'=>$key]);
         }
     }
 
+
+    public function changeOrder(Request $request)
+    {
+
+//      先找到要修改排序的记录
+        $input =  $request->except('_token');
+
+        $nav = Navigation::where('nid',$input['nid'])->first();
+
+//        更新这条记录的nav_sort字段
+        $nav->nav_sort = $input['nav_sort'];
+        $re = $nav->update();
+//        如果修改成功
+        if($re){
+            $data =[
+                'status'=>0,
+                'msg'=>'修改成功'
+            ];;
+        }else{
+            $data =[
+                'status'=>1,
+                'msg'=>'修改失败'
+            ];
+        }
+        return $data;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -40,7 +66,8 @@ class NavigationController extends Controller
      */
     public function create()
     {
-        //
+        //加载添加导航页面
+        return view('admin.microblog.addnav');
     }
 
     /**
@@ -51,7 +78,17 @@ class NavigationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //去除token值
+        $input = Input::except('_token');
+
+        $re = Navigation::create($input);
+
+        if($re){
+            return redirect('admin/navigation');
+        }else{
+            return back()->with('error','添加失败');
+        }
     }
 
     /**
@@ -62,7 +99,9 @@ class NavigationController extends Controller
      */
     public function show($id)
     {
-        //
+        //        找到要修改的用户记录，返回给修改页面
+        //        find(1) 也会返回一个对象
+
     }
 
     /**
@@ -73,7 +112,8 @@ class NavigationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Navigation::where('nid',$id)->first();
+        return view('admin.microblog.editnav',compact('data'));
     }
 
     /**
@@ -85,17 +125,37 @@ class NavigationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //去除token值
+        $input = Input::except('_token','_method');
+        $re = Navigation::where('nid',$id)->update($input);
+        if($re){
+            return redirect('admin/navigation');
+        }else{
+            return back()->with('error','添加失败');
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
+     /* Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        //删除对应id的用户
+        $re =  Navigation::where('nid',$id)->delete();
+        //       0表示成功 其他表示失败
+        if($re){
+            $data = [
+                'status'=>0,
+                'msg'=>'删除成功！'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'msg'=>'删除失败！'
+            ];
+        }
+        return $data;
     }
 }
