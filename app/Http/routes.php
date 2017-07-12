@@ -84,10 +84,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
 
 //前台注册
 Route::controller('/home/zhuce','Home\ZhuceController');
+
 //前台登录
 Route::get('/home/login/login','Home\LoginController@login');
+
 //处理登录
 Route::post('/home/login/dologin','Home\LoginController@dologin');
+
+//退出登录
+Route::get('/home/quit','Home\LoginController@quit');
 
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 

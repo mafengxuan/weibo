@@ -64,7 +64,13 @@ class LoginController extends Controller
 //          如果没有通过表单验证
             return back()->withErrors($validator);
         }
+    }
 
-
+    //退出
+    public function quit()
+    {
+        //清空session
+        session(['user'=>null]);
+        return redirect('/home/login/login');
     }
 }
