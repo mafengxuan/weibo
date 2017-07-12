@@ -57,7 +57,7 @@ class LoginController extends Controller
             }
 
             //将用户信息添加到session中
-            session(['user' => $user]);
+            session(['user_home' => $user]);
             //登录
             return redirect('home/index');
         } else {
@@ -70,7 +70,7 @@ class LoginController extends Controller
     public function quit()
     {
         //清空session
-        session(['user'=>null]);
-        return redirect('/home/login/login');
+        session(['user_home'=>null]);
+        return redirect('/home/index');
     }
 }
