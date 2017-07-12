@@ -57,9 +57,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 
-				@if(session('user'))
+				@if(session('user_home'))
 					<div class="num">
-						<a href="{{url('home/login/login')}}">个人中心</a>
+						<a href="{{url('home/userinfo')}}">个人中心</a>
 						<a href="{{url('home/quit')}}">退出</a>
 					</div>
 				@else

@@ -126,10 +126,13 @@ Route::post('/home/login/dologin','Home\LoginController@dologin');
 //退出登录
 Route::get('/home/quit','Home\LoginController@quit');
 
+//个人中心路由
+Route::get('/home/userinfo','Home\UserController@index');
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
+
 
     //前台详情页
     Route::get('details','DetailsController@index');
