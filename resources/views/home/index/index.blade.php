@@ -5,24 +5,26 @@
 				<div class="slider">
 					<div class="callbacks_wrap">
 						<ul class="rslides" id="slider">
+							@foreach($pic4 as $k=>$v)
 							<li>
-								<img src="{{asset('home')}}/images/3.jpg" alt="">
+								<img src="{{$v['ad_img']}}" alt="">
 								<div class="caption">
-									<a href="single.html">Lorem Ipsum is simply dummy text of the printing and typesetting industry</a>
+									<a href="{{$v['ad_url']}}">{{$v['ad_brief']}}</a>
 								</div>
 							</li>
-							<li>
-								<img src="{{asset('home')}}/images/2.jpg" alt="">
-								<div class="caption">
-									<a href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</a>
-								</div>
-							</li>
-							<li>
-								<img src="{{asset('home')}}/images/1.jpg" alt="">
-								<div class="caption">
-									<a href="single.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</a>
-								</div>
-							</li>
+							@endforeach
+							{{--<li>--}}
+								{{--<img src="{{asset('home')}}/images/2.jpg" alt="">--}}
+								{{--<div class="caption">--}}
+									{{--<a href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</a>--}}
+								{{--</div>--}}
+							{{--</li>--}}
+							{{--<li>--}}
+								{{--<img src="{{asset('home')}}/images/1.jpg" alt="">--}}
+								{{--<div class="caption">--}}
+									{{--<a href="single.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</a>--}}
+								{{--</div>--}}
+							{{--</li>--}}
 						</ul>
 					</div>
 				</div>
