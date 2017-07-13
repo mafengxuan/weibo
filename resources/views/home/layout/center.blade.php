@@ -8,14 +8,16 @@
 
     <link href="{{asset('/home/user/AmazeUI-2.4.2/assets/css/admin.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/home/user/AmazeUI-2.4.2/assets/css/amazeui.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('/admin/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('/admin/bootstrap/css/bootstrapValidator.css')}}" rel="stylesheet" type="text/css">
 
     <link href="{{asset('/home/user/css/personal.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/home/user/css/infstyle.css')}}" rel="stylesheet" type="text/css">
     <script src="{{asset('/home/user/AmazeUI-2.4.2/assets/js/jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('/home/user/AmazeUI-2.4.2/assets/js/amazeui.js')}}" type="text/javascript"></script>
-
+    <script src="{{asset('/admin/bootstrap/js/bootstrap.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/admin/bootstrap/js/bootstrapValidator.js')}}" type="text/javascript"></script>
 </head>
-
 <body>
 <!--头 -->
 <header>
@@ -38,7 +40,6 @@
     </article>
 </header>
 <div class="nav-table">
-
 </div>
 <b class="line"></b>
 <div class="center">
@@ -66,75 +67,15 @@
 						            </span>
                         </div>
                         {{--<div class="u-safety">--}}
-                            {{--<a href="safety.html">--}}
-                                {{--账户安全--}}
-                                {{--<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>--}}
-                            {{--</a>--}}
+                        {{--<a href="safety.html">--}}
+                        {{--账户安全--}}
+                        {{--<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>--}}
+                        {{--</a>--}}
                         {{--</div>--}}
                     </div>
                 </div>
-                <!--个人信息 -->
-                <div class="info-main">
-                    <form class="am-form am-form-horizontal">
-                        <div class="am-form-group">
-                            <label for="user-name2" class="am-form-label">真实姓名</label>
-                            <div class="am-form-content">
-                                <input type="text" id="user-name2" name="realname" placeholder="nickname">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label for="user-name" class="am-form-label">QQ</label>
-                            <div class="am-form-content">
-                                <input type="text" id="user-name2" name="qq" placeholder="name">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label for="user-name" class="am-form-label">生日</label>
-                            <div class="am-form-content">
-                                <input type="text" id="user-name2" name="birth" placeholder="name">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label for="user-name" class="am-form-label">地址</label>
-                            <div class="am-form-content">
-                                <input type="text" id="user-name2" name="address" placeholder="name">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label for="user-phone" class="am-form-label">性别</label>
-                            <div class="am-form-content">
-                                <input id="user-phone" name="sex" placeholder="telephonenumber" type="input">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label for="user-email" class="am-form-label">年龄</label>
-                            <div class="am-form-content">
-                                <input id="user-email" placeholder="Email" name="age" type="input">
-                            </div>
-                        </div>
-                        <div class="am-form-group">
-                            <label for="user-email" class="am-form-label">简介</label>
-                            <div class="am-form-content">
-                                <input id="user-email" placeholder="Email" name="introduction" type="input">
-                            </div>
-                        </div>
-                        <div class="am-form-group safety">
-                            <label for="user-safety" class="am-form-label">账号安全</label>
-                            <div class="am-form-content safety">
-                                <a href="safety.html">
-
-                                    <span class="am-icon-angle-right"></span>
-
-                                </a>
-
-                            </div>
-                        </div>
-                        <div class="info-btn">
-                            <div class="am-btn am-btn-danger">保存修改</div>
-                        </div>
-
-                    </form>
-                </div>
+@section('show')
+@show
 
             </div>
 
@@ -158,14 +99,14 @@
                     <li> <a href="address.html">收货地址</a></li>
                 </ul>
             </li>
-             <li class="person">
+            <li class="person">
                 <a href="#">我的交易</a>
                 <ul>
                     <li><a href="order.html">订单管理</a></li>
                     <li> <a href="change.html">退款售后</a></li>
                 </ul>
             </li>
-             <li class="person">
+            <li class="person">
                 <a href="#">我的资产</a>
                 <ul>
                     <li> <a href="coupon.html">优惠券 </a></li>
@@ -174,22 +115,20 @@
                 </ul>
             </li>
 
-             <li class="person">
-                 <ul>
-                     <li> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
-                     <li> <a href="javascript:;" id="company" onclick="check_company('company')">公司用户认证</a></li>
-                     <li> <a href="javascript:;" id="commerce" onclick="check_commerce('commerce')">商业用户认证</a></li>
-                     <li> <a href="javascript:;" id="bigv" onclick="check_bigv('bigv')">大V用户认证</a></li>
-                 </ul>
+            <li class="person">
+                <ul>
+                    <li> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
+                    <li> <a href="javascript:;" id="company" onclick="check_company('company')">公司用户认证</a></li>
+                    <li> <a href="javascript:;" id="commerce" onclick="check_commerce('commerce')">商业用户认证</a></li>
+                    <li> <a href="javascript:;" id="bigv" onclick="check_bigv('bigv')">大V用户认证</a></li>
+                </ul>
             </li>
 
         </ul>
 
     </aside>
 </div>
-
 </body>
-
 </html>
 <script>
     function check_company(str)
@@ -197,7 +136,7 @@
         var type = str;
         $.post("{{url('home/auditcheck')}}",{'_token':"{{csrf_token()}}"},function(data){
             if(data.status==0){
-                location.href='{{url('home')}}/'+type;
+                location.href="{{url('home')}}/"+type;
             }else{
                 alert('有待审核或已通过审核认证，不能再次申请');
             }

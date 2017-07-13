@@ -134,6 +134,24 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     Route::get('index','IndexController@index');
 
 
+
+
+    //个人中心-我提交的申请
+
+    Route::post('auditcheck','myauditController@check');
+    Route::resource('myaudit','myauditController');
+    //个人中心-公司申请
+    Route::resource('company','companyauditController');
+    //个人中心-商业申请
+    Route::resource('commerce','commerceauditController');
+    //个人中心-大V申请
+    Route::resource('bigv','bigvauditController');
+
+
+
+
+
+
     //前台详情页
     Route::get('details','DetailsController@index');
 
