@@ -22,7 +22,7 @@ class PermissionController extends Controller
 //        $route =   \Route::current()->getActionName();
 //        App\Http\Controllers\Admin\PermissionController@index
 
-        $data = [];
+        $data = Admin_permissions::get();
         return view('admin.permission.index',compact('data'));
     }
 
@@ -83,7 +83,8 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Admin_permissions::find($id);
+        return view('admin.permission.editPermission',compact('data'));
     }
 
     /**
@@ -101,6 +102,23 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //删除对应id的权限
+       $re = Admin_permissions::destroy($id);
+//       $re = Admin_permissions::where('id',$id)->delete();
+
+
+//       0表示成功 其他表示失败
+        if($re){
+            $data = [
+                'status'=>0,
+                'msg'=>'删除成功！'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+                'msg'=>'删除失败！'
+            ];
+        }
+        return $data;
     }
 }

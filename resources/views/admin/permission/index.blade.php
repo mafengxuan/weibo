@@ -5,7 +5,6 @@
 <div class="page-container">
 
     <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a class="btn btn-primary radius" onclick="article_edit('添加权限','{{url('admin/permission/create')}}','10002')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加权限</a></span></div>
-    {{--<div class="mt-20">                                                                                                                                                                                              <a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/permission/create')}}','10002')" href="javascript:;" title="查看">添加权限</a>                                                                                               --}}
         <table class="table table-border table-bordered table-bg table-hover table-sort">
             <thead>
             <tr class="text-c">
@@ -17,18 +16,15 @@
             </tr>
             </thead>
             <tbody>
+
             @foreach ($data as $k=>$v)
             <tr style="line-height:20px;" class="text-c">
-                <td><input name="" type="checkbox" value=""></td>
-                <td>{{$v->aid}}</td>
-                <td>{{$v->pid}}</td>
-                <td><img src="/{{$v->ad_img}}" width="100"></td>
-                <td>{{$v->ad_name}}</td>
-                <td>{{$v->username}}</td>
-                <td>{{date('Y-m-d H:i:s',$v->ad_ctime)}}</td>
-                <td class="td-status"><span class="label label-success radius">{{$status[$v->status]}}</span></td>
-                <td class="td-manage"><a style="text-decoration:none" class="ml-5" onclick="article_edit('查看','{{url('admin/permission/'.$v->aid.'/edit')}}','10002')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onclick="Delarticle({{$v->aid}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-            {{--</tr>                                                                                           <a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/permission/create')}}','10002')" href="javascript:;" title="查看">添加权限</a>--}}
+                <td>{{$v->id}}</td>
+                <td>{{$v->name}}</td>
+                <td>{{$v->description}}</td>
+                <td class="td-manage">
+                    <a style="text-decoration:none" class="ml-5" onclick="article_edit('查看','{{url('admin/permission/'.$v->id.'/edit')}}','10002')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onclick="Delarticle({{$v->id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+            </tr>
             @endforeach
             </tbody>
         </table>
@@ -49,7 +45,6 @@
         layer.confirm('是否确认删除？', {
             btn: ['确定','取消'] //按钮
         }, function(){
-            //           url ==> admin/user/{user}   http://project182.com/admin/user/2
             $.post("{{url('admin/permission/')}}/"+user_id,{'_method':'DELETE','_token':"{{csrf_token()}}"},function(data){
                 if(data.status == 0){
                     location.href = location.href;
