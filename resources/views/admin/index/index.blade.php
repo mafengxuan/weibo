@@ -88,8 +88,8 @@
 			<dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="admin-role.html" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-					<li><a data-href="admin-permission.html" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
+					<li><a data-href="{{url('admin/role')}}" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
+					<li><a data-href="{{url('admin/permission')}}" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
 					<li><a data-href="{{url('admin/manager')}}" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 					<li><a data-href="{{url('admin/log')}}" data-title="管理员日志" href="javascript:void(0)">管理员日志</a></li>
 
@@ -127,8 +127,8 @@
 			<dt><i class="Hui-iconfont">&#xe720;</i> 网站配置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="{{url('admin/config/create')}}" data-title="广告列表" href="javascript:void(0)">添加配置</a></li>
-					<li><a data-href="{{url('admin/config')}}" data-title="广告位管理" href="javascript:void(0)">配置列表</a></li>
+					<li><a data-href="{{url('admin/config/create')}}" data-title="添加配置" href="javascript:void(0)">添加配置</a></li>
+					<li><a data-href="{{url('admin/config')}}" data-title="配置列表" href="javascript:void(0)">配置列表</a></li>
 
 				</ul>
 			</dd>
