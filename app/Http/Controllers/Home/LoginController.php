@@ -46,11 +46,6 @@ class LoginController extends Controller
                 return back()->with('errors', '该用户不存在')->withInput();
             }
             //判断密码
-//            dd(Crypt::encrypt('123456'));
-           // dd(Crypt::encrypt('123456'));
-
-//            dd($user->password);
-//            dd(Crypt::decrypt($user->password));
             if ($input['password']  != Crypt::decrypt($user->password))
             {
                 return back()->with('errors', '密码错误')->withInput();

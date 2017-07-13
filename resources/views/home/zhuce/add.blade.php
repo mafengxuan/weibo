@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <head>
-	<title>注册</title>
+	<title>手机号注册</title>
 	<style type="text/css">
 	</style>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="{{asset('home/zhuce/js/jquery-1.11.1.min.js')}}"></script>>
+	<script src="{{asset('home/zhuce/js/jquery-1.11.1.min.js')}}"></script>
 	<link href="{{asset('/home/zhuce/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{asset('/home/zhuce/css/bootstrap-theme.min.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{asset('/home/zhuce/css/templatemo_style.css')}}" rel="stylesheet" type="text/css">
 </head>
 <body class="templatemo-bg-gray">
-	<h1 class="margin-bottom-15">注册</h1>
+	<h1 class="margin-bottom-15">手机号注册</h1>
 	<div class="container">
 		<div class="col-md-12" id="doc-my-tabs">
 			<form class="form-horizontal templatemo-create-account templatemo-container" action="{{url('/home/zhuce/insert')}}" method="post" enctype="multipart/form-data">
@@ -22,7 +22,7 @@
 			        <div class="form-group">
 			          <div class="col-md-6">
 			            <label for="username" class="control-label"><span style="color:red">*</span><b>手机号</b></label>
-			            <input type="text" class="form-control" id="phone" value="{{old('phone')}}" name="phone" placeholder="手机号" ><span class="span1" id="span2"></span>
+			            <input type="text" class="form-control" id="phone" value="{{old('phone')}}" name="phone" placeholder="请输入您的手机号" ><span class="span1" id="span2"></span>
 						  <div class="verification">
 							  <label for="code"><i class="am-icon-code-fork"></i></label>
 							  <input type="tel" name="phone_code" id="code" value="{{old('phone_code')}}" placeholder="请输入验证码">

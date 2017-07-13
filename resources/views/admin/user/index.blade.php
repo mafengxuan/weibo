@@ -15,18 +15,19 @@
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
             <tr class="text-c">
+
                 <th>uid</th>
-                <th>邮箱</th>
-                <th>手机号</th>
-                <th>用户类型</th>
-                <th>用户状态</th>
-                <th>最后一次登录时间</th>
-                <th>生日</th>
                 <th>真实姓名</th>
                 <th>QQ</th>
-                <th>地址</th>
+                <th>邮箱</th>
+                <th>手机号</th>
+                <th>生日</th>
                 <th>年龄</th>
+                <th>地址</th>
+                <th>用户类型</th>
+                <th>用户状态</th>
                 <th>注册时间</th>
+                <th>最后一次登录时间</th>
                 {{--<th>操作</th>--}}
             </tr>
             </thead>
@@ -34,28 +35,31 @@
             @foreach($user as $k=>$v)
             <tr class="text-c">
                 <td>{{$v['uid']}}</td>
-                <td>{{$v['email']}}</td>
-                <td>{{$v['phone']}}</td>
-                <td>{{$v['type']}}</td>
-                <td>{{$v['status']}}</td>
-                <td>{{date('Y-m-d H:i:s',$v['login_time'])}}</td>
-                <td>{{date('Y年m月d日',$v['birth'])}}</td>
                 <td>{{$v['realname']}}</td>
                 <td>{{$v['qq']}}</td>
+                <td>{{$v['email']}}</td>
+                <td>{{$v['phone']}}</td>
+                <td>{{$v['birth']}}</td>
+                <td>{{$v['age']}}</td>
                 <td>{{$v['address']}}</td>
-                 <td>{{$v['age']}}</td>
+                <td>{{$v['type']}}</td>
+                <td>{{$v['status']}}</td>
                 <td>{{date('Y-m-d H:i:s',$v['rtime'])}}</td>
+                <td>{{date('Y-m-d H:i:s',$v['login_time'])}}</td>
                 {{--<td class="td-manage"><a href="">修改</a>--}}
                     {{--<a href="">删除</a></td>--}}
             </tr>
             @endforeach
             </tbody>
         </table>
-
+        <?php
+        $key = empty($key)?'':$key;
+        ?>
     </div>
 
+    {!! $user->appends(['keywords'=>$key])->render() !!}
 </div>
-{{--{!! $user->render() !!}--}}
+{{--{!! $user->appends(['keywords'=>$key])->render() !!}--}}
 
 @endsection
 @section('js')
