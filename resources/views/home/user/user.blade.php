@@ -205,10 +205,37 @@
             <li class="person">
                 <a href="#">个人资料</a>
                 <ul>
+
                     <li class="active"> <a href="{{url('home/info')}}">个人信息</a></li>
                     <li> <a href="{{url('home/repass')}}">修改密码</a></li>
                     <li> <a href="address.html">激活邮箱</a></li>
                 </ul>
+
+            </li>
+             <li class="person">
+                <a href="#">我的交易</a>
+                <ul>
+                    <li><a href="order.html">订单管理</a></li>
+                    <li> <a href="change.html">退款售后</a></li>
+                </ul>
+            </li>
+             <li class="person">
+                <a href="#">我的资产</a>
+                <ul>
+                    <li> <a href="coupon.html">优惠券 </a></li>
+                    <li> <a href="bonus.html">红包</a></li>
+                    <li> <a href="bill.html">账单明细</a></li>
+                </ul>
+            </li>
+
+             <li class="person">
+                 <ul>
+                     <li> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
+                     <li> <a href="javascript:;" id="company" onclick="check_company('company')">公司用户认证</a></li>
+                     <li> <a href="javascript:;" id="commerce" onclick="check_commerce('commerce')">商业用户认证</a></li>
+                     <li> <a href="javascript:;" id="bigv" onclick="check_bigv('bigv')">大V用户认证</a></li>
+                 </ul>
+
             </li>
              {{--<li class="person">--}}
                 {{--<a href="#">我的交易</a>--}}
@@ -244,3 +271,25 @@
 </body>
 
 </html>
+<script>
+    function check_company(str)
+    {
+        var type = str;
+        $.post("{{url('home/auditcheck')}}",{'_token':"{{csrf_token()}}"},function(data){
+            if(data.status==0){
+                location.href='{{url('home')}}/'+type;
+            }else{
+                alert('有待审核或已通过审核认证，不能再次申请');
+            }
+        })
+    }
+
+    function check_commerce()
+    {
+
+    }
+    function check_bigv()
+    {
+
+    }
+</script>
