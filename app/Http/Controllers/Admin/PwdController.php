@@ -21,8 +21,6 @@ class PwdController extends Controller
 
     public function dorepass(Request $request)
     {
-
-
         //接收提交的数据
         $input = $request->except('_token');
         $role = [

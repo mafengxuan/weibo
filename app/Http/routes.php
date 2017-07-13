@@ -42,6 +42,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     //后台管理员
     Route::resource('manager','ManagerController');
 
+    //后台角色管理
+    Route::resource('role','RoleController');
+    //后台权限管理
+    Route::resource('permission','PermissionController');
+
     //管理员日志
     Route::get('log','LogController@index');
 
@@ -49,6 +54,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     //后台企业用户 company
     Route::resource('company','CompanyController');
     Route::get('companynotaudited','CompanyController@notaudited');
+
+
+    Route::get('abc','CompanyController@abc');
 
 
     //后台商业用户 commerce
@@ -112,11 +120,38 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
 
 
 //前台模块
+
+
+//前台注册
+Route::controller('/home/zhuce','Home\ZhuceController');
+//前台登录
+Route::get('/home/login/login','Home\LoginController@login');
+//处理登录
+Route::post('/home/login/dologin','Home\LoginController@dologin');
+//退出登录
+Route::get('/home/quit','Home\LoginController@quit');
+
+
+//个人中心路由
+Route::get('/home/userinfo','Home\UserController@index');
+//显示个人信息
+Route::get('/home/info','Home\UserController@info');
+//修改个人信息
+Route::get('/home/edit','Home\UserController@edit');
+Route::post('/home/doedit','Home\UserController@doedit');
+
+//修改密码
+Route::get('/home/repass','Home\PwdController@repass');
+Route::post('/home/dorepass','Home\PwdController@dorepass');
+
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
+
+
     //前台详情页
     Route::get('details','DetailsController@index');
+
 });
 
