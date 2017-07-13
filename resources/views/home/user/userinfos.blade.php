@@ -59,60 +59,6 @@
                         <img class="am-circle am-img-thumbnail" src="{{asset('/home/user/images/getAvatar.do.jpg')}}" alt="" />
                     </div>
                     <p class="am-form-help">头像</p>
-                    <td>
-                        <input type="text" name="art_thumb" id="art_thumb" style="width:300px;">
-                        <input type="file" name="file_upload" id="file_upload" value="">
-                        <script type="text/javascript">
-                            $(function () {
-                                $("#file_upload").change(function () {
-
-                                    uploadImage();
-                                });
-                            });
-
-                            function uploadImage() {
-//                            判断是否有选择上传文件
-                                var imgPath = $("#file_upload").val();
-                                if (imgPath == "") {
-                                    alert("请选择上传图片！");
-                                    return;
-                                }
-                                //判断上传文件的后缀名
-                                var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
-                                if (strExtension != 'jpg' && strExtension != 'gif'
-                                    && strExtension != 'png' && strExtension != 'bmp') {
-                                    alert("请选择图片文件");
-                                    return;
-                                }
-
-                                var formData = new FormData($('#art_form')[0]);
-
-                                $.ajax({
-                                    type: "POST",
-                                    url: "/admin/upload",
-                                    data: formData,
-                                    async: true,
-                                    cache: false,
-                                    contentType: false,
-                                    processData: false,
-                                    success: function(data) {
-//                                    console.log(data);
-//                                    alert("上传成功");
-                                        $('#pic').attr('src','/'+data);
-                                        $('#pic').show();
-                                        $('#art_thumb').val(data);
-
-                                    },
-                                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                        alert("上传失败，请检查网络后重试");
-                                    }
-                                });
-                            }
-
-                        </script>
-
-                    </td>
-
                     <div class="info-m">
                         <div><b>用户名：<i>{{session('user_home')->phone}}</i></b></div>
                         <div class="u-level">
@@ -124,57 +70,57 @@
                 </div>
                 <!--个人信息 -->
                 <div class="info-main">
-                    <form class="am-form am-form-horizontal" action="{{url('home/doedit')}}" method="post">
+                    <form class="am-form am-form-horizontal" action="{{url('home/doindex')}}" method="post">
                         {{csrf_field()}}
                         <div class="am-form-group">
                             <label for="user-name2" class="am-form-label">真实姓名</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="realname" value="{{$data['realname']}}" placeholder="真实姓名" style="width:250px;">
+                                <input type="text" id="user-name2" name="realname" value="{{$user['realname']}}" disabled placeholder="真实姓名" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">QQ</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="qq" value="{{$data['qq']}}" placeholder="qq" style="width:250px;">
+                                <input type="text" id="user-name2" name="qq" value="{{$user['qq']}}" placeholder="qq" disabled style="width:250px;">
                             </div>
                         </div>
 
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">生日</label>
                             <div class="am-form-content">
-                                <input type="text" onfocus="WdatePicker()" id="datemin" value="{{$data['birth']}}" name="birth" class="input-text Wdate" style="width:250px;">
+                                <input type="text" onfocus="WdatePicker()" id="datemin" value="{{$user['birth']}}" name="birth" disabled class="input-text Wdate" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">地址</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="address" value="{{$data['address']}}" placeholder="地址" style="width:250px;">
+                                <input type="text" id="user-name2" name="address" value="{{$user['address']}}" placeholder="地址" disabled style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label class="am-form-label">性别</label>
                             <div class="am-form-content sex">
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="sex" value="1" @if($data['sex'] == 1) checked @endif data-am-ucheck> 男
+                                    <input type="radio" name="sex" value="1" @if($user['sex'] == 1) checked @endif disabled data-am-ucheck> 男
                                 </label>
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="sex" value="2" @if($data['sex'] == 2) checked @endif data-am-ucheck> 女
+                                    <input type="radio" name="sex" value="2" @if($user['sex'] == 2) checked @endif disabled data-am-ucheck> 女
                                 </label>
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="sex" value="3" @if($data['sex'] == 3) checked @endif data-am-ucheck> 保密
+                                    <input type="radio" name="sex" value="3" @if($user['sex'] == 3) checked @endif disabled data-am-ucheck> 保密
                                 </label>
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">年龄</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="age" value="{{$data['age']}}" placeholder="年龄" style="width:250px;">
+                                <input type="text" id="user-name2" name="age" value="{{$user['age']}}" placeholder="年龄" disabled style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">简介</label>
                             <div class="am-form-content">
-                                <textarea name="introduction"  id=""  cols="30" rows="3">{{$data['introduction']}}</textarea>
+                                <textarea name="introduction"  disabled id="" cols="30" rows="3">{{$user['introduction']}}</textarea>
                             </div>
                         </div>
                         <div class="am-form-group safety">
@@ -186,8 +132,7 @@
                             </div>
                         </div>
                         <div class="info-btn">
-                            {{--<div class="am-btn am-btn-danger" type="submit">保存修改</div>--}}
-                            <input type="submit" class="am-btn am-btn-danger" value="保存修改">
+                            <a href="{{url('home/edit')}}" class="am-btn am-btn-danger">编辑个人资料</a>
                         </div>
                     </form>
                 </div>
@@ -210,14 +155,14 @@
                     <li> <a href="address.html">激活邮箱</a></li>
                 </ul>
             </li>
-             {{--<li class="person">--}}
+            {{--<li class="person">--}}
                 {{--<a href="#">我的交易</a>--}}
                 {{--<ul>--}}
                     {{--<li><a href="order.html">订单管理</a></li>--}}
                     {{--<li> <a href="change.html">退款售后</a></li>--}}
                 {{--</ul>--}}
             {{--</li>--}}
-             {{--<li class="person">--}}
+            {{--<li class="person">--}}
                 {{--<a href="#">我的资产</a>--}}
                 {{--<ul>--}}
                     {{--<li> <a href="coupon.html">优惠券 </a></li>--}}
@@ -226,7 +171,7 @@
                 {{--</ul>--}}
             {{--</li>--}}
 
-             {{--<li class="person">--}}
+            {{--<li class="person">--}}
                 {{--<a href="#">我的小窝</a>--}}
                 {{--<ul>--}}
                     {{--<li> <a href="collection.html">收藏</a></li>--}}
