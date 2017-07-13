@@ -210,13 +210,13 @@
                     <li> <a href="address.html">激活邮箱</a></li>
                 </ul>
             </li>
-             {{--<li class="person">--}}
-                {{--<a href="#">我的交易</a>--}}
-                {{--<ul>--}}
-                    {{--<li><a href="order.html">订单管理</a></li>--}}
+             <li class="person">
+                <a href="#">我的交易</a>
+                <ul>
+                    <li><a href="{{url('home/ad')}}">广告中心</a></li>
                     {{--<li> <a href="change.html">退款售后</a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
+                </ul>
+            </li>
              {{--<li class="person">--}}
                 {{--<a href="#">我的资产</a>--}}
                 {{--<ul>--}}

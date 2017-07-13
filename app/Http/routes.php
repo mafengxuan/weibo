@@ -93,7 +93,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::resource('hot','HotController');
     //后台每日热门管理
     Route::resource('hotcontent','HotcontentController');
-
     //后台时事热门管理
     Route::resource('currentevent','CurrenteventController');
 
@@ -153,5 +152,8 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     //前台详情页
     Route::get('details','DetailsController@index');
 
+
+    // 前台广告中心路由
+    Route::get('ad','AdController@index');
 });
 
