@@ -42,6 +42,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     //后台管理员
     Route::resource('manager','ManagerController');
 
+    //后台角色管理
+    Route::resource('role','RoleController');
+    //后台权限管理
+    Route::resource('permission','PermissionController');
+
     //管理员日志
     Route::get('log','LogController@index');
 
