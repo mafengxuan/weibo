@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\HttpController;
+use App\Http\Model\User_info;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,13 +26,13 @@ class ZhuceController extends Controller
      */
     public function postInsert(Request $request)
     {
-        //接收验证码
-        $phone_code = $request -> input('phone_code');
-
-        //判断验证码
-        if($phone_code != session('phone_code')){
-            return redirect('/home/zhuce/add')->with('error','验证码错误') -> withInput();
-        }
+//        //接收验证码
+//        $phone_code = $request -> input('phone_code');
+//
+//        //判断验证码
+//        if($phone_code != session('phone_code')){
+//            return redirect('/home/zhuce/add')->with('error','验证码错误') -> withInput();
+//        }
 
         //接收数据
         $data = $request -> except('_token','repassword','phone_code');
@@ -44,10 +45,15 @@ class ZhuceController extends Controller
 
         //密码加密
         $data['password'] = Crypt::encrypt($data['password']);
-        //登录时间戳
-        $data['login_time'] = time();
+
         //执行保存
         $uid = DB::table('users')->insertGetId($data);
+        $arr['uid']=$uid;
+        //注册时间以时间戳的形式存进去
+        $arr['rtime']=time();
+
+       $user =  User_info::create($arr);
+
         //判断是否成功
         if($uid){
             return redirect('/home/login/login')->with('assuc','注册成功');
