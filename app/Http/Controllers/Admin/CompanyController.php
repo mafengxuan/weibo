@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\User;
 use App\Http\Model\User_company;
 use Illuminate\Http\Request;
 
@@ -82,7 +83,7 @@ class CompanyController extends Controller
             $data = $log->paginate(4);
             return view('admin.company.notaudited', ['data' => $data, 'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }else{
-            //显示已审核企业用户列表
+            //显示未审核企业用户列表
             $data = User_company::where('status',2)->orderBy('p_time','desc')->paginate(4);
 
             return view('admin.company.notaudited',['data'=>$data,'company_name' => $old_company_name, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
@@ -142,13 +143,14 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request,$id)
     {
         //
         $sta = Input::get('sta');
         if($sta== 1){
             $res = User_company::where('company_id',$id)->update(['status'=>1,'a_time'=>time(),'auditor'=>session('user')->username]);
-            if($res){
+            $res_1 = User::where('uid',$request->uid)->update(['type'=>2]);
+            if($res && $res_1){
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已通过'

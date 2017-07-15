@@ -48,8 +48,8 @@
                                 <td class="td-status">未审核</td>
                             @endif
                             <td>
-                                <a href="javascript:;" onclick="yaudited({{$v->commerce_id}})">通过</a>&nbsp
-                                <a href="javascript:;" onclick="naudited({{$v->commerce_id}})">驳回</a>
+                                <a href="javascript:;" onclick="yaudited({{$v->commerce_id}},{{$v->uid}})">通过</a>&nbsp
+                                <a href="javascript:;" onclick="naudited({{$v->commerce_id}},{{$v->uid}})">驳回</a>
                             </td>
                         </tr>
                     @endforeach
@@ -66,13 +66,13 @@
 
 
 
-        function yaudited(commerce_id){
+        function yaudited(commerce_id,uid){
 
             //询问框
             layer.confirm('是否确认审核通过？', {
                 btn: ['确认','取消'] //按钮
             }, function(){
-                $.post("{{url('admin/commerce')}}/"+commerce_id,{'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                $.post("{{url('admin/commerce')}}/"+commerce_id,{'uid':uid,'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                     if(data.status==0){
                         layer.msg(data.msg,{icon:6});
                         location.href = location.href;
@@ -91,12 +91,12 @@
 
 
     <script>
-        function naudited(commerce_id){
+        function naudited(commerce_id,uid){
             //询问框
             layer.confirm('是否确认审核驳回？', {
                 btn: ['确认','取消'] //按钮
             }, function(){
-                $.post("{{url('admin/commerce')}}/"+commerce_id,{'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                $.post("{{url('admin/commerce')}}/"+commerce_id,{'uid':uid,'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                     if(data.status==0){
                         layer.msg(data.msg,{icon:6});
                         location.href = location.href;

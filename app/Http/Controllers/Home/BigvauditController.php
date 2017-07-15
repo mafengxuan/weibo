@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\User_v;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class commerceauditController extends Controller
+class bigvauditController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +18,43 @@ class commerceauditController extends Controller
     public function index()
     {
         //
+        return view('home.audit.bigvaudit');
+    }
+
+    public function doaudit(Request $request)
+    {
+        $info = [];
+        $info['uid'] = session('user_home')->uid;
+        $info['username'] = session('user_home')->phone;
+        $info['v_name'] = $request->v_name;
+        $info['type'] = $request->type;
+        $info['status'] = 2;
+        $info['p_time'] = time();
+        $res = User_v::create($info);
+        if($res){
+            $data = ['status'=>0];
+        }else{
+            $data = ['status'=>4];
+        }
+        return $data;
+
+    }
+
+    public function checkname(Request $request)
+    {
+        $cname = $request->v_name;
+        $res = User_v::where('v_name',$cname)->first();
+        if($res){
+            $data = [
+                'status' => '4'
+            ];
+        }elseif($res==null){
+            $data = [
+                'status' => '0'
+            ];
+        }
+        return $data;
+
     }
 
     /**

@@ -141,12 +141,18 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     Route::post('auditcheck','myauditController@check');
     Route::resource('myaudit','myauditController');
     //个人中心-公司申请
+    Route::post('company/doaudit','companyauditController@doaudit');
     Route::resource('company','companyauditController');
+    Route::post('upload','companyauditController@upload');
+    Route::post('company/checkname','companyauditController@checkname');
     //个人中心-商业申请
     Route::resource('commerce','commerceauditController');
+    Route::post('commerce/doaudit','commerceauditController@doaudit');
+    Route::post('commerce/checkname','commerceauditController@checkname');
     //个人中心-大V申请
     Route::resource('bigv','bigvauditController');
-
+    Route::post('bigv/doaudit','bigvauditController@doaudit');
+    Route::post('bigv/checkname','bigvauditController@checkname');
 
 
 

@@ -118,9 +118,9 @@
             <li class="person">
                 <ul>
                     <li> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
-                    <li> <a href="javascript:;" id="company" onclick="check_company('company')">公司用户认证</a></li>
-                    <li> <a href="javascript:;" id="commerce" onclick="check_commerce('commerce')">商业用户认证</a></li>
-                    <li> <a href="javascript:;" id="bigv" onclick="check_bigv('bigv')">大V用户认证</a></li>
+                    <li> <a href="javascript:;" id="company" onclick="check_audit('company')">公司用户认证</a></li>
+                    <li> <a href="javascript:;" id="commerce" onclick="check_audit('commerce')">商业用户认证</a></li>
+                    <li> <a href="javascript:;" id="bigv" onclick="check_audit('bigv')">大V用户认证</a></li>
                 </ul>
             </li>
 
@@ -131,7 +131,7 @@
 </body>
 </html>
 <script>
-    function check_company(str)
+    function check_audit(str)
     {
         var type = str;
         $.post("{{url('home/auditcheck')}}",{'_token':"{{csrf_token()}}"},function(data){
@@ -141,14 +141,5 @@
                 alert('有待审核或已通过审核认证，不能再次申请');
             }
         })
-    }
-
-    function check_commerce()
-    {
-
-    }
-    function check_bigv()
-    {
-
     }
 </script>

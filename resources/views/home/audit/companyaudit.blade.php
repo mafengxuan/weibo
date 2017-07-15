@@ -4,37 +4,43 @@
     <div class="result_wrap">
         <form action="{{url('home/company')}}" method="post" id="art_form" enctype="multipart/form-data">
             {{csrf_field()}}
-            <table class="add_tab">
-                <tbody>
-                <tr>
-                    <th>公司名称：</th>
                     <td>
-                        <input type="text" name="company_name">
-                    </td>
-                </tr>
-                <tr>
-                    <th>认证费用：</th>
-                    <td>
-                        <input type="radio" name="price">999
-                    </td>
-                </tr>
-                <tr>
-                    <th>公司营业执照：</th>
-                    <td>
-                        <input type="text" name="company_img" id="company_img">
-                        <input type="file" name="file_upload" id="file_upload" value="">
-                        <p><img src="" alt="" id="img1" style="width:100px" hidden></p>
+                        <div class="form-group">
+                            <label for="company_name">公司名称</label>
+                            <input type="text" style="width:400px" class="form-control" id="company_name" name="company_name" placeholder="公司名称"><button type="button" class="btn btn-info" onclick="checkname()">验证是否注册</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="company_img">公司营业执照</label>
+                            <input type="text" style="width:400px" name="company_img" id="company_img" class="form-control">
+                            <input type="file" name="file_upload" id="file_upload" value="">
+                            <img src="" alt="" id="pic" name="pic" style="width:100px; display:none;">
+                        </div>
+
+                        <div class="form-group">
+                            <label >认证费用</label>
+                            <label class="radio-inline">
+                                <input type="radio" name="price" id="inlineRadio1" value="998" checked> 998
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="price" id="inlineRadio2" value="1999"> 1999
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="price" id="inlineRadio3" value="2999"> 2999
+                            </label>
+                        </div>
+
+
 
 
                         <script type="text/javascript">
                             $(function () {
                                 $("#file_upload").change(function () {
-                                    $('img1').show();
+                                    $('#pic').show();
                                     uploadImage();
                                 });
                             });
                             function uploadImage() {
-//                            判断是否有选择上传文件
+                                //判断是否有选择上传文件
                                 var imgPath = $("#file_upload").val();
                                 if (imgPath == "") {
                                     alert("请选择上传图片！");
@@ -50,16 +56,16 @@
                                 var formData = new FormData($('#art_form')[0]);
                                 $.ajax({
                                     type: "POST",
-                                    url: "/uploads",
+                                    url: "/home/upload",
                                     data: formData,
                                     async: true,
                                     cache: false,
                                     contentType: false,
                                     processData: false,
                                     success: function(data) {
-                                        $('#img1').attr('src','/'+data);
-                                        $('#img1').show();
-                                        $('#art_thumb').val(data);
+                                        $('#pic').attr('src','/'+data);
+                                        $('#pic').show();
+                                        $('#company_img').val(data);
 
 
                                     },
@@ -70,19 +76,67 @@
                             }
 
                         </script>
+                        <button class="btn btn-success" onclick="doaudit()">提交</button>
 
-                    </td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td>
-                        <input type="submit" value="提交">
-                        <input type="button" class="back" onclick="history.go(-1)" value="返回">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
         </form>
     </div>
+    <script>
+        function doaudit()
+        {
+            $.post("{{url('home/commerce/doaudit')}}",$('form').serialize(),function(data){
+                if(data.status=='0'){
+                    location.href="{{url('home/myaudit')}}";
+                }else{
+                    alert('信息提交失败');
+                }
+            });
+        }
+    </script>
+    <script>
+        function checkname()
+        {
+            $.post("{{url('home/commerce/checkname')}}",$('form').serialize(),function(data){
+                if(data.status=='0'){
+                    alert('未注册可用');
+                }else{
+                    alert('名称已注册');
+                }
+        });
+        }
 
+    </script>
+    <script>
+        $(function () {
+            <!--数据验证-->
+            $("#art_form").bootstrapValidator({
+                message:'This value is not valid',
+//            定义未通过验证的状态图标
+                feedbackIcons: {/*输入框不同状态，显示图片的样式*/
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+//            字段验证
+                fields:{
+//                用户名
+                    company_name:{
+                        message:'公司名称非法',
+                        validators:{
+//                        非空
+                            notEmpty:{
+                                message:'公司名称不能为空'
+                            },
+//                        限制字符串长度
+                            stringLength:{
+                                min:2,
+                                max:20,
+                                message:'公司名称长度必须位于3到20之间'
+                            }
+                        }
+                    }
+                }
+            })
+
+        })
+    </script>
 @endsection

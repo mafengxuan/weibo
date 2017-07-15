@@ -43,15 +43,15 @@
                     <td>{{$v->company_id}}</td>
                     <td>{{$v->company_name}}</td>
                     <td>{{$v->username}}</td>
-                    <td><img src=""></td>
+                    <td><img src={{'/'.$v->company_img}} style="width:50px;height:50px;"></td>
                     <td>{{$v->price}}</td>
                     <td>{{date('Y-m-d H:i:s',$v->p_time)}}</td>
                     @if($v->status != 1)
                     <td class="td-status">未审核</td>
                     @endif
                     <td>
-                        <a href="javascript:;" onclick="yaudited({{$v->company_id}})">通过</a>&nbsp
-                        <a href="javascript:;" onclick="naudited({{$v->company_id}})">驳回</a>
+                        <a href="javascript:;" onclick="yaudited({{$v->company_id}},{{$v->uid}})">通过</a>&nbsp
+                        <a href="javascript:;" onclick="naudited({{$v->company_id}},{{$v->uid}})">驳回</a>
                     </td>
                 </tr>
                 @endforeach
@@ -69,13 +69,13 @@
 
 
 
-    function yaudited(company_id){
+    function yaudited(company_id,uid){
 
         //询问框
         layer.confirm('是否确认审核通过？', {
             btn: ['确认','取消'] //按钮
         }, function(){
-            $.post("{{url('admin/company')}}/"+company_id,{'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+            $.post("{{url('admin/company')}}/"+company_id,{'uid':uid,'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                 if(data.status==0){
                     layer.msg(data.msg,{icon:6});
                     location.href = location.href;
@@ -94,12 +94,12 @@
 
 
 <script>
-    function naudited(company_id){
+    function naudited(company_id,uid){
         //询问框
         layer.confirm('是否确认审核驳回？', {
             btn: ['确认','取消'] //按钮
         }, function(){
-            $.post("{{url('admin/company')}}/"+company_id,{'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+            $.post("{{url('admin/company')}}/"+company_id,{'uid':uid,'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                 if(data.status==0){
                     layer.msg(data.msg,{icon:6});
                     location.href = location.href;
