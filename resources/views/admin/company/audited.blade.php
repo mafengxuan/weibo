@@ -44,7 +44,11 @@
                     <td>{{$v->company_id}}</td>
                     <td>{{$v->company_name}}</td>
                     <td>{{$v->username}}</td>
-                    <td><img src=""></td>
+                    @if(!empty($v->company_img))
+                    <td><img src={{'/'.$v->company_img}} style="width:50px;height:50px;"></td>
+                    @else
+                        <td><img src=""></td>
+                        @endif
                     <td>{{$v->price}}</td>
                     <td class="text-l">{{$v->auditor}}</td>
                     <td>{{date('Y-m-d H:i:s',$v->p_time)}}</td>

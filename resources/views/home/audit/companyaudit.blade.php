@@ -83,7 +83,7 @@
     <script>
         function doaudit()
         {
-            $.post("{{url('home/commerce/doaudit')}}",$('form').serialize(),function(data){
+            $.post("{{url('home/company/doaudit')}}",$('form').serialize(),function(data){
                 if(data.status=='0'){
                     location.href="{{url('home/myaudit')}}";
                 }else{
@@ -95,7 +95,7 @@
     <script>
         function checkname()
         {
-            $.post("{{url('home/commerce/checkname')}}",$('form').serialize(),function(data){
+            $.post("{{url('home/company/checkname')}}",$('form').serialize(),function(data){
                 if(data.status=='0'){
                     alert('未注册可用');
                 }else{
