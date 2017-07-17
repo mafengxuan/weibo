@@ -41,15 +41,21 @@
                         <tr class="text-c">
                             <td>{{$v->v_id}}</td>
                             <td>{{$v->username}}</td>
-                            <td>{{$v->type}}</td>
+                            @if($v->type==1)
+                            <td>网红</td>
+                            @elseif($v->type==2)
+                            <td>名人</td>
+                            @elseif($v->type==3)
+                            <td>机构</td>
+                            @endif
                             <td>{{$v->v_name}}</td>
                             <td>{{date('Y-m-d H:i:s',$v->p_time)}}</td>
                             @if($v->status == 2)
                                 <td class="td-status">未审核</td>
                             @endif
                             <td>
-                                <a href="javascript:;" onclick="yaudited({{$v->v_id}})">通过</a>&nbsp
-                                <a href="javascript:;" onclick="naudited({{$v->v_id}})">驳回</a>
+                                <a href="javascript:;" onclick="yaudited({{$v->v_id}},{{$v->uid}})">通过</a>&nbsp
+                                <a href="javascript:;" onclick="naudited({{$v->v_id}},{{$v->uid}})">驳回</a>
                             </td>
                         </tr>
                     @endforeach
@@ -67,13 +73,13 @@
 
 
 
-        function yaudited(v_id){
+        function yaudited(v_id,uid){
 
             //询问框
             layer.confirm('是否确认审核通过？', {
                 btn: ['确认','取消'] //按钮
             }, function(){
-                $.post("{{url('admin/bigv')}}/"+v_id,{'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                $.post("{{url('admin/bigv')}}/"+v_id,{'uid':uid,'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                     if(data.status==0){
                         layer.msg(data.msg,{icon:6});
                         location.href = location.href;
@@ -92,12 +98,12 @@
 
 
     <script>
-        function naudited(v_id){
+        function naudited(v_id,uid){
             //询问框
             layer.confirm('是否确认审核驳回？', {
                 btn: ['确认','取消'] //按钮
             }, function(){
-                $.post("{{url('admin/bigv')}}/"+v_id,{'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                $.post("{{url('admin/bigv')}}/"+v_id,{'uid':uid,'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                     if(data.status==0){
                         layer.msg(data.msg,{icon:6});
                         location.href = location.href;

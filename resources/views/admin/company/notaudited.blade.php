@@ -5,6 +5,13 @@
     <script type="text/javascript" src="{{asset('/admin')}}/lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="{{asset('/admin')}}/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="{{asset('/admin')}}/lib/laypage/1.2/laypage.js"></script>
+    <script src="{{asset('/admin')}}/bootstrap/js/jquery-1.10.2.min.js"></script>
+    <script src="{{asset('/admin')}}/bootstrap/js/lightbox-2.6.min.js"></script>
+
+@endsection
+@section('css')
+
+    <link href="{{asset('/admin')}}/bootstrap/css/lightbox.css" rel="stylesheet" />
 
 @endsection
 @section('body')
@@ -34,7 +41,6 @@
                     <th width="130">申请提交时间</th>
                     <th width="70">审核状态</th>
                     <th width="50">操作</th>
-
                 </tr>
                 </thead>
                 <tbody>
@@ -43,15 +49,19 @@
                     <td>{{$v->company_id}}</td>
                     <td>{{$v->company_name}}</td>
                     <td>{{$v->username}}</td>
+                    @if(!empty($v->company_img))
+                    <td><a href={{'/'.$v->company_img}} data-lightbox="image-1" title="{{$v->company_name}}营业执照">点击查看营业执照</a></td>
+                    @else
                     <td><img src=""></td>
+                    @endif
                     <td>{{$v->price}}</td>
                     <td>{{date('Y-m-d H:i:s',$v->p_time)}}</td>
                     @if($v->status != 1)
                     <td class="td-status">未审核</td>
                     @endif
                     <td>
-                        <a href="javascript:;" onclick="yaudited({{$v->company_id}})">通过</a>&nbsp
-                        <a href="javascript:;" onclick="naudited({{$v->company_id}})">驳回</a>
+                        <a href="javascript:;" onclick="yaudited({{$v->company_id}},{{$v->uid}})">通过</a>&nbsp
+                        <a href="javascript:;" onclick="naudited({{$v->company_id}},{{$v->uid}})">驳回</a>
                     </td>
                 </tr>
                 @endforeach
@@ -69,13 +79,13 @@
 
 
 
-    function yaudited(company_id){
+    function yaudited(company_id,uid){
 
         //询问框
         layer.confirm('是否确认审核通过？', {
             btn: ['确认','取消'] //按钮
         }, function(){
-            $.post("{{url('admin/company')}}/"+company_id,{'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+            $.post("{{url('admin/company')}}/"+company_id,{'uid':uid,'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                 if(data.status==0){
                     layer.msg(data.msg,{icon:6});
                     location.href = location.href;
@@ -94,12 +104,12 @@
 
 
 <script>
-    function naudited(company_id){
+    function naudited(company_id,uid){
         //询问框
         layer.confirm('是否确认审核驳回？', {
             btn: ['确认','取消'] //按钮
         }, function(){
-            $.post("{{url('admin/company')}}/"+company_id,{'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+            $.post("{{url('admin/company')}}/"+company_id,{'uid':uid,'sta':2,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                 if(data.status==0){
                     layer.msg(data.msg,{icon:6});
                     location.href = location.href;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\User;
 use App\Http\Model\User_commerce;
 use Illuminate\Http\Request;
 
@@ -137,13 +138,14 @@ class CommerceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request,$id)
     {
         //
         $sta = Input::get('sta');
         if($sta== 1){
             $res = User_commerce::where('commerce_id',$id)->update(['status'=>1,'a_time'=>time(),'auditor'=>session('user')->username]);
-            if($res){
+            $res_1 = User::where('uid',$request->uid)->update(['type'=>3]);
+            if($res && $res_1){
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已通过'

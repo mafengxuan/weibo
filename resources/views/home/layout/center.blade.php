@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>个人资料</title>
 
     <link href="{{asset('/home/user/AmazeUI-2.4.2/assets/css/admin.css')}}" rel="stylesheet" type="text/css">
@@ -18,6 +18,8 @@
     <script type="text/javascript" src="{{asset('/home/user/My97DatePicker/4.8/WdatePicker.js')}}"></script>
     <script src="{{asset('/admin/bootstrap/js/bootstrap.js')}}" type="text/javascript"></script>
     <script src="{{asset('/admin/bootstrap/js/bootstrapValidator.js')}}" type="text/javascript"></script>
+    {{--<script src="{{asset('/home/js/checkaudit.js}}" type="text/javascript"></script>--}}
+
 </head>
 <body>
 <!--头 -->
@@ -111,9 +113,9 @@
             <li class="person">
                 <ul>
                     <li> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
-                    <li> <a href="javascript:;" id="company" onclick="check_company('company')">公司用户认证</a></li>
-                    <li> <a href="javascript:;" id="commerce" onclick="check_commerce('commerce')">商业用户认证</a></li>
-                    <li> <a href="javascript:;" id="bigv" onclick="check_bigv('bigv')">大V用户认证</a></li>
+                    <li> <a href="javascript:;" id="company" onclick="check_audit('company')">公司用户认证</a></li>
+                    <li> <a href="javascript:;" id="commerce" onclick="check_audit('commerce')">商业用户认证</a></li>
+                    <li> <a href="javascript:;" id="bigv" onclick="check_audit('bigv')">大V用户认证</a></li>
                 </ul>
             </li>
 
@@ -121,10 +123,13 @@
 
     </aside>
 </div>
+
 </body>
 </html>
+
+
 <script>
-    function check_company(str)
+    function check_audit(str)
     {
         var type = str;
         $.post("{{url('home/auditcheck')}}",{'_token':"{{csrf_token()}}"},function(data){
@@ -134,14 +139,5 @@
                 alert('有待审核或已通过审核认证，不能再次申请');
             }
         })
-    }
-
-    function check_commerce()
-    {
-
-    }
-    function check_bigv()
-    {
-
     }
 </script>

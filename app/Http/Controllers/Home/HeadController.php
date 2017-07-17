@@ -1,13 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\home;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class companyauditController extends Controller
+// 引入 composer autoload
+//require 'vendor/autoload.php';
+// 导入 Intervention Image Manager Class
+use Intervention\Image\ImageManager;
+
+class HeadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +21,17 @@ class companyauditController extends Controller
      */
     public function index()
     {
-        //
-        return view('home.audit.companyaudit');
+        // 通过指定 driver 来创建一个 image manager 实例
+        $manager = new ImageManager(array('driver' => 'gd'));
+
+        // 最后创建 image 实例
+        $image = $manager->make('uploads/head.jpg')->resize(200,200);
+        //角标
+        $jiao  = $manager->make('uploads/1.png')->resize(15,15);
+        $jiao->save('uploads/small_1.png');
+        $image->insert('uploads/small_1.png', 'bottom-right', 15, 10);
+        $image->save('uploads/new_head.jpg ');
+        return view('welcome');
     }
 
     /**

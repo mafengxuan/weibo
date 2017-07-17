@@ -64,7 +64,6 @@
                         </div>
 
 
-
                         <div class="am-form-group">
                             <label for="user-name2" class="am-form-label">真实姓名</label>
                             <div class="am-form-content">
@@ -136,4 +135,5 @@
                         </div>
                     </form>
                 </div>
+
   @endsection

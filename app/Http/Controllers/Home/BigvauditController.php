@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Model\User_commerce;
-use App\Http\Model\User_company;
 use App\Http\Model\User_v;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class myauditController extends CommonController
+class bigvauditController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,46 +17,54 @@ class myauditController extends CommonController
      */
     public function index()
     {
-        //显示用户提交申请信息
-        $username = session('user_home')->phone;
-        $r1 = User_company::where('username',$username)->first();
-        $r2 = User_commerce::where('username',$username)->first();
-        $r3 = User_v::where('username',$username)->first();
-        if(!empty($r1)){
-            $type = '公司认证';
-            $r = $r1;
-        }elseif (!empty($r2)){
-            $type = '商业认证';
-            $r = $r2;
-        }elseif(!empty($r3)){
-            $type = '大V认证';
-            $r = $r3;
-        }else{
-            $type = '未认证';
-            $r = '';
-        }
-        return view('home.audit.myaudit',compact('type','r'));
+        //
+        return view('home.audit.bigvaudit');
     }
 
-
-    public function check()
+    /**
+     * 将用户提交信息写入User_vs表
+     * @param Request 用户提交认证信息
+     * @return json
+     */
+    public function doaudit(Request $request)
     {
-        $username = session('user_home')->phone;
-        $res_company = User_company::where('username',$username)->first();
-        $res_commerce = User_commerce::where('username',$username)->first();
-        $res_bigv = User_v::where('username',$username)->first();
-        if((empty($res_company) && empty($res_commerce) && empty($res_bigv))){
-            $data = [
-                'status' => 0,
-                'msg'    =>''
-            ];
+        $info = [];
+        $info['uid'] = session('user_home')->uid;
+        $info['username'] = session('user_home')->phone;
+        $info['v_name'] = $request->v_name;
+        $info['type'] = $request->type;
+        $info['status'] = 2;
+        $info['p_time'] = time();
+        $res = User_v::create($info);
+        if($res){
+            $data = ['status'=>0];
         }else{
+            $data = ['status'=>4];
+        }
+        return $data;
+
+    }
+
+    /**
+     * 验证提交大V名称是否存在
+     * @param Request 大V名称
+     * @return array
+     */
+    public function checkname(Request $request)
+    {
+        $cname = $request->v_name;
+        $res = User_v::where('v_name',$cname)->first();
+        if($res){
             $data = [
-                'status' => 4,
-                'msg'    =>''
+                'status' => '4'
+            ];
+        }elseif($res==null){
+            $data = [
+                'status' => '0'
             ];
         }
         return $data;
+
     }
 
     /**
