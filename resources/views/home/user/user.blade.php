@@ -7,13 +7,13 @@
                         <div class="am-form-group">
                             <label for="user-name2" class="am-form-label">昵称</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="nickname" value="{{$user2['nickname']}}"  placeholder="昵称" style="width:250px;">
+                                <input type="text" id="user-name2" name="nickname" value="{{$user2['nickname']}}"  placeholder="" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label class="am-form-label">上传头像：</label>
                             <div class="am-form-content">
-                                <input type="text" name="face" id="face" style="width:250px;" value="{{$user2['face']}}">
+                                <input type="text" name="face" id="face" style="width:250px;" value="">
                                 <input type="file" name="file_upload" id="file_upload" value="">
                                 <p><img src="/{{$face}}" class="am-circle am-img-thumbnail" alt="" id="pic" style="width:100px" hidden></p>
                                 <script type="text/javascript">
@@ -67,19 +67,19 @@
                         <div class="am-form-group">
                             <label for="user-name2" class="am-form-label">真实姓名</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="realname" value="{{$data['realname']}}" placeholder="真实姓名" style="width:250px;">
+                                <input type="text" id="user-name2" name="realname" value="{{$data['realname']}}" placeholder="" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name2" class="am-form-label">邮箱</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="email" value="{{$email}}"  placeholder="邮箱" style="width:250px;">
+                                <input type="text" id="user-name2" name="email" value="{{$email}}"  placeholder="" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">QQ</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="qq" value="{{$data['qq']}}" placeholder="qq" style="width:250px;">
+                                <input type="text" id="user-name2" name="qq" value="{{$data['qq']}}" placeholder="" style="width:250px;">
                             </div>
                         </div>
 
@@ -92,7 +92,7 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">地址</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="address" value="{{$data['address']}}" placeholder="地址" style="width:250px;">
+                                <input type="text" id="user-name2" name="address" value="{{$data['address']}}" placeholder="" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">
@@ -112,7 +112,7 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">年龄</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="age" value="{{$data['age']}}" placeholder="年龄" style="width:250px;">
+                                <input type="text" id="user-name2" name="age" value="{{$data['age']}}" placeholder="" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">

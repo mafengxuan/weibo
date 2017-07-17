@@ -2,6 +2,9 @@
 <head>
 	<title>手机号注册</title>
 	<style type="text/css">
+		.form-control{
+			margin-bottom: 2px;
+		}
 	</style>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
@@ -25,7 +28,7 @@
 			            <input type="text" class="form-control" id="phone" value="{{old('phone')}}" name="phone" placeholder="请输入您的手机号" ><span class="span1" id="span2"></span>
 						  <div class="verification">
 							  <label for="code"><i class="am-icon-code-fork"></i></label>
-							  <input type="tel" name="phone_code" id="code" value="{{old('phone_code')}}" placeholder="请输入验证码">
+							  <input type="tel" class="form-control" name="phone_code" id="code" value="{{old('phone_code')}}" placeholder="请输入验证码">
 							  <a class="btn btn-default" href="javascript:void(0);" >
 								  <span id="dyMobileButton">点击获取</span></a>
 						  </div>

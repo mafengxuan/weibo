@@ -135,7 +135,6 @@ Route::post('/home/login/dologin','Home\LoginController@dologin');
 Route::get('/home/quit','Home\LoginController@quit');
 //找回密码 手机验证路由
 Route::controller('/home/phone','Home\LoginController');
-//密码页面路由
 
 
 //个人中心路由

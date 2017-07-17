@@ -54,20 +54,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="about.html">About Us</a></li>
 						<li><a href="privacy-policy.html">Privacy Policy</a></li>
 						<li><a href="contact.html">Contact Us</a></li>
+						@if(session('user_home'))
+								<li><a href="{{url('home/info')}}">个人中心</a></li>
+								<li><a href="{{url('home/quit')}}">退出</a></li>
+						@else
+								<li><a href="{{url('home/zhuce/add')}}">注册</a></li>
+								<li><a href="{{url('home/login/login')}}">登录</a></li>
+						@endif
 					</ul>
 				</div>
 
-				@if(session('user_home'))
-					<div class="num">
-						<a href="{{url('home/info')}}">个人中心</a>
-						<a href="{{url('home/quit')}}">退出</a>
-					</div>
-				@else
-					<div class="num">
-						<a href="{{url('home/zhuce/add')}}">注册</a>
-						<a href="{{url('home/login/login')}}">登录</a>
-					</div>
-				@endif
+
 				<div class="clearfix"></div>
 			</div>
 		</div>

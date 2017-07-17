@@ -49,7 +49,7 @@
 		        <div class="form-group">
 		          <div class="col-md-12">
 		          	<div class="control-wrapper">
-						<a href="{{url('home/phone/phone')}}" style="color:#ccc;margin-right:30px;">忘记密码</a>
+						<a href="{{url('home/phone/phone')}}" style="color:deepskyblue;margin-right:30px;">忘记密码</a>
 						<input type="submit" value="登录" class="btn btn-info" style="margin-right: 45px">
 						<a href="{{url('home/zhuce/add')}}" style="color:red">立即注册</a>
 		          	</div>

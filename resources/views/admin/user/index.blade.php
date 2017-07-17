@@ -24,7 +24,7 @@
                 <th>年龄</th>
                 <th>地址</th>
                 <th>用户类型</th>
-                <th>用户状态</th>
+                <th>邮箱状态</th>
                 <th>注册时间</th>
                 <th>最后一次登录时间</th>
                 {{--<th>操作</th>--}}
@@ -41,7 +41,9 @@
                 <td>{{date('Y-m-d',$v['birth'])}}</td>
                 <td>{{$v['age']}}</td>
                 <td>{{$v['address']}}</td>
-                <td>{{$v['type']}}</td>
+                @if($v['type'] == 1)
+                <td>普通用户</td>
+                @endif
                 @if($v['status'] == 2)
                 <td>已激活</td>
                 @else

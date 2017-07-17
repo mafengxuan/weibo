@@ -67,8 +67,9 @@
                         <div><b>用户名：<i>{{session('user_home')->phone}}</i></b></div>
                         <div class="u-level">
 									<span class="rank r2">
-							             <s class="vip1"></s><a class="classes" href="#">普通用户</a>
+							             <s class="vip1"></s>普通用户
 						            </span>
+                            {{--<a class="classes" href="#">普通用户</a>--}}
                         </div>
                     </div>
                 </div>
