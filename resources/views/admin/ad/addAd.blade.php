@@ -134,26 +134,26 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>购买天数：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="1" placeholder="" id="number" name="num" style="width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
+                <input type="text" class="input-text" value="1" placeholder="" id="number" name="ad_num" style="width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
             </div>
         </div>
 
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>日期范围：</label>&nbsp;&nbsp;&nbsp;
-            <input type="text" onfocus="WdatePicker({ maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}' })" id="logmin" name="ad_ctime" class="input-text Wdate" style="width:120px;">
+            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',minDate:'%y-%M-%d' })" id="logmin" name="ad_ctime" class="input-text Wdate" style="width:120px;">
             -
-            <input type="text" onfocus="WdatePicker({ minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d' })" id="logmax" name="ad_etime" class="input-text Wdate" style="width:120px;">
+            <input type="text" onfocus="WdatePicker()" id="logmax" name="ad_etime" class="input-text Wdate" style="width:120px;">
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>总价：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="10" placeholder="" id="price" name="price" style="border:none; width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
+                <input type="text" class="input-text" value="10" readonly placeholder="" id="price" name="ad_price" style="border:none; width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>下单人：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="{{$session['username']}}" placeholder="" id="" name="auditor" style="width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
+                <input type="text" class="input-text" readonly value="{{$session['username']}}" placeholder="" id="" name="auditor" style="width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
             </div>
         </div>
         <div class="row cl">
@@ -165,101 +165,7 @@
 
     </form>
 </div>
-<script>
-    // 购买天数 失去焦点事件
-    $('#number').blur(function(){
-        var uPrice =  $('#uprice').val();
-        var numb = $('#number').val();
-        $('#price').val(uPrice * numb);
-    });
-//    $('input[name="username"]').blur(function(){
-//        if($('input[name="username"]').val()!=''){
-//            $(this).next().text();
-//        })
-//    })
-    // 用户名 失去焦点事件
-    $('input[name="username"]').blur(function(){
-        if($('input[name="username"]').val()!=''){
-            $(this).next().text('');
-        }
-    })
-    // 广告名 失去焦点事件
-    $('input[name="ad_name"]').blur(function(){
-        if($('input[name="ad_name"]').val()!=''){
-            $(this).next().text('');
-        }
-    })
-    // 购买天数失去焦点事件
-    $('input[name="num"]').blur(function(){
-        if($('input[name="num"]').val()!=''){
-            $(this).next().text('');
-        }
-    })
-    // 总价失去焦点事件
-    $('input[name="price"]').blur(function(){
-        if($('input[name="price"]').val()!=''){
-            $(this).next().text('');
-        }
-    })
-    // 下单人失去焦点事件
-    $('input[name="auditor"]').blur(function(){
-        if($('input[name="auditor"]').val()!=''){
-            $(this).next().text('');
-        }
-    })
-    // 表单提交事件
-    $(function(){
-        var ok1 = false;
-        var ok2 = false;
-        var ok3 = false;
-        var ok4 = false;
-        var ok5 = false;
 
-        $('form').submit(function(){
-            if($('input[name="username"]').val()!=''){
-                ok1 = true;
-            }else{
-                $('input[name="username"]').next().text('用户名不能为空');
-                ok1 = false;
-            }
-
-            if($('input[name="ad_name"]').val()!=''){
-                ok2 = true;
-            }else{
-                $('input[name="ad_name"]').next().text('请填写广告名');
-                ok2 = false;
-            }
-            if($('input[name="num"]').val()!=''){
-                ok3 = true;
-            }else{
-                $('input[name="num"]').next().text('请填写购买天数');
-                ok3 = false;
-            }
-            if($('input[name="price"]').val()!=''){
-                ok4 = true;
-            }else{
-                $('input[name="price"]').next().text('购买总价不能为空');
-                ok4 = false;
-            }
-            if($('input[name="auditor"]').val()!=''){
-                ok5 = true;
-            }else{
-                $('input[name="auditor"]').next().text('下单人不能为空');
-                ok5 = false;
-            }
-
-
-            if(ok1 && ok2 && ok3 && ok4 && ok5){
-                return true;
-            }else{
-                layer.msg('信息未填完整',{icon:2});
-                return false;
-            }
-        });
-
-
-    })
-</script>
 @section('js')
 
     <!--请在下方写此页面业务相关的脚本-->

@@ -1,77 +1,70 @@
+@extends('home.layout.center')
+@section('show')
+    {{--<link rel="stylesheet" href="http://e.sinajs.cn/tui/css/pages/fanstone/main.css?v=REPLACE_FE_VERSION">--}}
+    <style>
+        .introduce{padding-top:58px;padding-bottom:22px;}.introduce li{float:left;width:270px;margin-right:55px;line-height:22px;}.introduce li h3{font-size:22px;margin-bottom:13px;line-height:22px;}.introduce li .introduction{font-size:14px;color:#727272;}.introduce li.last{margin-right:0;float:right;}.introduce1{padding-bottom:28px;}.introduce1 li{width:196px;margin-right:45px;}.introduce1 .pro{width:96px;height:96px;background:#b1e0f0;border-radius:96px;position:relative;margin:0 auto 43px;}.introduce1 .pro01{background:#f8d790;}.introduce1 .pro02{background:#77e0d1;}.introduce1 .pro03{background:#f9b898;}.introduce1 .icon{text-align:center;top:50%;left:50%;margin:-25px 0 0 -28px;position:absolute;}.introduce1 h3{text-align:center;}.icon{background:url("../../../img/fanstone/icon.png");}.icon_weibo{width:59px;height:52px;background-position:0 0;}.icon_fans{width:57px;height:50px;background-position:-76px 0;}.icon_upload{width:57px;height:50px;background-position:-154px 0;}.icon_rising{width:57px;height:50px;background-position:-231px 0;}
+    </style>
+    {{--http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/uploads%2F20170712%2F201707121043136314.jpg?OSSAccessKeyId=LTAIarkhwbI0b0KS&Signature=O9vQTvQ7Z%2Fdm2eQczPEW6%2FyLPVk%3D&Expires=1499913795--}}
+    {{--http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/uploads%2F20170712%2F201707122026289810.jpg?OSSAccessKeyId=LTAIarkhwbI0b0KS&Signature=tK2IYFFolRb5pRlC%2BM43pnc%2FZH8%3D&Expires=1499948791--}}
+    {{--http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/uploads%2F20170714%2F201707141439481981.jpg?OSSAccessKeyId=LTAIarkhwbI0b0KS&Signature=iXgkQJ7Do9XC27i73BXfoC0uzVY%3D&Expires=1500100792--}}
+    {{--http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/uploads%2F20170714%2F201707141442572498.jpg?OSSAccessKeyId=LTAIarkhwbI0b0KS&Signature=lwAzTcVaoZczx8U3cW69uhE9osg%3D&Expires=1500100979--}}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>广告中心</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" href="http://e.sinajs.cn/tui/css/pages/fanstone/index.css?v=REPLACE_FE_VERSION">
-    <link rel="stylesheet" href="http://e.sinajs.cn/tui/css/pages/fanstone/common.css?v=REPLACE_FE_VERSION">
-    <link rel="stylesheet" href="http://e.sinajs.cn/tui/css/pages/fanstone/main.css?v=REPLACE_FE_VERSION">
-    <script src="http://e.sinajs.cn/tui/js/libs/jquery.min.js?v=REPLACE_FE_VERSION"></script>
-    <script type="text/javascript">
-        var BASEURL = 'http://e.sinajs.cn/tui';
-        var $CONFIG = {};
-        $CONFIG['uid'] = "5656922317";
-        $CONFIG['bluev'] = false;
-        $CONFIG['nickname'] = "用户5656922317";
-        $CONFIG['link'] = "http://bp.biz.weibo.com/bid/";
-        $CONFIG['isBpUser'] = false;
-        $CONFIG['isBindOrangeV'] = false;
-    </script>
-    <!-- 重要标签不要删除，此标签是用来做angularjs中的html5Model功能-->
-</head>
-<body>
-<div class="main clearfix">
-    <div class="fans_bg">
-        <div class="area">
-            <div class="introduce clearfix">
-                <ul>
-                    <li>
-                        <h3>海量触达</h3>
-                        <div class="introduction">覆盖微博亿级优质用户资源，触达2.61亿月活跃用户、1.2亿日活跃用户，为您带来更高效的广告传播效果。</div>
-                    </li>
-                    <li>
-                        <h3>精准投放</h3>
-                        <div class="introduction">支持年龄、性别、地域、兴趣等多种方式组合，以及高级数据功能，精准识别目标用户大幅提高广告转化率。</div>
-                    </li>
-                    <li class="last">
-                        <h3>扩散传播</h3>
-                        <div class="introduction">利用微博强大的社交属性，让受众通过转发扩大广告的传播范围，形成二次原生推广。</div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div>
+        <a href="{{url('home/adadd')}}" style="float:right; ">
+            <button class="btn btn-primary">我要发布广告</button>
+        </a>
     </div>
+    <div>
+        <p>我的订单</p>
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <th style="text-align:center;">广告名称</th>
+            <th style="text-align:center;">广告位</th>
+            <th style="text-align:center;">广告图片</th>
+            <th style="text-align:center;">广告链接</th>
+            <th style="text-align:center;">广告简介</th>
+            <th style="text-align:center;">投放时间</th>
+            <th style="text-align:center;">状态</th>
+
+        </tr>
+        @foreach($data as $k=>$v)
+        <tr>
+            <td style="vertical-align:middle;">{{$v->ad_name}}</td>
+            <td style="vertical-align:middle;">{{$position[$v->pid]}}</td>
+            <td><img src="{{$v->ad_img}}" width="100" alt=""></td>
+            <td style="vertical-align:middle;">{{$v->ad_url}}</td>
+            <td style="vertical-align:middle;">{{$v->ad_brief}}</td>
+            <td style="vertical-align:middle;">{{date('Y-m-d',$v->ad_ctime)}}至{{date('Y-m-d',$v->ad_etime)}}</td>
+            <td style="vertical-align:middle;">{{$status[$v->status]}}</td>
+        </tr>
+        @endforeach
+    </table>
     <div class="area">
         <div class="introduce introduce1 clearfix">
             <ul>
-                <li>
+                <li style="width:165px; margin-left:50px;">
                     <div class="pro">
                         <div class="icon icon_weibo"></div>
                     </div>
-                    <h3>增加博文曝光</h3>
+                    <h3 >增加博文曝光</h3>
                     <div class="introduction">将精彩创意推送到目标用户显著位置，大幅提升博文的互动量。</div>
                 </li>
-                <li>
+                <li style="width:165px;">
                     <div class="pro pro01">
                         <div class="icon icon_fans"></div>
                     </div>
                     <h3>增长账号粉丝</h3>
                     <div class="introduction">将账号推荐给潜在粉丝，实现关注转化，积累高质量的社交资产。</div>
                 </li>
-                <li>
+                <li style="width:165px;">
                     <div class="pro pro02">
                         <div class="icon icon_upload"></div>
                     </div>
                     <h3>拉动应用下载</h3>
                     <div class="introduction">App应用开启客户端定位推广，实现推荐应用直接下载安装。</div>
                 </li>
-                <li class="last">
+                <li style="width:165px; float:right;">
                     <div class="pro pro03">
                         <div class="icon icon_rising"></div>
                     </div>
@@ -81,7 +74,5 @@
             </ul>
         </div>
     </div>
-</body>
-</html>
-<script type="text/javascript" src="http://i.sso.sina.com.cn/js/ssologin.js?v=REPLACE_FE_VERSION"></script>
-<script type="text/javascript" src="http://e.sinajs.cn/tui/js/pages/fanstone/index.js?v=REPLACE_FE_VERSION"></script>
+
+@endsection

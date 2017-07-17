@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Model\Ad;
+use App\Http\Model\Ad_order;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -22,16 +23,16 @@ class AuditController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             // 获取所有状态为未发布的数据  搜索
-            $data = Ad::where('status',2)->where('ad_name','like','%'.$key.'%')->paginate(10);
+            $data = Ad::whereIn('status',[2,4])->where('ad_name','like','%'.$key.'%')->paginate(10);
 
-            $status = array(1=>'已发布',2=>'未发布');
+            $status = array(1=>'已发布',2=>'待审核',3=>'审核已驳回',4=>'审核未收款');
             return view('admin/ad/audit',['data'=>$data,'status'=>$status,'key'=>$key]);
         }else{
             $key = '';
             // 获取所有状态为未发布的数据
-            $data = Ad::where('status',2)->orderBy('aid','asc')->paginate(10);
+            $data = Ad::whereIn('status',[2,4])->orderBy('aid','asc')->paginate(10);
 
-            $status = array(1=>'已发布',2=>'未发布');
+            $status = array(1=>'已发布',2=>'未发布',3=>'审核已驳回',4=>'审核未收款');
             //添加到列表页
             return view('admin/ad/audit',['data'=>$data,'status'=>$status,'key'=>$key]);
         }
@@ -89,9 +90,11 @@ class AuditController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $session = $request->session()->get('user');
+        $auditor = $session->username;
         $sta = Input::get('sta');
         if($sta== 1){
-            $res = Ad::where('aid',$id)->update(['status'=>1,'ad_ctime'=>time()]);
+            $res = Ad::where('aid',$id)->update(['status'=>4,'a_time'=>time(),'auditor'=>$auditor]);
             if($res){
                 $data = [
                     'status' => 0,
@@ -106,7 +109,55 @@ class AuditController extends Controller
             return $data;
         }
         if($sta == 2){
-            $res = Ad::where('aid',$id)->update(['status'=>3,'ad_ctime'=>time()]);
+            $res = Ad::where('aid',$id)->update(['status'=>3,'a_time'=>time(),'auditor'=>$auditor]);
+            if($res){
+                $data = [
+                    'status' => 0,
+                    'msg'    =>'审核已驳回!'
+                ];
+            }else{
+                $data = [
+                    'status' => 4,
+                    'msg'    =>'审核驳回失败!'
+                ];
+            }
+            return $data;
+        }
+    }
+
+    public function charge(Request $request, $id)
+    {
+        $session = $request->session()->get('user');
+        $auditor = $session->username;
+        $sta = Input::get('sta');
+        if($sta== 1){
+            $res = Ad::where('aid',$id)->update(['status'=>1,'a_time'=>time(),'auditor'=>$auditor]);
+            $input = Ad::where('aid',$id)->first()->toArray();
+
+//            dd($input);
+            $order['pid'] = $input['pid'];
+            $order['aid'] = $input['aid'];
+            $order['username'] = $input['username'];
+            $order['num'] = $input['ad_num'];
+            $order['price'] = $input['ad_price'];
+            $order['o_time'] = $input['ad_ctime'];
+//            dd($order);
+            $re = Ad_order::create($order);
+            if($res && $re){
+                $data = [
+                    'status' => 0,
+                    'msg'    =>'审核已通过!'
+                ];
+            }else{
+                $data = [
+                    'status' => 4,
+                    'msg'    =>'审核未通过!'
+                ];
+            }
+            return $data;
+        }
+        if($sta == 2){
+            $res = Ad::where('aid',$id)->update(['status'=>3,'a_time'=>time(),'auditor'=>$auditor]);
             if($res){
                 $data = [
                     'status' => 0,

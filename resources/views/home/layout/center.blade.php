@@ -102,7 +102,7 @@
             <li class="person">
                 <a href="#">我的交易</a>
                 <ul>
-                    <li><a href="order.html">订单管理</a></li>
+                    <li><a href="{{url('home/ad')}}">广告中心</a></li>
                     <li> <a href="change.html">退款售后</a></li>
                 </ul>
             </li>
@@ -128,27 +128,29 @@
 
     </aside>
 </div>
+@section('js')
+    @show
 </body>
 </html>
-<script>
-    function check_company(str)
-    {
-        var type = str;
-        $.post("{{url('home/auditcheck')}}",{'_token':"{{csrf_token()}}"},function(data){
-            if(data.status==0){
-                location.href="{{url('home')}}/"+type;
-            }else{
-                alert('有待审核或已通过审核认证，不能再次申请');
-            }
-        })
-    }
+{{--<script>--}}
+    {{--function check_company(str)--}}
+    {{--{--}}
+        {{--var type = str;--}}
+        {{--$.post("{{url('home/auditcheck')}}",{'_token':"{{csrf_token()}}"},function(data){--}}
+            {{--if(data.status==0){--}}
+                {{--location.href="{{url('home')}}/"+type;--}}
+            {{--}else{--}}
+                {{--alert('有待审核或已通过审核认证，不能再次申请');--}}
+            {{--}--}}
+        {{--})--}}
+    {{--}--}}
 
-    function check_commerce()
-    {
+    {{--function check_commerce()--}}
+    {{--{--}}
 
-    }
-    function check_bigv()
-    {
+    {{--}--}}
+    {{--function check_bigv()--}}
+    {{--{--}}
 
-    }
-</script>
+    {{--}--}}
+{{--</script>--}}

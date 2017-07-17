@@ -26,13 +26,9 @@ class AdController extends Controller
 //            $path = $file->move(public_path() . '/uploads', $newName);
             // 将图片上传到OSS 阿里云
             $result = OSS::upload('uploads/'.date('Ymd',time()).'/'.$newName, $file->getRealPath());
-//            echo OSS::getUrl($newName);
-
-
-            //   http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/201707101650488960.jpg?OSSAccessKeyId=LTAIarkhwbI0b0KS&Signature=D150E1jCqLh%2FinstnfQddzPKqpw%3D&Expires=1499763052
 //        返回文件的上传路径
             $filepath = 'uploads/'.date('Ymd',time()).'/' . $newName;
-            $res = OSS::getUrl($filepath);
+            $res = "http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/".$filepath;
             return $res;
         }
     }
@@ -47,13 +43,13 @@ class AdController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             $data = Ad::where('ad_name','like','%'.$key.'%')->paginate(10);
-            $status = array(1=>'已发布',2=>'未发布',3=>'审核已驳回');
+            $status = array(1=>'已发布',2=>'待审核',3=>'审核已驳回',4=>'审核未付款');
             return view('admin/ad/index',['data'=>$data,'status'=>$status,'key'=>$key]);
         }else{
             $key = '';
             // 获取所有数据
             $data = Ad::orderBy('aid','asc')->paginate(10);
-            $status = array(1=>'已发布',2=>'未发布',3=>'审核已驳回');
+            $status = array(1=>'已发布',2=>'待审核',3=>'审核已驳回',4=>'审核未收款');
             //添加到列表页
             return view('admin/ad/index',['data'=>$data,'status'=>$status,'key'=>$key]);
         }
@@ -83,7 +79,7 @@ class AdController extends Controller
     public function store(Request $request)
     {
         //  获取请求中的所有数据，除了_token  file_upload
-        $input = Input::except('_token','file_upload','num','price');
+        $input = Input::except('_token','file_upload');
         $adOrder = Ad_order::orderBy('oid','desc')->max('oid');
         $input['ad_ctime'] = strtotime($input['ad_ctime']);
         $input['ad_etime'] = strtotime($input['ad_etime']);
@@ -92,9 +88,11 @@ class AdController extends Controller
         //        通过ad模型的create  or   save 添加到数据库
         $re = Ad::create($input);
         // 获取金额和天数
-        $order = Input::only('pid','username','num','price');
+        $order = Input::only('pid','username');
         $order['aid'] = Ad::orderBy('aid','desc')->max('aid');
         $order['o_time'] = $input['ad_ctime'];
+        $order['num'] = $input['ad_num'];
+        $order['price'] = $input['ad_price'];
 
         $res = Ad_order::create($order);
 

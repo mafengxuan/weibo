@@ -31,7 +31,7 @@
                     <td>{{$v->username}}</td>
                     <td>{{$v->num}}</td>
                     <td>{{$v->price}}</td>
-                    <td>{{date('Y-m-d H:i:s',$v->o_time)}}</td>
+                    <td>{{date('Y-m-d',$v->o_time)}}</td>
             @endforeach
             </tbody>
         </table>

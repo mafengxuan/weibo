@@ -107,6 +107,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::any('adPositionAjax','AdPositionController@adPositionAjax');
     //后台广告审核
     Route::resource('audit','AuditController');
+    Route::any('charge/{id}','AuditController@charge');
     //后台广告收费管理
     Route::resource('order','OrderController');
     //后台收益管理
@@ -173,5 +174,8 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     // 前台广告中心路由
     Route::get('ad','AdController@index');
+    // 前台广告申请路由
+    Route::resource('adadd','adAddController');
+    Route::any('upload','adAddController@upload');
 });
 

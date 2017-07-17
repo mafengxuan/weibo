@@ -466,7 +466,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="side-bar-article">
 							<a href="single.html"><img src="{{$pic3['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="single.html">{{$pic2['ad_brief']}}</a>
+								<a href="single.html">{{$pic3['ad_brief']}}</a>
 							</div>
 						</div>
 					 </div>
@@ -543,15 +543,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here.</p>
 				</div>
 				<div class="col-md-2 col-xs-6 col-sm-2 footer-grid">
-					<h4 class="footer-head">Categories</h4>
+					<h4 class="footer-head">友情链接</h4>
+					@foreach($links as $k=>$v)
 					<ul class="cat">
-						<li><a href="business.html">Business</a></li>
-						<li><a href="technology.html">Technology</a></li>
-						<li><a href="entertainment.html">Entertainment</a></li>
-						<li><a href="sports.html">Sports</a></li>
-						<li><a href="shortcodes.html">Health</a></li>
-						<li><a href="fashion.html">Fashion</a></li>
+						<li><a href="{{$v->link_url}}" title="{{$v->link_title}}">{{$v->link_name}}</a></li>
 					</ul>
+					@endforeach
 				</div>
 				<div class="col-md-4 col-xs-6 col-sm-6 footer-grid">
 					<h4 class="footer-head">Flickr Feed</h4>

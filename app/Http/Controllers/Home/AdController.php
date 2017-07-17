@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Ad;
+use App\Http\Model\Ad_order;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,9 +16,15 @@ class AdController extends Controller
      * 显示广告中心
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home.ad.index');
+        $session = $request->session()->get('user_home');
+        $phone = $session['phone'];
+        $data = Ad::where('username',$phone)->get();
+//        dd($data);
+        $position = array(1=>'首页上方广告',2=>'首页中间广告',3=>'首页下方广告',4=>'首页轮播广告');
+        $status = array(1=>'已发布',2=>'待审核',3=>'审核已驳回',4=>'审核未收款');
+        return view('home.ad.index',compact('data','status','position'));
     }
 
     /**
