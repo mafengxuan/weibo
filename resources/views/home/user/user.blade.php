@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
     <title>个人资料</title>
@@ -13,10 +14,11 @@
     <link href="{{asset('/home/user/css/infstyle.css')}}" rel="stylesheet" type="text/css">
     <script src="{{asset('/home/user/AmazeUI-2.4.2/assets/js/jquery.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('/home/user/AmazeUI-2.4.2/assets/js/amazeui.js')}}" type="text/javascript"></script>
-
+    {{--<script src="{{asset('/home/js/checkaudit.js')}}" type="text/javascript"></script>--}}
 </head>
 
 <body>
+
 <!--头 -->
 <header>
     <article>
@@ -189,18 +191,18 @@
 </div>
 
 </body>
-
-</html>
 <script>
     function check_audit(str)
     {
         var type = str;
         $.post("{{url('home/auditcheck')}}",{'_token':"{{csrf_token()}}"},function(data){
             if(data.status==0){
-                location.href='{{url('home')}}/'+type;
+                location.href="{{url('home')}}/"+type;
             }else{
                 alert('有待审核或已通过审核认证，不能再次申请');
             }
         })
     }
 </script>
+</html>
+{{--<script src="/home/js/checkaudit.js"></script>--}}

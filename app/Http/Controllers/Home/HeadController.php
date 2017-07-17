@@ -1,14 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\home;
 
-use App\Http\Model\User_v;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class bigvauditController extends Controller
+// 引入 composer autoload
+//require 'vendor/autoload.php';
+// 导入 Intervention Image Manager Class
+use Intervention\Image\ImageManager;
+
+class HeadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,54 +21,17 @@ class bigvauditController extends Controller
      */
     public function index()
     {
-        //
-        return view('home.audit.bigvaudit');
-    }
+        // 通过指定 driver 来创建一个 image manager 实例
+        $manager = new ImageManager(array('driver' => 'gd'));
 
-    /**
-     * 将用户提交信息写入User_vs表
-     * @param Request 用户提交认证信息
-     * @return json
-     */
-    public function doaudit(Request $request)
-    {
-        $info = [];
-        $info['uid'] = session('user_home')->uid;
-        $info['username'] = session('user_home')->phone;
-        $info['v_name'] = $request->v_name;
-        $info['type'] = $request->type;
-        $info['status'] = 2;
-        $info['p_time'] = time();
-        $res = User_v::create($info);
-        if($res){
-            $data = ['status'=>0];
-        }else{
-            $data = ['status'=>4];
-        }
-        return $data;
-
-    }
-
-    /**
-     * 验证提交大V名称是否存在
-     * @param Request 大V名称
-     * @return array
-     */
-    public function checkname(Request $request)
-    {
-        $cname = $request->v_name;
-        $res = User_v::where('v_name',$cname)->first();
-        if($res){
-            $data = [
-                'status' => '4'
-            ];
-        }elseif($res==null){
-            $data = [
-                'status' => '0'
-            ];
-        }
-        return $data;
-
+        // 最后创建 image 实例
+        $image = $manager->make('uploads/head.jpg')->resize(200,200);
+        //角标
+        $jiao  = $manager->make('uploads/1.png')->resize(15,15);
+        $jiao->save('uploads/small_1.png');
+        $image->insert('uploads/small_1.png', 'bottom-right', 15, 10);
+        $image->save('uploads/new_head.jpg ');
+        return view('welcome');
     }
 
     /**

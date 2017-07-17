@@ -40,19 +40,25 @@ class myauditController extends Controller
         return view('home.audit.myaudit',compact('type','r'));
     }
 
-
+    /**
+     * 查询用户是否提交过申请
+     * @return 0未申请 4申请过或有待审核申请
+     */
     public function check()
     {
         $username = session('user_home')->phone;
-        $res_company = User_company::where('username',$username)->first();
-        $res_commerce = User_commerce::where('username',$username)->first();
-        $res_bigv = User_v::where('username',$username)->first();
-        if((empty($res_company) && empty($res_commerce) && empty($res_bigv))){
+        $res_company = User_company::where('username',$username)->where('status','<>',3)->first();
+        $res_commerce = User_commerce::where('username',$username)->where('status','<>',3)->first();
+        $res_bigv = User_v::where('username',$username)->where('status','<>',3)->first();
+        //三个表中都不存在包含该用户名或者用户提交过已被驳回（status=3）的情况下判断用户可提交申请
+        if((empty($res_company) && empty($res_commerce) && empty($res_bigv)))
+        {
             $data = [
                 'status' => 0,
                 'msg'    =>''
             ];
-        }else{
+        }
+        else{
             $data = [
                 'status' => 4,
                 'msg'    =>''

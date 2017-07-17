@@ -191,9 +191,4 @@ class CompanyController extends Controller
     {
         //
     }
-
-    public function abc(){
-        //dd(session());
-        echo session('user')->username;
-    }
 }

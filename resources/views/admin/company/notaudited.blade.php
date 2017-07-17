@@ -5,6 +5,13 @@
     <script type="text/javascript" src="{{asset('/admin')}}/lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="{{asset('/admin')}}/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="{{asset('/admin')}}/lib/laypage/1.2/laypage.js"></script>
+    <script src="{{asset('/admin')}}/bootstrap/js/jquery-1.10.2.min.js"></script>
+    <script src="{{asset('/admin')}}/bootstrap/js/lightbox-2.6.min.js"></script>
+
+@endsection
+@section('css')
+
+    <link href="{{asset('/admin')}}/bootstrap/css/lightbox.css" rel="stylesheet" />
 
 @endsection
 @section('body')
@@ -34,7 +41,6 @@
                     <th width="130">申请提交时间</th>
                     <th width="70">审核状态</th>
                     <th width="50">操作</th>
-
                 </tr>
                 </thead>
                 <tbody>
@@ -43,7 +49,11 @@
                     <td>{{$v->company_id}}</td>
                     <td>{{$v->company_name}}</td>
                     <td>{{$v->username}}</td>
-                    <td><img src={{'/'.$v->company_img}} style="width:50px;height:50px;"></td>
+                    @if(!empty($v->company_img))
+                    <td><a href={{'/'.$v->company_img}} data-lightbox="image-1" title="{{$v->company_name}}营业执照">点击查看营业执照</a></td>
+                    @else
+                    <td><img src=""></td>
+                    @endif
                     <td>{{$v->price}}</td>
                     <td>{{date('Y-m-d H:i:s',$v->p_time)}}</td>
                     @if($v->status != 1)

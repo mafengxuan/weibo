@@ -25,6 +25,7 @@
         </form>
     </div>
     <script>
+        //ajax提交用户认证信息
         function doaudit()
         {
             $.post("{{url('home/bigv/doaudit')}}",$('form').serialize(),function(data){
@@ -37,6 +38,7 @@
         }
     </script>
     <script>
+        //ajax判断用户提交名称是否在User_vs表中存在
         function checkname()
         {
             $.post("{{url('home/bigv/checkname')}}",$('form').serialize(),function(data){
@@ -50,6 +52,7 @@
 
     </script>
     <script>
+        //bootstrapValidator表单验证
         $(function () {
             <!--数据验证-->
             $("#art_form").bootstrapValidator({

@@ -156,7 +156,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
 
 
-
+    Route::resource('pic','HeadController');
 
     //前台详情页
     Route::get('details','DetailsController@index');

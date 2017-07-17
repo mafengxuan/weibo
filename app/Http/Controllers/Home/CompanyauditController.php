@@ -22,7 +22,11 @@ class companyauditController extends Controller
         return view('home.audit.companyaudit');
     }
 
-
+    /**
+     * 文件上传
+     *
+     * @return 文件上传路径
+     */
     public function upload()
     {
         $file = Input::file('file_upload');
@@ -35,6 +39,11 @@ class companyauditController extends Controller
         }
     }
 
+    /**
+     * 将用户提交信息写入User_companys表
+     * @param Request 用户提交认证信息
+     * @return json
+     */
     public function doaudit(Request $request)
     {
         $info = [];
@@ -55,6 +64,11 @@ class companyauditController extends Controller
 
     }
 
+    /**
+     * 验证提交公司名称是否存在
+     * @param Request 公司名称
+     * @return array
+     */
     public function checkname(Request $request)
     {
         $cname = $request->company_name;

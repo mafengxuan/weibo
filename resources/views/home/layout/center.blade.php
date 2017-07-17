@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>个人资料</title>
 
     <link href="{{asset('/home/user/AmazeUI-2.4.2/assets/css/admin.css')}}" rel="stylesheet" type="text/css">
@@ -17,6 +17,8 @@
     <script src="{{asset('/home/user/AmazeUI-2.4.2/assets/js/amazeui.js')}}" type="text/javascript"></script>
     <script src="{{asset('/admin/bootstrap/js/bootstrap.js')}}" type="text/javascript"></script>
     <script src="{{asset('/admin/bootstrap/js/bootstrapValidator.js')}}" type="text/javascript"></script>
+    {{--<script src="{{asset('/home/js/checkaudit.js}}" type="text/javascript"></script>--}}
+
 </head>
 <body>
 <!--头 -->
@@ -128,8 +130,11 @@
 
     </aside>
 </div>
+
 </body>
 </html>
+
+
 <script>
     function check_audit(str)
     {
