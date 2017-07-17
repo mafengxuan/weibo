@@ -609,6 +609,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!-- footer-section-ends-here -->
+	@section('js')
+		@show
 	<script type="text/javascript">
 		$(document).ready(function() {
 				/*

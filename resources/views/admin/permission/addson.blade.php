@@ -14,13 +14,15 @@
             </ul>
         </div>
     @endif
-    <form class="form form-horizontal" id="art_form" action="{{url('admin/permission')}}" method="post">
+    <form class="form form-horizontal" id="art_form" action="{{url('admin/doaddson')}}" method="post">
         {{csrf_field()}}
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>路由名称：</label>
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>子路由名称：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="name">
+                <input type="text" class="input-text" value="{{$data->name.'@'}}" placeholder="" id="" name="name">
+                <input type="hidden" class="input-text" value="{{$data->id}}" name="pid">
             </div>
+
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>权限描述：</label>

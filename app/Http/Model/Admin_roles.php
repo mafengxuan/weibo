@@ -10,4 +10,17 @@ class Admin_roles extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $guarded = [];
+
+    public function tree(){
+        $arr = [];
+        $data = Admin_permissions::where('pid',0)->get();
+        foreach($data as $k => $v){
+           $re = Admin_permissions::where('pid',$v->id)->get();
+           $arr[$k]['id']=$v->id;
+           $arr[$k]['description']=$v->description;
+           $arr[$k]['son']=$re->toArray();
+        }
+
+        return $arr;
+    }
 }

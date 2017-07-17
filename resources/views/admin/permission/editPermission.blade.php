@@ -14,7 +14,8 @@
             </ul>
         </div>
     @endif
-    <form class="form form-horizontal" id="art_form" action="{{url('admin/permission')}}" method="post">
+    <form class="form form-horizontal" id="art_form" action="{{url('admin/permission/'.$data->id)}}" method="post">
+        <input type="hidden" name="_method" value="put">
         {{csrf_field()}}
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>路由名称：</label>
@@ -43,7 +44,7 @@
 @if(session('success'))
     <script>
         layer.alert('{{session('success')}}',function(){
-            parent.layer.closeAll();
+            parent.location.reload();
         });
 
     </script>

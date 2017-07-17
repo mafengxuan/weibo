@@ -30,102 +30,150 @@
 					<header>
 						<h3 class="title-head">实时微博</h3>
 					</header>
+
+			@foreach($microblog as $k => $v)
 					<div class="article">
 						<div class="article-left">
-							<a href="single.html"><img src="{{asset('home')}}/images/article1.jpg"></a>
+							<a href="single.html"><img src="{{$v->face}}"></a>
 						</div>
 						<div class="article-right">
 							<div class="article-title">
-								<a class="title" href="single.html">用户昵称</a>
+								<a class="title" href="single.html">{{$v->nickname}}</a>
 							</div>
 							<div class="article-text">
-								<p>微博内容</p>
-								<p>On Feb 25, 2015
+								<p>{{$v->content}}</p>
+								<p>{{date('Y-m-d H点i分',$v->ctime)}}
 									<a class="span_link" href="#">
-										<span class="glyphicon glyphicon-share"></span>0
+										<span class="glyphicon glyphicon-share"></span>{{$v->t_count}}
+									</a>
+									<a class="span_link" href="javascript:;" onclick="showcomment(this,{{$v->mid}})">
+										<span class="glyphicon glyphicon-comment" ></span>{{$v->c_count}}
+									</a>
+									<a class="span_link" href="javascript:;" >
+										<span class="glyphicon glyphicon-eye-open"></span>{{$v->mcount}}
 									</a>
 									<a class="span_link" href="#">
-										<span class="glyphicon glyphicon-comment"></span>0
-									</a>
-									<a class="span_link" href="#">
-										<span class="glyphicon glyphicon-eye-open"></span>104
-									</a>
-									<a class="span_link" href="#">
-										<span class="glyphicon glyphicon-thumbs-up"></span>52
+										<span class="glyphicon glyphicon-thumbs-up"></span>{{$v->p_count}}
 									</a>
 								</p>
 
 								<div class="clearfix"></div>
 							</div>
 							{{--评论内容--}}
-							<div class="response">
+
+							<div class="response" style="display:none">
 								{{--<h4>Responses</h4>--}}
-								<div class="media response-info">
-									<div class="media-left response-text-left">
-										<a href="#">
-											<img class="media-object" src="{{asset('home')}}/images/c1.jpg" alt=""/>
-										</a>
-										<h5><a href="#">Username</a></h5>
-									</div>
-									<div class="media-body response-text-right">
-										<p>评论内容</p>
-										<ul>
-											<li>Sep 21, 2015</li>
-											<li><a href="single.html">Reply</a></li>
-										</ul>
-										<div class="media response-info">
-											<div class="media-left response-text-left">
+								{{--<div class="media response-info">--}}
+									{{--<div class="media-left response-text-left">--}}
+										{{--<a href="#">--}}
+											{{--<img class="media-object" src="{{asset('home')}}/images/c1.jpg" alt=""/>--}}
+										{{--</a>--}}
+										{{--<h5><a href="#">Username</a></h5>--}}
+									{{--</div>--}}
+									{{--<div class="media-body response-text-right">--}}
+										{{--<p>评论内容</p>--}}
+										{{--<ul>--}}
+											{{--<li>Sep 21, 2015</li>--}}
+											{{--<li><a href="single.html">Reply</a></li>--}}
+										{{--</ul>--}}
+										{{--<div class="media response-info">--}}
+											{{--<div class="media-left response-text-left">--}}
 
-												<h5><a href="#">Username</a></h5>
-											</div>
-											<div class="media-body response-text-right">
-												<p>回复内容</p>
-												<ul>
-													<li>July 17, 2015</li>
-													<li><a href="single.html">Reply</a></li>
-												</ul>
-											</div>
-											<div class="clearfix"> </div>
-										</div>
-										<div class="media response-info">
-											<div class="media-left response-text-left">
+												{{--<h5><a href="#">Username</a></h5>--}}
+											{{--</div>--}}
+											{{--<div class="media-body response-text-right">--}}
+												{{--<p>回复内容</p>--}}
+												{{--<ul>--}}
+													{{--<li>July 17, 2015</li>--}}
+													{{--<li><a href="single.html">Reply</a></li>--}}
+												{{--</ul>--}}
+											{{--</div>--}}
+											{{--<div class="clearfix"> </div>--}}
+										{{--</div>--}}
+										{{--<div class="media response-info">--}}
+											{{--<div class="media-left response-text-left">--}}
 
-												<h5><a href="#">Username</a></h5>
-											</div>
-											<div class="media-body response-text-right">
-												<p>回复内容</p>
-												<ul>
-													<li>July 17, 2015</li>
-													<li><a href="single.html">Reply</a></li>
-												</ul>
-											</div>
-											<div class="clearfix"> </div>
-										</div>
-										<div class="media response-info">
-											<div class="media-left response-text-left">
+												{{--<h5><a href="#">Username</a></h5>--}}
+											{{--</div>--}}
+											{{--<div class="media-body response-text-right">--}}
+												{{--<p>回复内容</p>--}}
+												{{--<ul>--}}
+													{{--<li>July 17, 2015</li>--}}
+													{{--<li><a href="single.html">Reply</a></li>--}}
+												{{--</ul>--}}
+											{{--</div>--}}
+											{{--<div class="clearfix"> </div>--}}
+										{{--</div>--}}
+										{{--<div class="media response-info">--}}
+											{{--<div class="media-left response-text-left">--}}
 
-												<h5><a href="#">Username</a></h5>
-											</div>
-											<div class="media-body response-text-right">
-												<p>回复内容</p>
-												<ul>
-													<li>July 17, 2015</li>
-													<li><a href="single.html">Reply</a></li>
-												</ul>
-											</div>
-											<div class="clearfix"> </div>
-										</div>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
+												{{--<h5><a href="#">Username</a></h5>--}}
+											{{--</div>--}}
+											{{--<div class="media-body response-text-right">--}}
+												{{--<p>回复内容</p>--}}
+												{{--<ul>--}}
+													{{--<li>July 17, 2015</li>--}}
+													{{--<li><a href="single.html">Reply</a></li>--}}
+												{{--</ul>--}}
+											{{--</div>--}}
+											{{--<div class="clearfix"> </div>--}}
+										{{--</div>--}}
+									{{--</div>--}}
+									{{--<div class="clearfix"> </div>--}}
+								{{--</div>--}}
 
 							</div>
 						</div>
 						<div class="clearfix"></div>
 					</div>
+				@endforeach
+
 
 				</div>
-
-
 			</div>
+@endsection
+@section('js')
+	<script>
+        function getLocalTime(nS) {
+//            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        }
+        {{--var str = "<div class='media response-info'><div class='media-left response-text-left'><a href='#'><img class='media-object' src='{{asset('home')}}/images/c1.jpg' alt=''/></a><h5><a href='#'>Username</a></h5></div><div class='media-body response-text-right'><p>评论内容</p><ul><li>Sep 21, 2015</li><li><a href='single.html'>Reply</a></li></ul><div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>Username</a></h5></div><div class='media-body response-text-right'><p>回复内容</p><ul><li>July 17, 2015</li><li><a href='single.html'>Reply</a></li></ul></div><div class='clearfix'> </div></div></div><div class='clearfix'></div></div>";--}}
+		function showcomment(obj,mid){
+
+		    $.post("{{url('home/index/comment/')}}/"+mid,{'_token':"{{csrf_token()}}"},function(data){
+                $(obj).parent().parent().parent().parent().find('div').eq(5).slideToggle();
+		        var i = 0;
+					for(i;i<data.length;i++){
+
+                        var str = "<div class='media response-info'><div class='media-left response-text-left'><a href='#'><img class='media-object' src='"+data[i].face+"' alt=''/></a><h5><a href='#'>"+data[i].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].content+"</p><ul><li>"+getLocalTime(data[i].ctime)+"</li><li><a href='single.html'>Reply</a></li></ul>";
+
+						var j = 0;
+						for(j;j<data[i].reply.length;j++){
+							str += "<div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>"+data[i].reply[j].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].reply[j].content+"</p><ul><li>"+getLocalTime(data[i].reply[j].ctime)+"</li><li><a href='single.html'>Reply</a></li></ul></div><div class='clearfix'> </div></div>";
+
+                        }
+                        {{--$.post("{{url('home/index/reply')}}/"+data[i].cid,{'_token':"{{csrf_token()}}"},function(reply){--}}
+							{{--var j = 0;--}}
+							{{--for(j;j<reply.length;j++){--}}
+                                {{--str += "<div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>"+reply[j].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+reply[j].content+"</p><ul><li>"+reply[j].ctime+"</li><li><a href='single.html'>Reply</a></li></ul></div><div class='clearfix'> </div></div>";--}}
+
+                            {{--}--}}
+
+						{{--})--}}
+
+						str += "</div><div class='clearfix'></div></div>";
+
+                        $(obj).parent().parent().parent().parent().find('div').eq(5).append(str);
+					}
+
+			})
+
+//		    $(obj).parent().parent().parent().parent().find('div').eq(5).slideToggle();
+//			alert($(obj).parent().parent().parent().find('div').eq(2).show());
+		}
+
+
+	</script>
+
 @endsection

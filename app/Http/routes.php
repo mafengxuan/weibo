@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home.index.index');
-});
+//Route::get('/', function () {
+//    return view('home.index.index');
+//});
 
 //后台登录页
 Route::get('/admin/login','Admin\LoginController@login');
@@ -44,6 +44,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
 
     //后台角色管理
     Route::resource('role','RoleController');
+    //后台权限子权限
+    Route::get('addson/{id}','PermissionController@addson');
+    Route::post('doaddson','PermissionController@doaddson');
     //后台权限管理
     Route::resource('permission','PermissionController');
 
@@ -146,7 +149,9 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
-
+    //前台获取微博评论
+    Route::post('index/comment/{id}','IndexController@comment');
+    Route::post('index/reply/{id}','IndexController@reply');
 
 
 
