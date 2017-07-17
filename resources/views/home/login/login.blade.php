@@ -49,8 +49,9 @@
 		        <div class="form-group">
 		          <div class="col-md-12">
 		          	<div class="control-wrapper">
-		          		<input type="submit" value="登录" class="btn btn-info" style="margin-right: 70px">
-						<a href="{{url('home/zhuce/add')}}" style="color:red">还没有微博？立即注册!</a>
+						<a href="{{url('home/phone/phone')}}" style="color:#ccc;margin-right:30px;">忘记密码</a>
+						<input type="submit" value="登录" class="btn btn-info" style="margin-right: 45px">
+						<a href="{{url('home/zhuce/add')}}" style="color:red">立即注册</a>
 		          	</div>
 		          </div>
 		        </div>

@@ -56,8 +56,6 @@
 		      </form>
 		</div>
 	</div>
-
-
 	<script type="text/javascript">
 		var s1 = s2 = false;
         //手机号

@@ -131,6 +131,9 @@ Route::get('/home/login/login','Home\LoginController@login');
 Route::post('/home/login/dologin','Home\LoginController@dologin');
 //退出登录
 Route::get('/home/quit','Home\LoginController@quit');
+//找回密码 手机验证路由
+Route::controller('/home/phone','Home\LoginController');
+//密码页面路由
 
 
 //个人中心路由
@@ -140,6 +143,13 @@ Route::get('/home/info','Home\UserController@info');
 //修改个人信息
 Route::get('/home/edit','Home\UserController@edit');
 Route::post('/home/doedit','Home\UserController@doedit');
+//头像上传
+Route::post('/home/upload','Home\UserController@upload');
+//邮箱激活
+Route::get('/home/email','Home\UserController@email');
+Route::post('/home/doemail','Home\UserController@doemail');
+Route::get('/home/jihuo','Home\UserController@jihuo');
+
 
 //修改密码
 Route::get('/home/repass','Home\PwdController@repass');

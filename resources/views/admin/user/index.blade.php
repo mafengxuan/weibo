@@ -6,7 +6,7 @@
 <div class="page-container">
     <form action="{{url('admin/user')}}" method="get">
     <div class="text-c">
-        <input type="text" class="input-text" style="width:250px" placeholder="输入真实姓名" value="@if(empty($key)) @else{{$key}}  @endif" id="" name="keywords">
+        <input type="text" class="input-text" style="width:250px" placeholder="输入真实姓名" value="{{$key}} "id="" name="keywords">
         <button type="submit" class="btn btn-success radius" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜用户</button>
     </div>
     </form>
@@ -15,7 +15,6 @@
         <table class="table table-border table-bordered table-hover table-bg table-sort">
             <thead>
             <tr class="text-c">
-
                 <th>uid</th>
                 <th>真实姓名</th>
                 <th>QQ</th>
@@ -39,11 +38,15 @@
                 <td>{{$v['qq']}}</td>
                 <td>{{$v['email']}}</td>
                 <td>{{$v['phone']}}</td>
-                <td>{{$v['birth']}}</td>
+                <td>{{date('Y-m-d',$v['birth'])}}</td>
                 <td>{{$v['age']}}</td>
                 <td>{{$v['address']}}</td>
                 <td>{{$v['type']}}</td>
-                <td>{{$v['status']}}</td>
+                @if($v['status'] == 2)
+                <td>已激活</td>
+                @else
+                    <td>未激活</td>
+                @endif
                 <td>{{date('Y-m-d H:i:s',$v['rtime'])}}</td>
                 <td>{{date('Y-m-d H:i:s',$v['login_time'])}}</td>
                 {{--<td class="td-manage"><a href="">修改</a>--}}
@@ -59,8 +62,6 @@
 
     {!! $user->appends(['keywords'=>$key])->render() !!}
 </div>
-{{--{!! $user->appends(['keywords'=>$key])->render() !!}--}}
-
 @endsection
 @section('js')
 
