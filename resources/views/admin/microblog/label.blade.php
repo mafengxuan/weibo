@@ -14,7 +14,7 @@
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
                 <tr class="text-c">
-                    <th ><input type="checkbox" name="" value=""></th>
+
                     <th >id</th>
                     <th >标签名称</th>
                     <th >操作</th>
@@ -24,7 +24,6 @@
                 @foreach ($data as $k=>$v)
                     <tr class="text-c">
 
-                        <td><input type="checkbox" value="1" name=""></td>
                         <td>{{$v->tid}}</td>
                         <td>{{$v->tname}}</td>
                         <td class="td-manage">

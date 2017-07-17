@@ -29,7 +29,7 @@ class ManagerController extends Controller
             return view('admin.manager.index',['data'=>$user,'key'=>$key]);
         }else {
             //查询用户的所有数据
-            $user = User_admin::orderBy('id', 'asc')->paginate(2);
+            $user = User_admin::orderBy('id', 'asc')->paginate(3);
             return view('admin.manager.index', ['data' => $user]);
         }
     }

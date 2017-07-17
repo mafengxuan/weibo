@@ -14,7 +14,6 @@
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
                 <tr class="text-c">
-                    <th ><input type="checkbox" name="" value=""></th>
                     <th >id</th>
                     <th >登录邮箱</th>
                     <th >登录手机号</th>
@@ -32,8 +31,6 @@
                 <tbody>
                 @foreach ($data as $k=>$v)
                 <tr class="text-c">
-
-                    <td><input type="checkbox" value="1" name=""></td>
                     <td>{{$v->mid}}</td>
                     <td>{{$v->email}}</td>
                     <td>{{$v->phone}}</td>

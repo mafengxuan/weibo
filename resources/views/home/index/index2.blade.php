@@ -50,15 +50,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="wrap">
 				<div class="top-menu">
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="about.html">About Us</a></li>
+						<li><a href="index.html">登录</a></li>
+						<li><a href="about.html">注册</a></li>
 						<li><a href="privacy-policy.html">Privacy Policy</a></li>
 						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
-				<div class="num">
-					<p> Call us : 032 2352 782</p>
-				</div>
+				<a href="">注册</a>
+				<a href="">登录</a>
 				<div class="clearfix"></div>
 			</div>
 		</div>

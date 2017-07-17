@@ -56,9 +56,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="contact.html">Contact Us</a></li>
 					</ul>
 				</div>
-				<div class="num">
-					<p> Call us : 032 2352 782</p>
-				</div>
+
+				@if(session('user_home'))
+					<div class="num">
+						<a href="{{url('home/info')}}">个人中心</a>
+						<a href="{{url('home/quit')}}">退出</a>
+					</div>
+				@else
+					<div class="num">
+						<a href="{{url('home/zhuce/add')}}">注册</a>
+						<a href="{{url('home/login/login')}}">登录</a>
+					</div>
+				@endif
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -496,17 +505,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 @foreach ($data as $k => $v)
 							<div class="popular-grids">
 							<div class="popular-grid">
-								<a class="title" href="single.html">{{str_limit($v->content, $limit = 20, $end = '...')}}</a>
-								<p>{{date('Y-m-d H:i:s',($v->ctime))}}
+								<a class="title" href="single.html">{!!str_limit($v->content, $limit = 20, $end = '...')!!}</a>
+								<p>{!!date('Y-m-d H:i:s',($v->ctime))!!}
 									<a class="span_link" >
-										<span class="glyphicon glyphicon-comment" onclick="fun()"></span>{{$v->c_count}}
+										<span class="glyphicon glyphicon-comment" onclick="fun()"></span>{!! $v->c_count!!}
 									</a>
 
 									<a class="span_link" href="#">
-										<span class="glyphicon glyphicon-eye-open"></span>{{$v->mcount}}
+										<span class="glyphicon glyphicon-eye-open"></span>{!! $v->mcount!!}
 									</a>
 									<a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up">
-										</span>{{$v->p_count}}
+										</span>{!!$v->p_count!!}
 									</a>
 									<p id="input" style="display:none">
 									<input  type="text" class="form-control" ><br>
@@ -619,6 +628,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!-- footer-section-ends-here -->
+	@section('js')
+		@show
 	<script type="text/javascript">
 		$(document).ready(function() {
 				/*

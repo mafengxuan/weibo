@@ -22,12 +22,12 @@ class LabelController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             //查询数据并分页
-            $label = Tag::where('tname','like',"%".$key."%")->paginate(2);
+            $label = Tag::where('tname','like',"%".$key."%")->paginate(10);
             return view('admin.microblog.label',['data'=>$label,'key'=>$key]);
         }else{
             $key = '';
             //查询出tags表的所有数据
-            $label = Tag::orderBy('tid','asc')->paginate(2);
+            $label = Tag::orderBy('tid','asc')->paginate(10);
             //添加导航管理视图
             return view('admin.microblog.label',['data'=>$label,'key'=>$key]);
         }

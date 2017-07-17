@@ -7,6 +7,12 @@
     <script type="text/javascript" src="{{asset('/admin')}}/lib/laypage/1.2/laypage.js"></script>
 
 @endsection
+@section('title')
+    <title>网站</title>
+
+    @endsection
+
+
 @section('body')
 
 

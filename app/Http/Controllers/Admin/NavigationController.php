@@ -22,12 +22,12 @@ class NavigationController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             //查询数据并分页
-            $navigation = Navigation::where('nav_name','like',"%".$key."%")->paginate(2);
+            $navigation = Navigation::where('nav_name','like',"%".$key."%")->paginate(10);
             return view('admin.microblog.navigation',['data'=>$navigation,'key'=>$key]);
         }else{
             $key = '';
             //查询出navigations表的所有数据
-            $navigation = Navigation::orderBy('nav_sort','asc')->paginate(2);
+            $navigation = Navigation::orderBy('nav_sort','asc')->paginate(10);
             //添加导航管理视图
             return view('admin.microblog.navigation',['data'=>$navigation,'key'=>$key]);
         }

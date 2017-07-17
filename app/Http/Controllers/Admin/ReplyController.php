@@ -22,12 +22,12 @@ class ReplyController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             //查询数据并分页
-            $reply = Reply::where('content','like',"%".$key."%")->paginate(2);
+            $reply = Reply::where('content','like',"%".$key."%")->paginate(10);
             return view('admin.microblog.reply',['data'=>$reply,'key'=>$key]);
         }else{
             $key = '';
             //查询出microblog表的所有数据
-            $reply = Reply::orderBy('mid','asc')->paginate(2);
+            $reply = Reply::orderBy('mid','asc')->paginate(10);
             //添加微博管理视图
             return view('admin.microblog.reply',['data'=>$reply,'key'=>$key]);
         }

@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home.index.index');
-});
+//Route::get('/', function () {
+//    return view('home.index.index');
+//});
 
 //后台登录页
 Route::get('/admin/login','Admin\LoginController@login');
@@ -42,6 +42,14 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     //后台管理员
     Route::resource('manager','ManagerController');
 
+    //后台角色管理
+    Route::resource('role','RoleController');
+    //后台权限子权限
+    Route::get('addson/{id}','PermissionController@addson');
+    Route::post('doaddson','PermissionController@doaddson');
+    //后台权限管理
+    Route::resource('permission','PermissionController');
+
     //管理员日志
     Route::get('log','LogController@index');
 
@@ -49,6 +57,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     //后台企业用户 company
     Route::resource('company','CompanyController');
     Route::get('companynotaudited','CompanyController@notaudited');
+
+
+    Route::get('abc','CompanyController@abc');
 
 
     //后台商业用户 commerce
@@ -110,17 +121,77 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
 
 
 //前台模块
+
+
+//前台注册
+Route::controller('/home/zhuce','Home\ZhuceController');
+//前台登录
+Route::get('/home/login/login','Home\LoginController@login');
+//处理登录
+Route::post('/home/login/dologin','Home\LoginController@dologin');
+//退出登录
+Route::get('/home/quit','Home\LoginController@quit');
+//找回密码 手机验证路由
+Route::controller('/home/phone','Home\LoginController');
+//密码页面路由
+
+
+//个人中心路由
+Route::get('/home/userinfo','Home\UserController@index');
+//显示个人信息
+Route::get('/home/info','Home\UserController@info');
+//修改个人信息
+Route::get('/home/edit','Home\UserController@edit');
+Route::post('/home/doedit','Home\UserController@doedit');
+//头像上传
+Route::post('/home/upload','Home\UserController@upload');
+//邮箱激活
+Route::get('/home/email','Home\UserController@email');
+Route::post('/home/doemail','Home\UserController@doemail');
+Route::get('/home/jihuo','Home\UserController@jihuo');
+
+
+//修改密码
+Route::get('/home/repass','Home\PwdController@repass');
+Route::post('/home/dorepass','Home\PwdController@dorepass');
+
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
 
+    //前台获取微博评论
+    Route::post('index/comment/{id}','IndexController@comment');
+    Route::post('index/reply/{id}','IndexController@reply');
+
+
+
+    //个人中心-我提交的申请
+
+    Route::post('auditcheck','myauditController@check');
+    Route::resource('myaudit','myauditController');
+    //个人中心-公司申请
+    Route::resource('company','companyauditController');
+    //个人中心-商业申请
+    Route::resource('commerce','commerceauditController');
+    //个人中心-大V申请
+    Route::resource('bigv','bigvauditController');
+
+
+
+
+
+
+
     //前台详情页
     Route::get('details','DetailsController@index');
+
 
     //前台发布微博
     Route::get('microblog','IndexController@microblog');
     Route::post('microblogAjax','IndexController@microblogAjax');
+
+
 
 });
 

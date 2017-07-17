@@ -23,11 +23,11 @@ class HotController extends Controller
 
 
             //查询数据并分页
-            $hot1 = Microblog::orderBy('mcount','desc')->take(3)->get();
+            $hot1 = Microblog::orderBy('mcount','desc')->take(10)->get();
 
 
 
-            $hot2 = Microblog::orderBy('ctime','desc')->take(5)->get();
+            $hot2 = Microblog::orderBy('ctime','desc')->take(10)->get();
             //添加微博管理视图
             return view('admin.microblog.hot',['data1'=>$hot1,'data2'=>$hot2]);
 
