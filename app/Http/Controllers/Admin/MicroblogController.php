@@ -24,12 +24,12 @@ class MicroblogController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             //查询数据并分页
-            $microblog = Microblog::where('phone','like',"%".$key."%")->paginate(2);
+            $microblog = Microblog::where('phone','like',"%".$key."%")->paginate(10);
             return view('admin.microblog.index',['data'=>$microblog,'key'=>$key]);
         }else{
             $key = '';
             //查询出microblog表的所有数据
-            $microblog = Microblog::orderBy('mid','asc')->paginate(2);
+            $microblog = Microblog::orderBy('mid','asc')->paginate(10);
             //添加微博管理视图
             return view('admin.microblog.index',['data'=>$microblog,'key'=>$key]);
         }

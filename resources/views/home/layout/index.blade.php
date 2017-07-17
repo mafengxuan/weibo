@@ -202,7 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-4 side-bar">
 			<div class="first_half">
 				<div class="newsletter">
-					<h1 class="side-title-head">微博搜索</h1>
+					<h1 class="side-title-head">微博搜索<a href="{{url('/home/microblog')}}" style="float:right">发布微博</a></h1>
 					<p class="sign">Sign up to receive our free newsletters!</p>
 					<form>
 						<input type="text" class="text" value="Email Address" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Email Address';}">
@@ -500,30 +500,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 </div>					 
 					 <div class="popular-news">
 						<header>
-							<h3 class="title-popular">热门微博</h3>
+							<h3 class="title-popular">好友动态</h3>
 						</header>
-						<div class="popular-grids">
+						 @foreach ($data as $k => $v)
+							<div class="popular-grids">
 							<div class="popular-grid">
-								<a href="single.html"><img src="{{asset('home')}}/images/popular-4.jpg" alt="" /></a>
-								<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
-								<p>On Aug 31, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
+								<a class="title" href="single.html">{!!str_limit($v->content, $limit = 20, $end = '...')!!}</a>
+								<p>{!!date('Y-m-d H:i:s',($v->ctime))!!}
+									<a class="span_link" >
+										<span class="glyphicon glyphicon-comment" onclick="fun()"></span>{!! $v->c_count!!}
+									</a>
+
+									<a class="span_link" href="#">
+										<span class="glyphicon glyphicon-eye-open"></span>{!! $v->mcount!!}
+									</a>
+									<a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up">
+										</span>{!!$v->p_count!!}
+									</a>
+									<p id="input" style="display:none">
+									<input  type="text" class="form-control" ><br>
+									<button class="btn btn-primary">确认评论</button>
+									</p>
+
+								</p>
 							</div>
-							<div class="popular-grid">
-								<a href="single.html"><img src="{{asset('home')}}/images/popular-1.jpg" alt="" /></a>
-								<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
-								<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
-							</div>
-							<div class="popular-grid">
-								<iframe width="100%" src="http://www.cssmoban.com/" frameborder="0" allowfullscreen></iframe>
-								<a class="title" href="single.html">Aishwarya Rai Bachchan's Latest SHOCKING News For Ex Salman Khan</a>
-								<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
-							</div>
-							<div class="popular-grid">
-								<a href="single.html"><img src="{{asset('home')}}/images/popular-3.jpg" alt="" /></a>
-								<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
-								<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
-							</div>
+
+							{{--<div class="popular-grid">--}}
+								{{--<a href="single.html"><img src="{{asset('home')}}/images/popular-1.jpg" alt="" /></a>--}}
+								{{--<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>--}}
+								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
+							{{--</div>--}}
+							{{--<div class="popular-grid">--}}
+								{{--<iframe width="100%" src="http://www.cssmoban.com/" frameborder="0" allowfullscreen></iframe>--}}
+								{{--<a class="title" href="single.html">Aishwarya Rai Bachchan's Latest SHOCKING News For Ex Salman Khan</a>--}}
+								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
+							{{--</div>--}}
+							{{--<div class="popular-grid">--}}
+								{{--<a href="single.html"><img src="{{asset('home')}}/images/popular-3.jpg" alt="" /></a>--}}
+								{{--<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>--}}
+								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
+							{{--</div>--}}
+
 						</div>
+						 @endforeach
 					</div>
 					</div>
 					<div class="clearfix"></div>

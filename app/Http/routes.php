@@ -159,6 +159,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
+
     //前台获取微博评论
     Route::post('index/comment/{id}','IndexController@comment');
     //前台执行评论
@@ -184,8 +185,16 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
 
 
+
     //前台详情页
     Route::get('details','DetailsController@index');
+
+
+    //前台发布微博
+    Route::get('microblog','IndexController@microblog');
+    Route::post('microblogAjax','IndexController@microblogAjax');
+
+
 
 });
 

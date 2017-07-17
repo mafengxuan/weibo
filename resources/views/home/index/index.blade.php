@@ -31,7 +31,9 @@
 						<h3 class="title-head">实时微博</h3>
 					</header>
 
+
 			@foreach($microblog as $k => $v)
+
 					<div class="article">
 						<div class="article-left">
 							<a href="single.html"><img src="{{$v->face}}"></a>
@@ -132,6 +134,7 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
+
 				@endforeach
 
 

@@ -23,13 +23,16 @@ class CommentController extends Controller
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             //查询数据并分页
+
             $comment = Comment::where('content','like',"%".$key."%")->where('mid',$id)->paginate(2);
+
             return view('admin.microblog.comment',['data'=>$comment,'key'=>$key]);
         }else{
             $key = '';
             //查询出comments表的所有数据
 
             $comment = Comment::orderBy('cid','asc')->where('mid',$id)->paginate(2);
+
             //添加评论视图
             return view('admin.microblog.comment',['data'=>$comment,'key'=>$key]);
         }

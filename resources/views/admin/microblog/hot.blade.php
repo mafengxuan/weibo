@@ -20,7 +20,6 @@
                         <table class="table table-border table-bordered table-hover table-bg table-sort">
                             <thead>
                             <tr class="text-c">
-                                <th ><input type="checkbox" name="" value=""></th>
                                 <th >id</th>
                                 <th >阅读量</th>
                                 <th >评论次数</th>
@@ -32,17 +31,12 @@
                             <tbody>
                             @foreach ($data1 as $k=>$v)
                                 <tr class="text-c">
-
-                                    <td><input type="checkbox" value="1" name=""></td>
                                     <td>{{$v->mid}}</td>
                                     <td>{{$v->mcount}}</td>
                                     <td>{{$v->c_count}}</td>
                                     <td>{{$v->p_count}}</td>
                                     <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/hotcontent/'.$v->mid.'/edit')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
                                     <td class="td-manage">
-                                        {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
-                                        {{--<i class="Hui-iconfont">&#xe6df;</i>--}}
-                                        {{--</a>--}}
                                         <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none">
                                             <i class="Hui-iconfont">&#xe6e2;</i>
                                         </a>
@@ -63,7 +57,6 @@
                     <table class="table table-border table-bordered table-hover table-bg table-sort">
                         <thead>
                         <tr class="text-c">
-                            <th ><input type="checkbox" name="" value=""></th>
                             <th >id</th>
                             <th >发布时间</th>
                             <th >内容</th>
@@ -73,15 +66,10 @@
                         <tbody>
                         @foreach ($data2 as $k=>$v)
                             <tr class="text-c">
-
-                                <td><input type="checkbox" value="1" name=""></td>
                                 <td>{{$v->mid}}</td>
                                 <td>{{date('Y-m-d H:i:s',time($v->ctime))}}</td>
                                 <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/currentevent/'.$v->mid.'/edit')}}','10002')" href="javascript:;" title="查看">内容详情</a></td>
                                 <td class="td-manage">
-                                    {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
-                                    {{--<i class="Hui-iconfont">&#xe6df;</i>--}}
-                                    {{--</a>--}}
                                     <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none">
                                         <i class="Hui-iconfont">&#xe6e2;</i>
                                     </a>

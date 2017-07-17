@@ -14,7 +14,6 @@
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
                 <tr class="text-c">
-                    <th ><input type="checkbox" name="" value=""></th>
                     <th >id</th>
                     <th >登录邮箱</th>
                     <th >登录手机号</th>
@@ -28,8 +27,6 @@
                 <tbody>
                 @foreach ($data as $k=>$v)
                     <tr class="text-c">
-
-                        <td><input type="checkbox" value="1" name=""></td>
                         <td>{{$v->cid}}</td>
                         <td>{{$v->email}}</td>
                         <td>{{$v->phone}}</td>
@@ -38,9 +35,7 @@
                         <td>{{$v->p_count}}</td>
                         <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/reply/'.$v->cid)}}','10002')" href="javascript:;" title="查看">回复详情</a></td>
                         <td class="td-manage">
-                            {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
-                                {{--<i class="Hui-iconfont">&#xe6df;</i>--}}
-                            {{--</a>--}}
+
                             <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none">
                                 <i class="Hui-iconfont">&#xe6e2;</i>
                             </a>
