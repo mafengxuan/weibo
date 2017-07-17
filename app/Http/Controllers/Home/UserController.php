@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Model\User;
 use App\Http\Model\User_common;
 use App\Http\Model\User_info;
+use App\Services\OSS;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,17 +22,20 @@ class UserController extends CommonController
      */
     public function upload()
     {
-        // 将传文件移动到制定目录，并以新文件名命名
+        // 将文件移动到指定目录，并以新文件名命名
         $file = Input::file('file_upload');
         if($file->isValid()) {
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
-            $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
+            $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;  //完整的图片名
 
             //将图片上传到本地服务器
-            $path = $file->move(public_path() . '/uploads', $newName);
+            //$path = $file->move(public_path() . '/uploads', $newName);
 
-       //返回文件的上传路径
-            $filepath = 'uploads/' . $newName;
+            //oss上传
+            $return = OSS::upload('uploads/'.$newName, $file->getRealPath());
+
+            //返回文件的上传路径
+            //$filepath = 'uploads/' . $newName;
             return $filepath;
         }
     }
@@ -148,7 +152,7 @@ class UserController extends CommonController
         if ($uid) {
             self::mailto($data['email'], $uid);
         }
-        echo '信息已发送到您的邮箱,请您查看邮箱进行激活';
+        return view('home.user.tishi');
         }
 
     /**

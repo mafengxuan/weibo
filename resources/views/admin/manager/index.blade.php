@@ -21,6 +21,7 @@
         <tr class="text-c">
             <th width="40">ID</th>
             <th width="150">用户账号</th>
+            <th width="150">担任角色</th>
             <th width="150">登录时间</th>
             <th width="150">注册时间</th>
             <th width="100">操作</th>
@@ -29,8 +30,9 @@
         <tbody>
         @foreach($data as $k=>$v)
         <tr class="text-c">
-            <td>{{$v->id}}</td>
+            <td>{{$v->aid}}</td>
             <td>{{$v->username}}</td>
+            <td>{{$v->name}}</td>
             <td>{{date('Y-m-d H:i:s')}}</td>
             <td>{{date('Y-m-d H:i:s')}}</td>
             <td class="td-manage">

@@ -30,6 +30,12 @@
                 <input type="text" class="input-text" value="{{old('username')}}" placeholder="" id="username" name="username">
             </div>
         </div>
+        {{--<div class="row cl">--}}
+            {{--<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>担任角色：</label>--}}
+            {{--<div class="formControls col-xs-4 col-sm-3">--}}
+                {{--<input type="text" class="input-text" value="{{old('name')}}" placeholder="担任角色" id="username" name="name">--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
             <div class="formControls col-xs-4 col-sm-3">

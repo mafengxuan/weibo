@@ -63,8 +63,9 @@
             </div>
             <div class="info-btn">
                 <input type="button" class="am-btn am-btn-primary" onclick="history.go(-1)" value="返回">
-                <input type="submit" class="am-btn am-btn-warning" value="激活">
+                <input type="submit" class="am-btn am-btn-warning"  value="激活">
             </div>
         </form>
     </div>
+
 @endsection

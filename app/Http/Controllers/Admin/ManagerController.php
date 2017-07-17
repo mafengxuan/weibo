@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Http\Model\Admin_roles;
 use App\Http\Model\User_admin;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -25,19 +27,17 @@ class ManagerController extends Controller
             //去掉二边的空格
             $key = trim($request->input('keywords')) ;
             //从表里查询含有关键字的数据
-            $user = User_admin::where('username','like',"%".$key."%")->paginate(2);
+            $user = User_admin::join('admin_roles','user_admins.role','=','admin_roles.id')->where('username','like',"%".$key."%")->paginate(2);
             return view('admin.manager.index',['data'=>$user,'key'=>$key]);
         }else {
-            //查询用户的所有数据
-            $user = User_admin::orderBy('id', 'asc')->paginate(3);
+            //查询用户的所有数据  当二个id一样时给id起别名
+            $user = User_admin::select('*','admin_roles.id as rid','user_admins.id as aid')->join('admin_roles','admin_roles.id','=','user_admins.role')->paginate(3);
             return view('admin.manager.index', ['data' => $user]);
         }
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     *  显示添加管理员页面
      */
     public function create()
     {
@@ -45,10 +45,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *  处理管理员添加
      */
     public function store(Request $request)
     {

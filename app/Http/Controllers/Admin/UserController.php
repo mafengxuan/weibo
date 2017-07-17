@@ -24,7 +24,7 @@ class UserController extends Controller
         //查询出二个表的所有数据
         $user = User::join('user_infos','users.uid','=','user_infos.uid')
                 ->where('realname','like',"%".$key."%")
-                ->paginate(2);
+                ->paginate(3);
         //把数据传给模板
         return view('admin.user.index',compact('user','key'));
     }

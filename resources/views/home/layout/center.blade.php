@@ -65,8 +65,9 @@
                         <div><b>用户名：<i>{{session('user_home')->phone}}</i></b></div>
                         <div class="u-level">
 									<span class="rank r2">
-							             <s class="vip1"></s><a class="classes" href="#">普通用户</a>
+							             <s class="vip1"></s>普通用户
 						            </span>
+                            {{--<a class="classes" href="#">普通用户</a>--}}
                         </div>
                     </div>
                 </div>
@@ -87,27 +88,11 @@
             <li class="person">
                 <a href="{{url('home/index')}}">首页</a>
                 <ul>
-                    <li class="active"> <a href="{{url('home/info')}}">个人信息</a></li>
-                    <li> <a href="{{url('home/repass')}}">修改密码</a></li>
-                    <li> <a href="{{url('home/email')}}">激活邮箱</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/info') class="active" @endif> <a href="{{url('home/info')}}">个人信息</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/repass') class="active" @endif> <a href="{{url('home/repass')}}">修改密码</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/email') class="active" @endif> <a href="{{url('home/email')}}">激活邮箱</a></li>
                 </ul>
             </li>
-            <li class="person">
-                <a href="#">我的交易</a>
-                <ul>
-                    <li><a href="order.html">订单管理</a></li>
-                    <li> <a href="change.html">退款售后</a></li>
-                </ul>
-            </li>
-            <li class="person">
-                <a href="#">我的资产</a>
-                <ul>
-                    <li> <a href="coupon.html">优惠券 </a></li>
-                    <li> <a href="bonus.html">红包</a></li>
-                    <li> <a href="bill.html">账单明细</a></li>
-                </ul>
-            </li>
-
             <li class="person">
                 <ul>
                     <li> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
