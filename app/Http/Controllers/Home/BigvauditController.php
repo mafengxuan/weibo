@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class bigvauditController extends Controller
+class bigvauditController extends CommonController
 {
     /**
      * Display a listing of the resource.

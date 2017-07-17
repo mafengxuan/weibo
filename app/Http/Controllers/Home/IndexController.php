@@ -49,8 +49,14 @@ class IndexController extends Controller
 
 
     public function microblog(Request $request){
+        $pic = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',1)->first();
+        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',2)->first();
+        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',3)->first();
+        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',4)->get();
+        $pic5 = Ad_order::orderBy('price','desc')->join('ads','ad_orders.aid','=','ads.aid')->get();
+        $links = Link::all();
         $data = Microblog::orderBy('mcount','desc')->take(10)->get();
-        return view('home/microblog/microblog',compact('data'));
+        return view('home/microblog/microblog',compact('data','pic','pic2','pic3','pic4','pic5','links'));
     }
     public function microblogAjax(Request $request){
 
@@ -60,8 +66,8 @@ class IndexController extends Controller
         $input['ctime'] = time();
 //        通过articel模型的create  or   save 添加到数据库
 
-        $value = $request->session()->get('photo');
-        $input['uid'] = $value->uid;
+        $value = session('user_home')->photo;
+        $input['uid'] = session('user_home')->uid;
 
 //        如果成功跳转到文章列表页  如果失败 返回发布微博页面
         $re = Microblog::create($input);
