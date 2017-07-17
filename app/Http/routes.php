@@ -96,7 +96,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::resource('hot','HotController');
     //后台每日热门管理
     Route::resource('hotcontent','HotcontentController');
-
     //后台时事热门管理
     Route::resource('currentevent','CurrenteventController');
 
@@ -108,8 +107,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::any('upload','AdController@upload');
     //后台广告位管理
     Route::resource('adPosition','AdPositionController');
+    Route::any('adPositionAjax','AdPositionController@adPositionAjax');
     //后台广告审核
     Route::resource('audit','AuditController');
+    Route::any('charge/{id}','AuditController@charge');
     //后台广告收费管理
     Route::resource('order','OrderController');
     //后台收益管理
@@ -117,6 +118,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     //后台友情链接管理
     Route::resource('link','LinkController');
     Route::any('link/changeorder','LinkController@changeOrder');
+
 });
 
 
@@ -196,11 +198,15 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     Route::get('details','DetailsController@index');
 
 
+
     //前台发布微博
     Route::get('microblog','IndexController@microblog');
     Route::post('microblogAjax','IndexController@microblogAjax');
 
-
-
+    // 前台广告中心路由
+    Route::get('ad','AdController@index');
+    // 前台广告申请路由
+    Route::resource('adadd','adAddController');
+    Route::any('upload','adAddController@upload');
 });
 

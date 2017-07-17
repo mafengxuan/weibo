@@ -139,4 +139,22 @@ class AdPositionController extends Controller
         }
         return $data;
     }
+    public function adPositionAjax(Request $request)
+    {
+        $in = $request['ad_tag'];
+        $re = Ad_position::where('ad_tag',$in)->value('ad_tag');
+//        return $re;
+        if($re != ''){
+            $data = [
+                'status'=>0,
+                'msg'=>'唯一标识已存在！'
+            ];
+        }else{
+            $data = [
+                'status'=>1,
+            ];
+        }
+        return $data;
+
+    }
 }

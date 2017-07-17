@@ -28,13 +28,17 @@
                     <tr class="text-c">
                         <td>{{$v->aid}}</td>
                         <td>{{$v->pid}}</td>
-                        <td>{{$v->ad_img}}</td>
+                        <td><img src="{{$v->ad_img}}" width="100"></td>
                         <td>{{$v->ad_name}}</td>
                         <td>{{$v->username}}</td>
-                        <td>{{date('Y-m-d H:i:s',$v->ad_ctime)}}</td>
+                        <td>{{date('Y-m-d',$v->ad_ctime)}}</td>
                         <td class="td-status"><span class="label label-success radius">{{$status[$v->status]}}</span></td>
                         <td>
-                            <a href="javascript:;" onclick="Editaudit({{$v->aid}})">通过</a>&nbsp
+                            @if ($v->status ==4)
+                            <a href="javascript:;" onclick="charge({{$v->aid}})">收费通过</a>&nbsp;
+                        @else
+                            <a href="javascript:;" onclick="Editaudit({{$v->aid}})">通过</a>&nbsp;
+                            @endif
                             <a href="javascript:;" onclick="Delaudit({{$v->aid}})">驳回</a>
                         </td>
                     </tr>
@@ -52,6 +56,28 @@
                     }, function(){
                         //           url ==> admin/user/{user}   http://project182.com/admin/user/2
                         $.post("{{url('admin/audit/')}}/"+aid,{'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
+                            if(data.status == 0){
+                                location.href = location.href;
+                                layer.msg(data.msg, {icon: 6});
+                            }else{
+                                location.href = location.href;
+                                layer.msg(data.msg, {icon: 5});
+                            }
+                        });
+
+
+                    }, function(){
+
+                    });
+
+                }
+                function charge(aid){
+                    //询问框
+                    layer.confirm('是否确认收费通过？', {
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        //           url ==> admin/user/{user}   http://project182.com/admin/user/2
+                        $.post("{{url('admin/charge/')}}/"+aid,{'sta':1,'_method':'PUT','_token':"{{csrf_token()}}"},function(data){
                             if(data.status == 0){
                                 location.href = location.href;
                                 layer.msg(data.msg, {icon: 6});

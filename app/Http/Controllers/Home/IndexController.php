@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Home;
 
+
 use App\Http\Model\Comment;
 use App\Http\Model\Microblog;
 use App\Http\Model\Reply;
 use App\Http\Model\User_commerce;
 use App\Http\Model\User_common;
+use App\Http\Model\Ad;
+use App\Http\Model\Ad_order;
+use App\Http\Model\Link;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -22,13 +27,22 @@ class IndexController extends Controller
      */
     public function index()
     {
+
         //查询microblog表的数据 根据浏览量查询前十条
         $data = Microblog::orderBy('mcount','desc')->take(10)->get();
 
         //获取微博列表
         $microblog = Microblog::join('user_commons','microblogs.uid','=','user_commons.uid')->get();
 //        dd($microblog);
-        return view('home.index.index',compact('microblog','data'));
+        $pic = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',1)->first();
+        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',2)->first();
+        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',3)->first();
+        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',4)->get();
+        $pic5 = Ad_order::orderBy('price','desc')->join('ads','ad_orders.aid','=','ads.aid')->get();
+        $links = Link::all();
+
+        return view('home.index.index',compact('microblog','data','pic','pic2','pic3','pic4','pic5','links'));
+
 
 //            return view('home.index.index');
     }
@@ -140,8 +154,6 @@ class IndexController extends Controller
         }
 
         return $arr;
-
-
 
     }
 

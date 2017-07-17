@@ -1,34 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Ad;
 use App\Http\Model\Ad_order;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class OrderController extends Controller
+class AdController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * 显示广告中心
+     *
      */
     public function index(Request $request)
     {
-        // 根据keywords搜索
-        if($request->has('keywords')){
-            $key = trim($request->input('keywords'));
-            $data = Ad_order::where('username','like','%'.$key.'%')->paginate(10);
-            return view('admin/ad/order',['data'=>$data,'key'=>$key]);
-        }else{
-            $key = '';
-            // 获取所有数据
-            $data = Ad_order::orderBy('oid','asc')->paginate(10);
-            //添加到列表页
-            return view('admin/ad/order',['data'=>$data,'key'=>$key]);
-        }
+        $session = $request->session()->get('user_home');
+        $phone = $session['phone'];
+        $data = Ad::where('username',$phone)->get();
+//        dd($data);
+        $position = array(1=>'首页上方广告',2=>'首页中间广告',3=>'首页下方广告',4=>'首页轮播广告');
+        $status = array(1=>'已发布',2=>'待审核',3=>'审核已驳回',4=>'审核未收款');
+        return view('home.ad.index',compact('data','status','position'));
     }
 
     /**
@@ -75,15 +71,15 @@ class OrderController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
      *
-     *
-     *
-     *
-     * 确认收费
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-
+        //
     }
 
     /**

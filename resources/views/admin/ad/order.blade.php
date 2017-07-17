@@ -13,7 +13,6 @@
         <table class="table table-border table-bordered table-bg table-hover table-sort">
             <thead>
             <tr class="text-c">
-                <th><input name="" type="checkbox" value=""></th>
                 <th>ID</th>
                 <th>广告ID</th>
                 <th>广告位ID</th>
@@ -26,14 +25,13 @@
             <tbody>
             @foreach ($data as $k=>$v)
                 <tr style="line-height:20px;" class="text-c">
-                    <td><input name="" type="checkbox" value=""></td>
                     <td>{{$v->oid}}</td>
                     <td>{{$v->aid}}</td>
                     <td>{{$v->pid}}</td>
                     <td>{{$v->username}}</td>
                     <td>{{$v->num}}</td>
                     <td>{{$v->price}}</td>
-                    <td>{{date('Y-m-d H:i:s',$v->o_time)}}</td>
+                    <td>{{date('Y-m-d',$v->o_time)}}</td>
             @endforeach
             </tbody>
         </table>

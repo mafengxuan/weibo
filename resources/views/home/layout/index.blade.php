@@ -322,125 +322,126 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						       <div class="scrollbar" id="style-2">
 							    <div class="force-overflow">
 								 <div class="response">
+									 @foreach($pic5 as $kk=>$vv)
 						<div class="media response-info">
 							<div class="media-left response-text-left">
 								<a href="#">
 									<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />
 								</a>
-								<h5><a href="#">Username</a></h5>
+								<h5><a href="#">{{$vv->username}}</a></h5>
 							</div>
 							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								<p>{{$vv->ad_brief}}</p>
 								<ul>
-									<li>MARCH 21, 2015</li>
+									<li>{{date('Y-m-d',$vv->ad_ctime)}}</li>
 									<li><a href="single.html">Reply</a></li>
 								</ul>
 							</div>
 							<div class="clearfix"> </div>
 						</div>
-						<div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Username</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>MARCH 26, 2015</li>
-									<li><a href="single.html">Reply</a></li>
-								</ul>		
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Username</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>MAY 25, 2015</li>
-									<li><a href="single.html">Reply</a></li>
-								</ul>		
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Username</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>FEB 13, 2015</li>
-									<li><a href="single.html">Reply</a></li>
-								</ul>		
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Username</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>JAN 28, 2015</li>
-									<li><a href="single.html">Reply</a></li>
-								</ul>		
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Username</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>APR 18, 2015</li>
-									<li><a href="single.html">Reply</a></li>
-								</ul>		
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="media response-info">
-							<div class="media-left response-text-left">
-								<a href="#">
-									<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />
-								</a>
-								<h5><a href="#">Username</a></h5>
-							</div>
-							<div class="media-body response-text-right">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, 
-									sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-								<ul>
-									<li>DEC 25, 2014</li>
-									<li><a href="single.html">Reply</a></li>
-								</ul>		
-							</div>
-							<div class="clearfix"> </div>
-						</div>
+									 @endforeach
+						{{--<div class="media response-info">--}}
+							{{--<div class="media-left response-text-left">--}}
+								{{--<a href="#">--}}
+									{{--<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />--}}
+								{{--</a>--}}
+								{{--<h5><a href="#">Username</a></h5>--}}
+							{{--</div>--}}
+							{{--<div class="media-body response-text-right">--}}
+								{{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, --}}
+									{{--sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>--}}
+								{{--<ul>--}}
+									{{--<li>MARCH 26, 2015</li>--}}
+									{{--<li><a href="single.html">Reply</a></li>--}}
+								{{--</ul>		--}}
+							{{--</div>--}}
+							{{--<div class="clearfix"> </div>--}}
+						{{--</div>--}}
+						{{--<div class="media response-info">--}}
+							{{--<div class="media-left response-text-left">--}}
+								{{--<a href="#">--}}
+									{{--<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />--}}
+								{{--</a>--}}
+								{{--<h5><a href="#">Username</a></h5>--}}
+							{{--</div>--}}
+							{{--<div class="media-body response-text-right">--}}
+								{{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, --}}
+									{{--sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>--}}
+								{{--<ul>--}}
+									{{--<li>MAY 25, 2015</li>--}}
+									{{--<li><a href="single.html">Reply</a></li>--}}
+								{{--</ul>		--}}
+							{{--</div>--}}
+							{{--<div class="clearfix"> </div>--}}
+						{{--</div>--}}
+						{{--<div class="media response-info">--}}
+							{{--<div class="media-left response-text-left">--}}
+								{{--<a href="#">--}}
+									{{--<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />--}}
+								{{--</a>--}}
+								{{--<h5><a href="#">Username</a></h5>--}}
+							{{--</div>--}}
+							{{--<div class="media-body response-text-right">--}}
+								{{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, --}}
+									{{--sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>--}}
+								{{--<ul>--}}
+									{{--<li>FEB 13, 2015</li>--}}
+									{{--<li><a href="single.html">Reply</a></li>--}}
+								{{--</ul>		--}}
+							{{--</div>--}}
+							{{--<div class="clearfix"> </div>--}}
+						{{--</div>--}}
+						{{--<div class="media response-info">--}}
+							{{--<div class="media-left response-text-left">--}}
+								{{--<a href="#">--}}
+									{{--<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />--}}
+								{{--</a>--}}
+								{{--<h5><a href="#">Username</a></h5>--}}
+							{{--</div>--}}
+							{{--<div class="media-body response-text-right">--}}
+								{{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, --}}
+									{{--sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>--}}
+								{{--<ul>--}}
+									{{--<li>JAN 28, 2015</li>--}}
+									{{--<li><a href="single.html">Reply</a></li>--}}
+								{{--</ul>		--}}
+							{{--</div>--}}
+							{{--<div class="clearfix"> </div>--}}
+						{{--</div>--}}
+						{{--<div class="media response-info">--}}
+							{{--<div class="media-left response-text-left">--}}
+								{{--<a href="#">--}}
+									{{--<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />--}}
+								{{--</a>--}}
+								{{--<h5><a href="#">Username</a></h5>--}}
+							{{--</div>--}}
+							{{--<div class="media-body response-text-right">--}}
+								{{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, --}}
+									{{--sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>--}}
+								{{--<ul>--}}
+									{{--<li>APR 18, 2015</li>--}}
+									{{--<li><a href="single.html">Reply</a></li>--}}
+								{{--</ul>		--}}
+							{{--</div>--}}
+							{{--<div class="clearfix"> </div>--}}
+						{{--</div>--}}
+						{{--<div class="media response-info">--}}
+							{{--<div class="media-left response-text-left">--}}
+								{{--<a href="#">--}}
+									{{--<img class="media-object" src="{{asset('home')}}/images/icon1.png" alt="" />--}}
+								{{--</a>--}}
+								{{--<h5><a href="#">Username</a></h5>--}}
+							{{--</div>--}}
+							{{--<div class="media-body response-text-right">--}}
+								{{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,There are many variations of passages of Lorem Ipsum available, --}}
+									{{--sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>--}}
+								{{--<ul>--}}
+									{{--<li>DEC 25, 2014</li>--}}
+									{{--<li><a href="single.html">Reply</a></li>--}}
+								{{--</ul>		--}}
+							{{--</div>--}}
+							{{--<div class="clearfix"> </div>--}}
+						{{--</div>--}}
 					</div>
 					</div>
 
@@ -451,21 +452,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 </div>
 					 <div class="side-bar-articles">
 						<div class="side-bar-article">
-							<a href="single.html"><img src="{{asset('home')}}/images/sai.jpg" alt="" /></a>
+							<a href="single.html"><img src="{{$pic['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="single.html">Contrary to popular belief, Lorem Ipsum is not simply random text</a>
+								<a href="single.html">{{$pic['ad_brief']}}</a>
 							</div>
 						</div>
 						<div class="side-bar-article">
-							<a href="single.html"><img src="{{asset('home')}}/images/sai2.jpg" alt="" /></a>
+							<a href="single.html"><img src="{{$pic2['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="single.html">There are many variations of passages of Lorem</a>
+								<a href="single.html">{{$pic2['ad_brief']}}</a>
 							</div>
 						</div>
 						<div class="side-bar-article">
-							<a href="single.html"><img src="{{asset('home')}}/images/sai3.jpg" alt="" /></a>
+							<a href="single.html"><img src="{{$pic3['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</a>
+								<a href="single.html">{{$pic3['ad_brief']}}</a>
 							</div>
 						</div>
 					 </div>
@@ -561,15 +562,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here.</p>
 				</div>
 				<div class="col-md-2 col-xs-6 col-sm-2 footer-grid">
-					<h4 class="footer-head">Categories</h4>
+					<h4 class="footer-head">友情链接</h4>
+					@foreach($links as $k=>$v)
 					<ul class="cat">
-						<li><a href="business.html">Business</a></li>
-						<li><a href="technology.html">Technology</a></li>
-						<li><a href="entertainment.html">Entertainment</a></li>
-						<li><a href="sports.html">Sports</a></li>
-						<li><a href="shortcodes.html">Health</a></li>
-						<li><a href="fashion.html">Fashion</a></li>
+						<li><a href="{{$v->link_url}}" title="{{$v->link_title}}">{{$v->link_name}}</a></li>
 					</ul>
+					@endforeach
 				</div>
 				<div class="col-md-4 col-xs-6 col-sm-6 footer-grid">
 					<h4 class="footer-head">Flickr Feed</h4>
