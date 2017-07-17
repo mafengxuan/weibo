@@ -87,9 +87,9 @@
             <li class="person">
                 <a href="{{url('home/index')}}">首页</a>
                 <ul>
-                    <li class="active"> <a href="{{url('home/info')}}">个人信息</a></li>
-                    <li> <a href="{{url('home/repass')}}">修改密码</a></li>
-                    <li> <a href="{{url('home/email')}}">激活邮箱</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/info') class="active" @endif> <a href="{{url('home/info')}}">个人信息</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/repass') class="active" @endif> <a href="{{url('home/repass')}}">修改密码</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/email') class="active" @endif> <a href="{{url('home/email')}}">激活邮箱</a></li>
                 </ul>
             </li>
             <li class="person">

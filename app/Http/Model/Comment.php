@@ -10,4 +10,5 @@ class Comment extends Model
     protected $table = 'comments';
     protected $primaryKey = 'cid';
     public $timestamps = false;
+    protected $guarded = [];
 }

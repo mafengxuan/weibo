@@ -19,6 +19,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
+//        dd($_SERVER);
         //去除二边的空格 判断
         $key = trim($request->input('keywords',''));
         //查询出二个表的所有数据

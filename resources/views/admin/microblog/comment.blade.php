@@ -36,7 +36,7 @@
                         <td>{{$v->content}}</td>
                         <td>{{date('Y-m-d H:i:s',($v->ctime))}}</td>
                         <td>{{$v->p_count}}</td>
-                        <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/reply')}}','10002')" href="javascript:;" title="查看">回复详情</a></td>
+                        <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/reply/'.$v->cid)}}','10002')" href="javascript:;" title="查看">回复详情</a></td>
                         <td class="td-manage">
                             {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
                                 {{--<i class="Hui-iconfont">&#xe6df;</i>--}}

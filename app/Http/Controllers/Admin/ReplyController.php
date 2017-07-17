@@ -16,18 +16,18 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request,$id)
     {
         //如果请求携带keywords参数说明是通过查询跳转进入index方法 否则通过导航栏进入
         if($request->has('keywords')){
             $key = trim($request->input('keywords'));
             //查询数据并分页
-            $reply = Reply::where('content','like',"%".$key."%")->paginate(2);
+            $reply = Reply::where('content','like',"%".$key."%")->where('cid',$id)->paginate(2);
             return view('admin.microblog.reply',['data'=>$reply,'key'=>$key]);
         }else{
             $key = '';
             //查询出microblog表的所有数据
-            $reply = Reply::orderBy('mid','asc')->paginate(2);
+            $reply = Reply::orderBy('mid','asc')->where('cid',$id)->paginate(2);
             //添加微博管理视图
             return view('admin.microblog.reply',['data'=>$reply,'key'=>$key]);
         }

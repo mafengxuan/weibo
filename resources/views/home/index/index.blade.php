@@ -41,8 +41,11 @@
 								<a class="title" href="single.html">{{$v->nickname}}</a>
 							</div>
 							<div class="article-text">
-								<p>{{$v->content}}</p>
+								{!! $v->content !!}
 								<p>{{date('Y-m-d H点i分',$v->ctime)}}
+									{{--<a class="span_link" href="javascript:;" onclick="comment(this)">--}}
+										{{--<span class="glyphicon glyphicon-edit"></span>评论--}}
+									{{--</a>--}}
 									<a class="span_link" href="#">
 										<span class="glyphicon glyphicon-share"></span>{{$v->t_count}}
 									</a>
@@ -58,6 +61,9 @@
 								</p>
 
 								<div class="clearfix"></div>
+							</div>
+							<div style="display:none">
+								<input type="text" class="" name="comment"><a href="javascript:;" onclick="docomment(this,{{$v->mid}})">评论</a>
 							</div>
 							{{--评论内容--}}
 
@@ -134,6 +140,35 @@
 @endsection
 @section('js')
 	<script>
+
+//		function comment(obj){
+//		    $(obj).parent().parent().next().show();
+//		}
+		function docomment(obj,mid){
+			var comment = $(obj).prev().val();
+			$.post("{{url('home/index/docomment/')}}/"+mid,{'_token':"{{csrf_token()}}",comment:comment},function(data){
+
+			    if(data.status == 0){
+				    alert(data.msg);
+					location.reload();
+				}
+			});
+		}
+
+		function reply(obj){
+			$(obj).parent().parent().next().show();
+		}
+
+		function doreply(obj,mid,cid){
+		    var content = $(obj).prev().val();
+		    $.post("{{url('home/index/reply')}}",{'_token':"{{csrf_token()}}",'mid':mid,'cid':cid,'content':content},function(data){
+                if(data.status == 0){
+                    alert(data.msg);
+                    location.reload();
+                }
+            });
+		}
+
         function getLocalTime(nS) {
 //            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
             return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
@@ -146,11 +181,11 @@
 		        var i = 0;
 					for(i;i<data.length;i++){
 
-                        var str = "<div class='media response-info'><div class='media-left response-text-left'><a href='#'><img class='media-object' src='"+data[i].face+"' alt=''/></a><h5><a href='#'>"+data[i].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].content+"</p><ul><li>"+getLocalTime(data[i].ctime)+"</li><li><a href='single.html'>Reply</a></li></ul>";
+                        var str = "<div class='media response-info'><div class='media-left response-text-left'><a href='#'><img class='media-object' src='"+data[i].face+"' alt=''/></a><h5><a href='#'>"+data[i].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].content+"</p><ul><li>"+getLocalTime(data[i].ctime)+"</li><li><a href='javascritp:;' onclick='reply(this)'>Reply</a></li></ul><div style='display:none;'><input type='text' name='reply' value='@"+data[i].nickname+":'><a href='javascript:;' onclick='doreply(this,"+data[i].mid+","+data[i].cid+")'>回复</a></div>";
 
 						var j = 0;
 						for(j;j<data[i].reply.length;j++){
-							str += "<div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>"+data[i].reply[j].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].reply[j].content+"</p><ul><li>"+getLocalTime(data[i].reply[j].ctime)+"</li><li><a href='single.html'>Reply</a></li></ul></div><div class='clearfix'> </div></div>";
+							str += "<div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>"+data[i].reply[j].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].reply[j].content+"</p><ul><li>"+getLocalTime(data[i].reply[j].ctime)+"</li><li><a href='javascritp:;' onclick='reply(this)'>Reply</a></li></ul><div style='display:none;'><input type='text' name='reply' value='@"+data[i].reply[j].nickname+":'><a href='javascript:;' onclick='doreply(this,"+data[i].mid+","+data[i].cid+")'>回复</a></div></div><div class='clearfix'> </div></div>";
 
                         }
                         {{--$.post("{{url('home/index/reply')}}/"+data[i].cid,{'_token':"{{csrf_token()}}"},function(reply){--}}

@@ -10,4 +10,5 @@ class Reply extends Model
     protected $table = 'replys';
     protected $primaryKey = 'rid';
     public $timestamps = false;
+    protected $guarded = [];
 }

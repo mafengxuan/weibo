@@ -82,9 +82,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     //后台微博管理
     Route::resource('microblog','MicroblogController');
     //后台评论管理
-    Route::resource('comment','CommentController');
+    Route::get('comment/{id}','CommentController@index');
     //后台回复管理
-    Route::resource('reply','ReplyController');
+    Route::get('reply/{id}','ReplyController@index');
     //后台导航管理
     Route::resource('navigation','NavigationController');
     Route::any('navigation/changeorder','NavigationController@changeOrder');
@@ -161,7 +161,10 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     Route::get('index','IndexController@index');
     //前台获取微博评论
     Route::post('index/comment/{id}','IndexController@comment');
-    Route::post('index/reply/{id}','IndexController@reply');
+    //前台执行评论
+    Route::post('index/docomment/{id}','IndexController@docomment');
+    //前台回复
+    Route::post('index/reply','IndexController@reply');
 
 
 

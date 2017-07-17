@@ -43,7 +43,7 @@
                     <td>{{$v->c_count}}</td>
                     <td>{{$v->t_count}}</td>
                     <td>{{$v->p_count}}</td>
-                    <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/comment')}}','10002')" href="javascript:;" title="查看">评论详情</a></td>
+                    <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/comment/'.$v->mid)}}','10002')" href="javascript:;" title="查看">评论详情</a></td>
                     <td>{{$v->status}}</td>
                     <td class="td-manage">
                         {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}

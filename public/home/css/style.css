@@ -632,7 +632,7 @@ a.title:hover {
     margin: 0.5em 0;
 	text-transform: uppercase;
 }
-span.glyphicon.glyphicon-comment,span.glyphicon.glyphicon-eye-open,span.glyphicon.glyphicon-share,span.glyphicon.glyphicon-thumbs-up,.glyphicon.glyphicon-time {
+span.glyphicon.glyphicon-comment,span.glyphicon.glyphicon-edit,span.glyphicon.glyphicon-eye-open,span.glyphicon.glyphicon-share,span.glyphicon.glyphicon-thumbs-up,.glyphicon.glyphicon-time {
     font-size: 10px;
     margin: 0 4px 0 20px;
 }
@@ -642,6 +642,11 @@ a.span_link {
 a.span_link:hover {
     color: #84754e;
 }
+.article-text img {
+	with:100px;
+	height:100px;
+}
+
 .article-text p {
     color: #777;
     line-height: 2em;
