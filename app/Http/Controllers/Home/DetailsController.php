@@ -16,7 +16,8 @@ class DetailsController extends Controller
      */
     public function index()
     {
-        return view('home.details.index');
+        $data = [];
+        return view('home.details.index',compact('data'));
     }
 
 

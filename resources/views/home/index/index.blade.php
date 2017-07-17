@@ -30,6 +30,7 @@
 					<header>
 						<h3 class="title-head">实时微博</h3>
 					</header>
+
 					<div class="article">
 						<div class="article-left">
 							<a href="single.html"><img src="{{asset('home')}}/images/article1.jpg"></a>
@@ -123,9 +124,6 @@
 						</div>
 						<div class="clearfix"></div>
 					</div>
-
 				</div>
-
-
 			</div>
 @endsection

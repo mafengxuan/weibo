@@ -114,7 +114,13 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
+
     //前台详情页
     Route::get('details','DetailsController@index');
+
+    //前台发布微博
+    Route::get('microblog','IndexController@microblog');
+    Route::post('microblogAjax','IndexController@microblogAjax');
+
 });
 

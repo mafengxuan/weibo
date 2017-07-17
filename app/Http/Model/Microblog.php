@@ -9,5 +9,6 @@ class Microblog extends Model
     //
     protected $table = 'microblogs';
     protected $primaryKey = 'mid';
+    protected $guarded = [];
     public $timestamps = false;
 }

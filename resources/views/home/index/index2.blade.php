@@ -749,33 +749,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a class="tag19" href="single.html">ducimus qui</a>
 						<a class="tag20" href="single.html">holds in these</a>
 						</p>
-					 </div>					 
+					 </div>
 					 <div class="popular-news">
 						<header>
 							<h3 class="title-popular">热门微博</h3>
 						</header>
+
 						<div class="popular-grids">
 							<div class="popular-grid">
 								<a href="single.html"><img src="{{asset('home')}}/images/popular-4.jpg" alt="" /></a>
-								<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
+								<a class="title" href="single.html">{{$v -> content}}</a>
 								<p>On Aug 31, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
 							</div>
-							<div class="popular-grid">
-								<a href="single.html"><img src="{{asset('home')}}/images/popular-1.jpg" alt="" /></a>
-								<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
-								<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
-							</div>
-							<div class="popular-grid">
-								<iframe width="100%" src="http://www.cssmoban.com/" frameborder="0" allowfullscreen></iframe>
-								<a class="title" href="single.html">Aishwarya Rai Bachchan's Latest SHOCKING News For Ex Salman Khan</a>
-								<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
-							</div>
-							<div class="popular-grid">
-								<a href="single.html"><img src="{{asset('home')}}/images/popular-3.jpg" alt="" /></a>
-								<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>
-								<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>
-							</div>
+							{{--<div class="popular-grid">--}}
+								{{--<a href="single.html"><img src="{{asset('home')}}/images/popular-1.jpg" alt="" /></a>--}}
+								{{--<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>--}}
+								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
+							{{--</div>--}}
+							{{--<div class="popular-grid">--}}
+								{{--<iframe width="100%" src="http://www.cssmoban.com/" frameborder="0" allowfullscreen></iframe>--}}
+								{{--<a class="title" href="single.html">Aishwarya Rai Bachchan's Latest SHOCKING News For Ex Salman Khan</a>--}}
+								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
+							{{--</div>--}}
+							{{--<div class="popular-grid">--}}
+								{{--<a href="single.html"><img src="{{asset('home')}}/images/popular-3.jpg" alt="" /></a>--}}
+								{{--<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>--}}
+								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
+							{{--</div>--}}
 						</div>
+						 @endforeach
 					</div>
 					</div>
 					<div class="clearfix"></div>
