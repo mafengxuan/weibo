@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class myauditController extends Controller
+class myauditController extends CommonController
 {
     /**
      * Display a listing of the resource.

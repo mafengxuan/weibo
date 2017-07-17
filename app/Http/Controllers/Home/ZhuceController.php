@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\HttpController;
+use App\Http\Model\User_common;
 use App\Http\Model\User_info;
 use Illuminate\Http\Request;
 
@@ -51,9 +52,9 @@ class ZhuceController extends Controller
         $arr['uid']=$uid;
         //注册时间以时间戳的形式存进去
         $arr['rtime']=time();
-
+        $arr2['uid'] = $uid;
        $user =  User_info::create($arr);
-
+        $user2 = User_common::create($arr2);
         //判断是否成功
         if($uid){
             return redirect('/home/login/login')->with('assuc','注册成功');

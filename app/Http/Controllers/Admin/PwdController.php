@@ -32,7 +32,10 @@ class PwdController extends Controller
             'password.between'=>'新密码必须在6-18位之间',
             'password_c.same'=>'确认密码必须跟新密码一致'
         ];
-
+        if($input['password_c'] != $input['password'])
+        {
+            return back()->with('errors','确认密码必须跟新密码一致');
+        }
         $v = Validator::make($input,$role,$mess);
         if($v->passes()){
             //        输入的原密码跟数据库中的密码是否一致

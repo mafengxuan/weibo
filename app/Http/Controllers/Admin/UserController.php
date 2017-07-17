@@ -19,19 +19,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        //去除二边的空格
-         $key = trim($request->input('keywords'));
-
-        // 查询出users表,user_infos表的所有数据
-         $user = User::join('user_infos','users.uid','=','user_infos.uid')->where('realname','like',"%".$key               ."%")->paginate(2);
-
-         //把数据传给前台模板
-         return view('admin.user.index',compact('user','key'));
-////        查询出user表的所有数据
-//          $user = DB::table('users')
-//              ->join('user_infos','users.uid','=','user_infos.uid')
-//              ->get();
-//         return view('admin.user.index',['user'=>$user]);
+        //去除二边的空格 判断
+        $key = trim($request->input('keywords',''));
+        //查询出二个表的所有数据
+        $user = User::join('user_infos','users.uid','=','user_infos.uid')
+                ->where('realname','like',"%".$key."%")
+                ->paginate(2);
+        //把数据传给模板
+        return view('admin.user.index',compact('user','key'));
     }
 
     /**
