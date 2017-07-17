@@ -10,8 +10,9 @@
             <tr class="text-c">
 
                 <th>权限ID</th>
-                <th>路由名称</th>
+
                 <th>权限描述</th>
+                <th>路由名称</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -20,10 +21,15 @@
             @foreach ($data as $k=>$v)
             <tr style="line-height:20px;" class="text-c">
                 <td>{{$v->id}}</td>
+
+                <td style="text-align: left;">{{$v->_description}}</td>
                 <td>{{$v->name}}</td>
-                <td>{{$v->description}}</td>
                 <td class="td-manage">
-                    <a style="text-decoration:none" class="ml-5" onclick="article_edit('查看','{{url('admin/permission/'.$v->id.'/edit')}}','10002')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onclick="Delarticle({{$v->id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                    @if($v->pid == 0)
+                    <a style="text-decoration:none" class="ml-5" onclick="article_edit('添加子权限','{{url('admin/addson/'.$v->id)}}','10002')" href="javascript:;" title="添加子权限"><i class="Hui-iconfont">添加子权限</i></a>
+                    @endif
+                    <a style="text-decoration:none" class="ml-5" onclick="article_edit('修改','{{url('admin/permission/'.$v->id.'/edit')}}','10002')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+                    <a style="text-decoration:none" class="ml-5" onclick="Delarticle({{$v->id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
             </tr>
             @endforeach
             </tbody>

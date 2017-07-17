@@ -22,7 +22,9 @@ class PermissionController extends Controller
 //        $route =   \Route::current()->getActionName();
 //        App\Http\Controllers\Admin\PermissionController@index
 
-        $data = Admin_permissions::get();
+//        $data = Admin_permissions::get();
+        $data = (new Admin_permissions) ->tree();
+//        dd($data);
         return view('admin.permission.index',compact('data'));
     }
 
@@ -66,7 +68,34 @@ class PermissionController extends Controller
 
 
     }
+    //添加子权限
+    public function addson($id){
+        $data = Admin_permissions::find($id);
+        return view('admin.permission.addson',compact('data'));
+    }
+    //执行添加子权限
+    public function doaddson(Request $request){
+        $input = $request->except('_token');
+        //验证规则
+        $role = [
+            'name' => 'required',
+            'description' => 'required'
+        ];
+        //提示信息
+        $mess = [
+            'name.required' => '子路由名必填',
+            'description.required' => '权限描述必填',
+        ];
+        $validate = Validator::make($input,$role,$mess);
 
+        if($validate->passes()){
+
+            Admin_permissions::create($input);
+            return back()->with('success','添加成功');
+        }else{
+            return back()->withErrors($validate);
+        }
+    }
     /**
      * Display the specified resource.
      *
@@ -93,7 +122,23 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //根据id获取修改记录
+        $permission = Admin_permissions::find($id);
+        //根据请求传过来的参数获取到要修改成的记录
+        $input = $request->except('_token','_method');
+
+        //更新
+        $re = $permission->update($input);
+
+
+
+
+        //如果成功跳转到列表页  失败返回修改页
+        if($re){
+            return back()->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
