@@ -41,7 +41,9 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        return view('admin.manager.add');
+        //获取角色
+        $name = DB::table('admin_roles')->get();
+        return view('admin.manager.add',['name'=>$name]);
     }
 
     /**
@@ -49,16 +51,16 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
-        $input = Input::except('_token');
+        $input = Input::except('_token','name');
         $role =[
-            'username'=>'required|between:5,18',
+            'username'=>'required|between:3,18',
             'password'=>'required|between:5,18',
             'password_c'=>'same:password'
         ];
 //       提示信息
         $mess=[
             'username.required'=>'必须输入用户名',
-            'username.between'=>'用户名长度必须在5-18位之间',
+            'username.between'=>'用户名长度必须在3-18位之间',
             'password.required'=>'必须输入密码',
             'password.between'=>'密码长度必须在5-18位之间',
             'password_c.same'=>'确认密码必须与密码一致'
@@ -66,9 +68,12 @@ class ManagerController extends Controller
 //       表单验证
         $v = Validator::make($input,$role,$mess);
         if($v->passes()){
-            $input = Input::except('password_c');
+            $input = Input::except('password_c','name');
             $input['login_time'] = time();
             $input['ctime'] = time();
+            $name = Input::only('name');
+            $input['role'] = $name['name'];
+//            dd($input);
             $res = User_admin::create($input);
             if($res){
                 return redirect('admin/manager');
