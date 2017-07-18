@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use App\Services\OSS;
 
-class AdaddController extends Controller
+class AdaddController extends CommonController
 {
     // 上传图片路由
     public function upload()
