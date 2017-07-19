@@ -7,6 +7,7 @@ use App\Http\Model\Attention;
 use App\Http\Model\Collect;
 use App\Http\Model\Comment;
 use App\Http\Model\Microblog;
+use App\Http\Model\Navigation;
 use App\Http\Model\Reply;
 use App\Http\Model\User_commerce;
 use App\Http\Model\User_common;
@@ -29,12 +30,16 @@ class IndexController extends CommonindexController
      */
     public function index()
     {
+
         if(empty(session('user_home'))){
             return redirect('home/login/login');
         }
+
         //获取微博列表
 
+
         $microblog = Microblog::join('user_commons','microblogs.uid','=','user_commons.uid')->orderBy('ctime','desc')->get();
+
 
 
         return view('home.index.index',compact('microblog','data'));
@@ -45,8 +50,10 @@ class IndexController extends CommonindexController
     public function microblog(Request $request){
 
 
+
         $data = Microblog::orderBy('mcount','desc')->take(10)->get();
         return view('home/microblog/microblog',compact('data'));
+
 
     }
 
@@ -77,7 +84,6 @@ class IndexController extends CommonindexController
         }
 
     }
-
 
 
 
