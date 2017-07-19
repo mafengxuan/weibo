@@ -61,12 +61,12 @@ class UserController extends CommonController
      */
     public function doedit(Request $request)
     {
-        //接收用户的信息
+        //接收用户的信息 user_infos
         $input = $request->except('_token','file_upload','face','nickname','email');
-//        dd($input);
-        //接收用户头像的信息
+
+        //接收用户头像的信息  user_commons
         $data = $request->only('nickname','face');
-        //接收用户邮箱的信息
+        //接收用户邮箱的信息  users
         $email = $request->only('email');
 
         //获取登录者的uid

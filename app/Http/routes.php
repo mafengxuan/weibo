@@ -149,6 +149,7 @@ Route::get('/home/userinfo','Home\UserController@index');
 Route::get('/home/info','Home\UserController@info');
 //修改个人信息
 Route::get('/home/edit','Home\UserController@edit');
+//处理个人信息
 Route::post('/home/doedit','Home\UserController@doedit');
 //邮箱激活
 Route::get('/home/email','Home\UserController@email');
