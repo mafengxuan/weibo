@@ -80,6 +80,7 @@
                         <style>
                             #jiao{width:30px;height:30px}
                         </style>
+                        
                                 @if(session('user_home')->type == '1')
 
                                 @elseif(session('user_home')->type == '2')
