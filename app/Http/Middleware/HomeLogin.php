@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminLogin
+class HomeLogin
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class AdminLogin
     public function handle($request, Closure $next)
     {
         //判断session是否为空
-        if(!session('user')){
-            return redirect('admin/login');
+        if(!session('user_home')){
+            return redirect('/home/login/login');
         }
         return $next($request);
     }

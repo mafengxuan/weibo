@@ -10,4 +10,5 @@ class Attention extends Model
     protected $table = 'attentions';
 
     public $timestamps = false;
+    protected $guarded = [];
 }

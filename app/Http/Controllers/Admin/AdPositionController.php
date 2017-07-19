@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Input;
 class AdPositionController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *返回广告位主页面
+     *
      */
     public function index(Request $request)
     {
@@ -35,9 +35,9 @@ class AdPositionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *
+     * 返回广告位添加页面
      */
     public function create()
     {
@@ -45,10 +45,10 @@ class AdPositionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *
+     * 执行广告位添加
+     *
      */
     public function store(Request $request)
     {
@@ -76,10 +76,10 @@ class AdPositionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * 返回广告位修改页面
+     *
      */
     public function edit($id)
     {
@@ -90,11 +90,11 @@ class AdPositionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     *
+     * 执行广告位修改
+     *
      */
     public function update(Request $request, $id)
     {
@@ -116,10 +116,10 @@ class AdPositionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * 执行广告位删除
+     *
      */
     public function destroy($id)
     {
@@ -139,6 +139,12 @@ class AdPositionController extends Controller
         }
         return $data;
     }
+
+    /**
+     *
+     * 广告位添加处理
+     * 判断广告位唯一标识是否存在
+     */
     public function adPositionAjax(Request $request)
     {
         $in = $request['ad_tag'];

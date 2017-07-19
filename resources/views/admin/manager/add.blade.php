@@ -27,15 +27,21 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>管理员：</label>
             <div class="formControls col-xs-4 col-sm-3">
-                <input type="text" class="input-text" value="{{old('username')}}" placeholder="" id="username" name="username">
+                <input type="text" class="input-text" value="{{old('username')}}" placeholder="请输入管理员名称" id="username" name="username">
             </div>
         </div>
-        {{--<div class="row cl">--}}
-            {{--<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>担任角色：</label>--}}
-            {{--<div class="formControls col-xs-4 col-sm-3">--}}
-                {{--<input type="text" class="input-text" value="{{old('name')}}" placeholder="担任角色" id="username" name="name">--}}
-            {{--</div>--}}
-        {{--</div>--}}
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>担任角色：</label>
+            <div class="formControls col-xs-4 col-sm-3">
+               <select name="name" id="" class="input-text">
+                   @foreach($name as $k=>$v)
+                       <option value="{{$v['id']}}">{{$v['name']}}</option>
+                   @endforeach
+                </select>
+            </div>
+        </div>
+
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>密码：</label>
             <div class="formControls col-xs-4 col-sm-3">
@@ -48,6 +54,9 @@
                 <input type="password" class="input-text" autocomplete="off" value="" placeholder="再次确认密码" id="password" name="password_c">
             </div>
         </div>
+
+
+
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">

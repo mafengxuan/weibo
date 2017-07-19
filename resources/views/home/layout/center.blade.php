@@ -58,6 +58,7 @@
                 <!--头像 -->
                 <div class="user-infoPic">
                     <div class="filePic">
+
                         <img class="am-circle am-img-thumbnail" id="pic" src="{{$face}}" alt="" />
 
                         @if(session('user_home')->type == '1')
@@ -128,27 +129,20 @@
                 </ul>
             </li>
             <li class="person">
-                <a href="#">我的交易</a>
+                <a href="javascript:;">我的交易</a>
                 <ul>
-                    <li><a href="{{url('home/ad')}}">广告中心</a></li>
-                    <li> <a href="change.html">退款售后</a></li>
-                </ul>
-            </li>
-            <li class="person">
-                <a href="#">我的资产</a>
-                <ul>
-                    <li> <a href="coupon.html">优惠券 </a></li>
-                    <li> <a href="bonus.html">红包</a></li>
-                    <li> <a href="bill.html">账单明细</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/ad') class="active" @endif><a href="{{url('home/ad')}}">广告中心</a></li>
+
                 </ul>
             </li>
 
             <li class="person">
+                <a href="javascript:;">我的认证</a>
                 <ul>
-                    <li> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
-                    <li> <a href="javascript:;" id="company" onclick="check_audit('company')">公司用户认证</a></li>
-                    <li> <a href="javascript:;" id="commerce" onclick="check_audit('commerce')">商业用户认证</a></li>
-                    <li> <a href="javascript:;" id="bigv" onclick="check_audit('bigv')">大V用户认证</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/myaudit') class="active" @endif> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/company') class="active" @endif> <a href="javascript:;" id="company" onclick="check_audit('company')">公司用户认证</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/commerce') class="active" @endif> <a href="javascript:;" id="commerce" onclick="check_audit('commerce')">商业用户认证</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/bigv') class="active" @endif> <a href="javascript:;" id="bigv" onclick="check_audit('bigv')">大V用户认证</a></li>
                 </ul>
             </li>
 
@@ -159,7 +153,9 @@
 
 </body>
 </html>
+@section('js')
 
+@show
 
 <script>
     function check_audit(str)

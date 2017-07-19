@@ -131,7 +131,7 @@
                 <img src="" alt="" name="pic" id="pic" style="width:100px;display:none;" >
             </td>
         </div>
-        <div class="row cl">
+        <div class="row cl ">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>购买天数：</label>
             <div class="formControls col-xs-8 col-sm-9">
                 <input type="text" class="input-text" value="1" placeholder="" id="number" name="ad_num" style="width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
@@ -147,13 +147,13 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>总价：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="10" readonly placeholder="" id="price" name="ad_price" style="border:none; width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
+                <input type="text" class="input-text" value="10" readonly placeholder="" id="price" name="ad_price" style="border:none; width:500px;">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>下单人：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" readonly value="{{$session['username']}}" placeholder="" id="" name="auditor" style="width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
+                <input type="text" class="input-text" readonly value="{{$session['username']}}" placeholder="" id="" name="auditor" style="width:500px;">
             </div>
         </div>
         <div class="row cl">
@@ -172,6 +172,67 @@
     <script type="text/javascript" src="{{asset('/admin')}}/lib/My97DatePicker/4.8/WdatePicker.js"></script>
     <script type="text/javascript" src="{{asset('/admin')}}/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="{{asset('/admin')}}/lib/laypage/1.2/laypage.js"></script>
+    <script>
+        $(function(){
+
+            // 购买天数 失去焦点事件
+            $('#number').blur(function(){
+                var uPrice =  $('#uprice').val();
+                var numb = $('#number').val();
+                $('#price').val(uPrice * numb);
+            });
+
+            var ok1 = false;
+            var ok2 = false;
+            var ok3 = false;
+            // 用户名称失去焦点事件
+            $('input[name="username"]').blur(function(){
+                if($('input[name="username"]').val()!=''){
+                    $(this).next().text('');
+                }
+            });
+            // 广告名称失去焦点事件
+            $('input[name="ad_name"]').blur(function(){
+                if($('input[name="ad_name"]').val()!=''){
+                    $(this).next().text('');
+                }
+            });
+            // 购买天数失去焦点事件
+            $('input[name="ad_num"]').blur(function(){
+                if($('input[name="ad_num"]').val()!=''){
+                    $(this).next().text('');
+                }
+            });
+            // 表单提交事件
+            $('form').submit(function(){
+                if($('input[name="username"]').val()!=''){
+                    ok1 = true;
+                }else{
+                    $('input[name="username"]').next().text('用户名称不能为空');
+                    ok1 = false;
+                }
+                if($('input[name="ad_name"]').val()!=''){
+                    ok2 = true;
+                }else{
+                    $('input[name="ad_name"]').next().text('广告名称不能为空');
+                    ok2 = false;
+                }
+                if($('input[name="ad_num"]').val()!=''){
+                    ok3 = true;
+                }else{
+                    $('input[name="ad_num"]').next().text('版位唯一标识不能为空');
+                    ok3 = false;
+                }
+
+                if(ok1 && ok2 && ok3){
+                    return true;
+                }else{
+                    layer.msg('信息未填完整',{icon:2});
+                    return false;
+                }
+            })
+        })
+    </script>
 
 @endsection
 

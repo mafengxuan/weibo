@@ -25,7 +25,7 @@
                     <th >点赞数</th>
                     <th >评论</th>
                     <th >显示状态</th>
-                    <th >操作</th>
+                    {{--<th >操作</th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -42,14 +42,14 @@
                     <td>{{$v->p_count}}</td>
                     <td><a style="cursor:pointer" class="text-primary" onclick="article_edit('查看','{{url('admin/comment/'.$v->mid)}}','10002')" href="javascript:;" title="查看">评论详情</a></td>
                     <td>{{$v->status}}</td>
-                    <td class="td-manage">
+                    {{--<td class="td-manage">--}}
                         {{--<a title="编辑" href="javascript:;" onclick="member_edit('编辑','member-add.html','4','','510')" class="ml-5" style="text-decoration:none">--}}
                             {{--<i class="Hui-iconfont">&#xe6df;</i>--}}
                         {{--</a>--}}
-                        <a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none">
-                            <i class="Hui-iconfont">&#xe6e2;</i>
-                        </a>
-                    </td>
+                        {{--<a title="删除" href="javascript:;" onclick="member_del(this,'1')" class="ml-5" style="text-decoration:none">--}}
+                            {{--<i class="Hui-iconfont">&#xe6e2;</i>--}}
+                        {{--</a>--}}
+                    {{--</td>--}}
                 </tr>
                 @endforeach
                 </tbody>

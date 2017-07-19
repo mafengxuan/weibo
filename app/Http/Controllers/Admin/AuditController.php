@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Model\Ad;
 use App\Http\Model\Ad_order;
+use App\Http\Model\Profit;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,9 +14,9 @@ use Illuminate\Support\Facades\Input;
 class AuditController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *广告审核页面
+     *
      */
     public function index(Request $request)
     {
@@ -82,11 +83,11 @@ class AuditController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     *
+     * 广告审核
+     *
      */
     public function update(Request $request, $id)
     {
@@ -124,7 +125,9 @@ class AuditController extends Controller
             return $data;
         }
     }
-
+    /*
+     * 财务审核
+     */
     public function charge(Request $request, $id)
     {
         $session = $request->session()->get('user');
@@ -142,7 +145,25 @@ class AuditController extends Controller
             $order['price'] = $input['ad_price'];
             $order['o_time'] = $input['ad_ctime'];
 //            dd($order);
-            $re = Ad_order::create($order);
+            $re = Ad_order::insertGetId($order);
+
+            $bb = Ad_order::where('oid',$re)->get()->toArray();
+            $ad = Profit::all(['f_time'])->toArray();
+            $cc = [];
+            foreach($ad as $k=>$v){
+                $cc[] = $v['f_time'];
+            }
+            $bb[0]['o_time'] = date('Y-m-d',$bb[0]['o_time']);
+                if (in_array($bb[0]['o_time'], $cc)) {
+                    $update = Profit::where('f_time', $bb[0]['o_time'])->first()->toArray();
+                    $mon = $update['price'] + $bb[0]['price'];
+                    Profit::where('f_time', $bb[0]['o_time'])->update(['price' => $mon]);
+                } else {
+                    $pro['price'] = $bb[0]['price'];
+                    $pro['f_time'] = date('Ymd',time());
+                    Profit::create($pro);
+                }
+
             if($res && $re){
                 $data = [
                     'status' => 0,

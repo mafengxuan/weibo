@@ -31,7 +31,7 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">状态：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="2" placeholder="" id="number" name="status" style="width:800px;"><span style=" text-decoration: none" class="btn btn-link"></span>
+                    <input type="text" class="input-text" value="1" placeholder="" id="number" name="status" style="width:800px;"><span style=" text-decoration: none" class="btn btn-link"></span>
                 </div>
             </div>
             <div class="row cl">
@@ -82,10 +82,10 @@
                     ok2 = false;
                 }
                 if($('input[name="status"]').val()!=''){
-                    ok4 = true;
+                    ok3 = true;
                 }else{
                     $('input[name="status"]').next().text('状态不能为空');
-                    ok4 = false;
+                    ok3 = false;
                 }
 
                 if(ok1 && ok2 && ok3){

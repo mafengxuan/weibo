@@ -17,21 +17,24 @@
 
 //后台登录页
 Route::get('/admin/login','Admin\LoginController@login');
-
 //处理登录
 Route::post('/admin/dologin','Admin\LoginController@dologin');
-
 //验证码路由
 Route::get('/admin/code','Admin\LoginController@code');
-
+//如果权限不够，重定向路由
+Route::get('/back',function(){
+    return view('errors.403');
+});
 //后台模块
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['admin.login','has.role']], function(){
 //Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
     //后台主页面
     Route::resource('index', 'IndexController');
     //后台欢迎页
     Route::get('welcome','IndexController@welcome');
+
+
     //退出登录
     Route::get('quit','IndexController@quit');
     //修改密码
@@ -41,6 +44,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::resource('user','UserController');
     //后台管理员
     Route::resource('manager','ManagerController');
+
 
     //后台角色管理
     Route::resource('role','RoleController');
@@ -133,7 +137,7 @@ Route::get('/home/login/login','Home\LoginController@login');
 Route::post('/home/login/dologin','Home\LoginController@dologin');
 //退出登录
 Route::get('/home/quit','Home\LoginController@quit');
-//找回密码 手机验证路由
+//忘记密码,找回密码 手机验证路由
 Route::controller('/home/phone','Home\LoginController');
 
 
@@ -144,17 +148,15 @@ Route::get('/home/info','Home\UserController@info');
 //修改个人信息
 Route::get('/home/edit','Home\UserController@edit');
 Route::post('/home/doedit','Home\UserController@doedit');
-//头像上传
-Route::post('/home/upload','Home\UserController@upload');
 //邮箱激活
 Route::get('/home/email','Home\UserController@email');
 Route::post('/home/doemail','Home\UserController@doemail');
 Route::get('/home/jihuo','Home\UserController@jihuo');
-
-
-//修改密码
+//个人中心的修改密码
 Route::get('/home/repass','Home\PwdController@repass');
 Route::post('/home/dorepass','Home\PwdController@dorepass');
+
+
 
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
@@ -162,12 +164,23 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     Route::get('index','IndexController@index');
 
     //前台获取微博评论
-    Route::post('index/comment/{id}','IndexController@comment');
+    Route::post('index/comment/{id}','CommonindexController@comment');
     //前台执行评论
-    Route::post('index/docomment/{id}','IndexController@docomment');
+    Route::post('index/docomment/{id}','CommonindexController@docomment');
     //前台回复
-    Route::post('index/reply','IndexController@reply');
-
+    Route::post('index/reply','CommonindexController@reply');
+    //前台收藏
+    Route::post('index/collect/{id}','CommonindexController@collect');
+    //前台取消收藏
+    Route::post('index/nocollect/{id}','CommonindexController@nocollect');
+    //前台转发
+    Route::post('index/transpond/{id}','CommonindexController@transpond');
+    //前台关注
+    Route::post('index/attention/{id}','CommonindexController@attention');
+    //前台取消关注
+    Route::post('index/noattention/{id}','CommonindexController@noattention');
+    //前台点赞
+    Route::post('index/zan/{id}','CommonindexController@zan');
 
 
     //个人中心-我提交的申请
@@ -177,7 +190,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     //个人中心-公司申请
     Route::post('company/doaudit','companyauditController@doaudit');
     Route::resource('company','companyauditController');
-    //Route::post('uploadp','companyauditController@uploadpic');
+
     Route::post('company/checkname','companyauditController@checkname');
     //个人中心-商业申请
     Route::resource('commerce','commerceauditController');
@@ -197,11 +210,15 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     //前台发布微博
     Route::get('microblog','IndexController@microblog');
     Route::post('microblogAjax','IndexController@microblogAjax');
+//    Route::get('navigation','IndexController@navigation');
 
     // 前台广告中心路由
     Route::get('ad','AdController@index');
     // 前台广告申请路由
     Route::resource('adadd','adAddController');
     Route::any('upload','adAddController@upload');
+
+
+
 });
 
