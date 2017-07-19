@@ -20,18 +20,7 @@ class LogController extends Controller
      */
     public function index(Request $request)
     {
-//        $arr = [];
-//        $arr['username'] = 'admin';
-//        $arr['ctime'] = time();
-//        $arr['content'] = '查看管理员日志';
-//        $arr['ip'] = ip2long($_SERVER["REMOTE_ADDR"]);
-//        Admin_log::create($arr);
-//        $res = $request->all();
-//        if($request->has('res')){
-//            $res['content'] = $request['res']['content'];
-//            $res['s_time'] = $request['res']['s_time'];
-//            $res['e_time'] = $request['res']['e_time'];
-//        }
+
         $old_content = '';
         $old_s_time = '';
         $old_e_time = '';

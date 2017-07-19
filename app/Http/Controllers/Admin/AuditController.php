@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Model\Ad;
 use App\Http\Model\Ad_order;
+use App\Http\Model\Admin_log;
 use App\Http\Model\Profit;
 use Illuminate\Http\Request;
 
@@ -97,11 +98,16 @@ class AuditController extends Controller
         if($sta== 1){
             $res = Ad::where('aid',$id)->update(['status'=>4,'a_time'=>time(),'auditor'=>$auditor]);
             if($res){
+                $content = '广告审核通过: 编号'.$id;
+                Admin_log::dolog($content);
+
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已通过!'
                 ];
             }else{
+                $content = '广告审核未通过: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核未通过!'
@@ -112,11 +118,15 @@ class AuditController extends Controller
         if($sta == 2){
             $res = Ad::where('aid',$id)->update(['status'=>3,'a_time'=>time(),'auditor'=>$auditor]);
             if($res){
+                $content = '广告审核驳回: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已驳回!'
                 ];
             }else{
+                $content = '广告审核驳回失败: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核驳回失败!'
@@ -165,11 +175,15 @@ class AuditController extends Controller
                 }
 
             if($res && $re){
+                $content = '财务审核通过: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已通过!'
                 ];
             }else{
+                $content = '财务审核未通过: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核未通过!'
@@ -180,11 +194,15 @@ class AuditController extends Controller
         if($sta == 2){
             $res = Ad::where('aid',$id)->update(['status'=>3,'a_time'=>time(),'auditor'=>$auditor]);
             if($res){
+                $content = '财务审核驳回: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已驳回!'
                 ];
             }else{
+                $content = '财务审核失败: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核驳回失败!'

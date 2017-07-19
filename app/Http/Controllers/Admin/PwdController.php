@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\User_admin;
 use Illuminate\Support\Facades\Crypt;
 use Validator;
@@ -50,6 +51,9 @@ class PwdController extends Controller
                 $res =  $user->update(['password'=>$pass]);
                 if($res){
                     //更新密码
+                    $content = '修改密码: '.$user['username'];
+                    Admin_log::dolog($content);
+
                     return redirect('admin/manager');
                 }else{
                     return back()->with('errors','密码修改失败');

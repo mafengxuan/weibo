@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\User_admin;
 use Illuminate\Support\Facades\Crypt;
 use Validator;
@@ -72,6 +73,9 @@ class LoginController extends Controller
             //将用户信息添加到session中
             session(['user'=>$user]);
             //登录成功跳到首页
+            $content = '管理员登录: '.$user['username'];
+            Admin_log::dolog($content);
+
             return redirect('admin/index');
         }else{
             return back()->withErrors($validate);

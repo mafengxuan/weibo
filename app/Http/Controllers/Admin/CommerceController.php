@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\User;
 use App\Http\Model\User_commerce;
 use Illuminate\Http\Request;
@@ -146,11 +147,15 @@ class CommerceController extends Controller
             $res = User_commerce::where('commerce_id',$id)->update(['status'=>1,'a_time'=>time(),'auditor'=>session('user')->username]);
             $res_1 = User::where('uid',$request->uid)->update(['type'=>3]);
             if($res && $res_1){
+                $content = '商业用户审核通过: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已通过'
                 ];
             }else{
+                $content = '商业用户审核未通过: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核未通过'
@@ -161,11 +166,15 @@ class CommerceController extends Controller
         if($sta == 2){
             $res = User_commerce::where('commerce_id',$id)->update(['status'=>3,'a_time'=>time(),'auditor'=>session('user')->username]);
             if($res){
+                $content = '商业用户审核驳回: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已驳回'
                 ];
             }else{
+                $content = '商业用户审核驳回失败: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核驳回失败'
