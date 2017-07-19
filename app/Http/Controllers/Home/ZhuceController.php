@@ -27,13 +27,13 @@ class ZhuceController extends Controller
      */
     public function postInsert(Request $request)
     {
-//        //接收验证码
-//        $phone_code = $request -> input('phone_code');
-//
-//        //判断验证码
-//        if($phone_code != session('phone_code')){
-//            return redirect('/home/zhuce/add')->with('error','验证码错误') -> withInput();
-//        }
+        //接收验证码
+        $phone_code = $request -> input('phone_code');
+
+        //判断验证码
+        if($phone_code != session('phone_code')){
+            return redirect('/home/zhuce/add')->with('error','验证码错误') -> withInput();
+        }
 
         //接收数据
         $data = $request -> except('_token','repassword','phone_code');
