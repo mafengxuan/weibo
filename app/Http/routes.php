@@ -137,7 +137,7 @@ Route::get('/home/login/login','Home\LoginController@login');
 Route::post('/home/login/dologin','Home\LoginController@dologin');
 //退出登录
 Route::get('/home/quit','Home\LoginController@quit');
-//找回密码 手机验证路由
+//忘记密码,找回密码 手机验证路由
 Route::controller('/home/phone','Home\LoginController');
 
 
@@ -154,11 +154,10 @@ Route::post('/home/upload/add','Home\UserController@upload');
 Route::get('/home/email','Home\UserController@email');
 Route::post('/home/doemail','Home\UserController@doemail');
 Route::get('/home/jihuo','Home\UserController@jihuo');
-
-
 //个人中心的修改密码
 Route::get('/home/repass','Home\PwdController@repass');
 Route::post('/home/dorepass','Home\PwdController@dorepass');
+
 
 
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {

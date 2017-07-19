@@ -57,13 +57,13 @@ class LoginController extends Controller
             if(strtoupper($input['code']) !=  session('code')){
                    return back()->with('errors','验证码错误')->withInput();
             }
-            //获取用户名
+            //获取用户名  数据库中的密码
             $user = User_admin::where('username',$input['username'])->first();
             //验证用户名
             if(!$user){
                 return back()->with('errors','该用户不存在')->withInput();
             }
-            //验证密码
+            //验证密码  用户输入的密码和数据库密码
             if($input['password']  != $user['password']){
                 return back()->with('errors','密码错误')->withInput();
             }

@@ -24,7 +24,7 @@ class HasRole
         $permission = Admin_roles::find(session('user')->role)->permissions()->get();
         //声明一个数组，存放所有的权限
         $arr = [];
-        //把权限遍历出来
+        //把权限遍历出来 获取路由
         foreach($permission as $k => $v){
             $arr[]= $v['name'];
         }

@@ -36,8 +36,8 @@
             <td>{{date('Y-m-d H:i:s')}}</td>
             <td>{{date('Y-m-d H:i:s')}}</td>
             <td class="td-manage">
-                <a  href="{{url('admin/manager/'.$v->id.'/edit')}}">重置密码</a>
-                <a  href="javascript:;" onclick="DelUser({{$v->id}})">删除</a>
+                <a  href="{{url('admin/manager/'.$v->aid.'/edit')}}">重置密码</a>
+                <a  href="javascript:;" onclick="DelUser({{$v->aid}})">删除</a>
             </td>
         </tr>
         @endforeach

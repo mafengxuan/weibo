@@ -40,7 +40,7 @@
                         $('span:eq(1)').text('' ).css('color','green');
                         s1 = true;
                     }else{
-                        $('span:eq(1)').text('邮箱格式不正确').css('color','red');
+                        $('span:eq(1)').text('邮箱为空或格式不正确').css('color','red');
                         s1 = false;
                     }
                 });

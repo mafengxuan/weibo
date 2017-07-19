@@ -29,7 +29,7 @@ class ManagerController extends Controller
             return view('admin.manager.index',['data'=>$user,'key'=>$key]);
         }else {
             //查询用户的所有数据  当二个id一样时给id起别名
-            $user = User_admin::select('*','admin_roles.id as rid','user_admins.id as aid')->join('admin_roles','admin_roles.id','=','user_admins.role')->paginate(3);
+            $user = User_admin::select('*','admin_roles.id as rid','user_admins.id as aid')->join('admin_roles','user_admins.role','=','admin_roles.id')->paginate(3);
             return view('admin.manager.index', ['data' => $user]);
         }
     }
@@ -41,6 +41,7 @@ class ManagerController extends Controller
     {
         //获取角色
         $name = DB::table('admin_roles')->get();
+        //将数据传给添加管理员的模板
         return view('admin.manager.add',['name'=>$name]);
     }
 
@@ -67,12 +68,15 @@ class ManagerController extends Controller
         $v = Validator::make($input,$role,$mess);
         if($v->passes()){
             $input = Input::except('password_c','name');
+            //时间戳
             $input['login_time'] = time();
             $input['ctime'] = time();
+            //获取接收的角色
             $name = Input::only('name');
             $input['role'] = $name['name'];
-//            dd($input);
+            //将数据插入到数据库
             $res = User_admin::create($input);
+            //判断执行结果
             if($res){
                 return redirect('admin/manager');
             }else{
@@ -138,9 +142,9 @@ class ManagerController extends Controller
     public function destroy($id)
     {
         //删除对应id的用户
-        $re =  User_admin::where('id',$id)->delete();
+        $res =  User_admin::where('id',$id)->delete();
         // 0表示成功 其他表示失败
-        if($re){
+        if($res){
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'
