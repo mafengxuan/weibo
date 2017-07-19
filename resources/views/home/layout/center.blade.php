@@ -123,15 +123,15 @@
             <li class="person">
                 <a href="{{url('home/index')}}">首页</a>
                 <ul>
-                    <li @if($_SERVER['REDIRECT_URL']=='/home/info') class="active" @endif> <a href="{{url('home/info')}}">个人信息</a></li>
-                    <li @if($_SERVER['REDIRECT_URL']=='/home/repass') class="active" @endif> <a href="{{url('home/repass')}}">修改密码</a></li>
-                    <li @if($_SERVER['REDIRECT_URL']=='/home/email') class="active" @endif> <a href="{{url('home/email')}}">激活邮箱</a></li>
+                    <li @if($_SERVER['REQUEST_URI']=='/home/info') class="active" @endif> <a href="{{url('home/info')}}">个人信息</a></li>
+                    <li @if($_SERVER['REQUEST_URI']=='/home/repass') class="active" @endif> <a href="{{url('home/repass')}}">修改密码</a></li>
+                    <li @if($_SERVER['REQUEST_URI']=='/home/email') class="active" @endif> <a href="{{url('home/email')}}">激活邮箱</a></li>
                 </ul>
             </li>
             <li class="person">
                 <a href="javascript:;">我的交易</a>
                 <ul>
-                    <li @if($_SERVER['REDIRECT_URL']=='/home/ad') class="active" @endif><a href="{{url('home/ad')}}">广告中心</a></li>
+                    <li @if($_SERVER['REQUEST_URI']=='/home/ad') class="active" @endif><a href="{{url('home/ad')}}">广告中心</a></li>
 
                 </ul>
             </li>
@@ -139,10 +139,10 @@
             <li class="person">
                 <a href="javascript:;">我的认证</a>
                 <ul>
-                    <li @if($_SERVER['REDIRECT_URL']=='/home/myaudit') class="active" @endif> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
-                    <li @if($_SERVER['REDIRECT_URL']=='/home/company') class="active" @endif> <a href="javascript:;" id="company" onclick="check_audit('company')">公司用户认证</a></li>
-                    <li @if($_SERVER['REDIRECT_URL']=='/home/commerce') class="active" @endif> <a href="javascript:;" id="commerce" onclick="check_audit('commerce')">商业用户认证</a></li>
-                    <li @if($_SERVER['REDIRECT_URL']=='/home/bigv') class="active" @endif> <a href="javascript:;" id="bigv" onclick="check_audit('bigv')">大V用户认证</a></li>
+                    <li @if($_SERVER['REQUEST_URI']=='/home/myaudit') class="active" @endif> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
+                    <li @if($_SERVER['REQUEST_URI']=='/home/company') class="active" @endif> <a href="javascript:;" id="company" onclick="check_audit('company')">公司用户认证</a></li>
+                    <li @if($_SERVER['REQUEST_URI']=='/home/commerce') class="active" @endif> <a href="javascript:;" id="commerce" onclick="check_audit('commerce')">商业用户认证</a></li>
+                    <li @if($_SERVER['REQUEST_URI']=='/home/bigv') class="active" @endif> <a href="javascript:;" id="bigv" onclick="check_audit('bigv')">大V用户认证</a></li>
                 </ul>
             </li>
 
