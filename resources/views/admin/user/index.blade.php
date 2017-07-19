@@ -27,7 +27,6 @@
                 <th>邮箱状态</th>
                 <th>注册时间</th>
                 <th>最后一次登录时间</th>
-                {{--<th>操作</th>--}}
             </tr>
             </thead>
             <tbody>
@@ -38,11 +37,17 @@
                 <td>{{$v['qq']}}</td>
                 <td>{{$v['email']}}</td>
                 <td>{{$v['phone']}}</td>
-                <td>{{date('Y-m-d',$v['birth'])}}</td>
+                <td>{{date('Y年m月d日',$v['birth'])}}</td>
                 <td>{{$v['age']}}</td>
                 <td>{{$v['address']}}</td>
                 @if($v['type'] == 1)
                 <td>普通用户</td>
+                @elseif($v['type'] == 2)
+                    <td>企业用户</td>
+                @elseif($v['type'] == 3)
+                    <td>商业用户</td>
+                @elseif($v['type'] == 4)
+                    <td>大V用户</td>
                 @endif
                 @if($v['status'] == 2)
                 <td>已激活</td>
@@ -51,8 +56,6 @@
                 @endif
                 <td>{{date('Y-m-d H:i:s',$v['rtime'])}}</td>
                 <td>{{date('Y-m-d H:i:s',$v['login_time'])}}</td>
-                {{--<td class="td-manage"><a href="">修改</a>--}}
-                    {{--<a href="">删除</a></td>--}}
             </tr>
             @endforeach
             </tbody>
