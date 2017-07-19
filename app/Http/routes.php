@@ -185,21 +185,21 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //个人中心-我提交的申请
 
-    Route::post('auditcheck','myauditController@check');
-    Route::resource('myaudit','myauditController');
+    Route::post('auditcheck','MyauditController@check');
+    Route::resource('myaudit','MyauditController');
     //个人中心-公司申请
-    Route::post('company/doaudit','companyauditController@doaudit');
-    Route::resource('company','companyauditController');
+    Route::post('company/doaudit','CompanyauditController@doaudit');
+    Route::resource('company','CompanyauditController');
 
-    Route::post('company/checkname','companyauditController@checkname');
+    Route::post('company/checkname','CompanyauditController@checkname');
     //个人中心-商业申请
-    Route::resource('commerce','commerceauditController');
-    Route::post('commerce/doaudit','commerceauditController@doaudit');
-    Route::post('commerce/checkname','commerceauditController@checkname');
+    Route::resource('commerce','CommerceauditController');
+    Route::post('commerce/doaudit','CommerceauditController@doaudit');
+    Route::post('commerce/checkname','CommerceauditController@checkname');
     //个人中心-大V申请
-    Route::resource('bigv','bigvauditController');
-    Route::post('bigv/doaudit','bigvauditController@doaudit');
-    Route::post('bigv/checkname','bigvauditController@checkname');
+    Route::resource('bigv','BigvauditController');
+    Route::post('bigv/doaudit','BigvauditController@doaudit');
+    Route::post('bigv/checkname','BigvauditController@checkname');
 
 
     //前台详情页
