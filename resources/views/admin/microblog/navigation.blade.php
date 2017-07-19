@@ -25,10 +25,9 @@
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
                 <tr class="text-c">
-                    <th ><input type="checkbox" name="" value=""></th>
-                    <th >id</th>
-                    <th >导航名称</th>
                     <th >排序</th>
+                    <th >导航名称</th>
+                    <th >导航url</th>
                     <th >操作</th>
                 </tr>
                 </thead>
@@ -36,9 +35,10 @@
                 @foreach ($data as $k=>$v)
                     <tr class="text-c">
                         <td><input type="text" value="{{$v->nav_sort}}" onchange="changeOrder(this,{{$v->nid}})" style="width:15px;"></td>
-                        <td>{{$v->nid}}</td>
+
                         <td>{{$v->nav_name}}</td>
-                        <td>{{$v->nav_sort}}</td>
+                        <td>{{$v->nav_url}}</td>
+
                         <td class="td-manage">
                             <a title="编辑" href="javascript:;" onclick="article_edit('编辑','{{url('admin/navigation/'.$v->nid.'/edit')}}','4','','510')" class="ml-5" style="text-decoration:none">
                                 <i class="Hui-iconfont">&#xe6df;</i>

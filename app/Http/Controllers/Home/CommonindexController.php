@@ -9,6 +9,7 @@ use App\Http\Model\Collect;
 use App\Http\Model\Comment;
 use App\Http\Model\Link;
 use App\Http\Model\Microblog;
+use App\Http\Model\Navigation;
 use App\Http\Model\Reply;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,8 @@ class CommonindexController extends Controller
         $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',3)->first();
         $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',4)->get();
         $pic5 = Ad_order::orderBy('price','desc')->join('ads','ad_orders.aid','=','ads.aid')->get();
+        $pic6 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',5)->take(12)->get();
+
         $links = Link::all();
 
         view()->share('pic', $pic);
@@ -32,6 +35,7 @@ class CommonindexController extends Controller
         view()->share('pic3', $pic3);
         view()->share('pic4', $pic4);
         view()->share('pic5', $pic5);
+        view()->share('pic6', $pic6);
         view()->share('links', $links);
 
         $collect = [];
@@ -59,6 +63,8 @@ class CommonindexController extends Controller
         view()->share('collect', $collect);
         view()->share('attention', $attention);
 
+        $nav= Navigation::all();
+        view()->share('nav',$nav);
 
     }
 

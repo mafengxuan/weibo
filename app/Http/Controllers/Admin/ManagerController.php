@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Input;
 class ManagerController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+    *  管理员列表显示页面
      */
     public function index(Request $request)
     {
@@ -31,7 +29,7 @@ class ManagerController extends Controller
             return view('admin.manager.index',['data'=>$user,'key'=>$key]);
         }else {
             //查询用户的所有数据  当二个id一样时给id起别名
-            $user = User_admin::select('*','admin_roles.id as rid','user_admins.id as aid')->join('admin_roles','admin_roles.id','=','user_admins.role')->paginate(3);
+            $user = User_admin::select('*','admin_roles.id as rid','user_admins.id as aid')->join('admin_roles','user_admins.role','=','admin_roles.id')->paginate(3);
             return view('admin.manager.index', ['data' => $user]);
         }
     }
@@ -41,7 +39,10 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        return view('admin.manager.add');
+        //获取角色
+        $name = DB::table('admin_roles')->get();
+        //将数据传给添加管理员的模板
+        return view('admin.manager.add',['name'=>$name]);
     }
 
     /**
@@ -49,16 +50,16 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
-        $input = Input::except('_token');
+        $input = Input::except('_token','name');
         $role =[
-            'username'=>'required|between:5,18',
+            'username'=>'required|between:2,18',
             'password'=>'required|between:5,18',
             'password_c'=>'same:password'
         ];
 //       提示信息
         $mess=[
             'username.required'=>'必须输入用户名',
-            'username.between'=>'用户名长度必须在5-18位之间',
+            'username.between'=>'用户名长度必须在2-18位之间',
             'password.required'=>'必须输入密码',
             'password.between'=>'密码长度必须在5-18位之间',
             'password_c.same'=>'确认密码必须与密码一致'
@@ -66,10 +67,16 @@ class ManagerController extends Controller
 //       表单验证
         $v = Validator::make($input,$role,$mess);
         if($v->passes()){
-            $input = Input::except('password_c');
+            $input = Input::except('password_c','name');
+            //时间戳
             $input['login_time'] = time();
             $input['ctime'] = time();
+            //获取接收的角色
+            $name = Input::only('name');
+            $input['role'] = $name['name'];
+            //将数据插入到数据库
             $res = User_admin::create($input);
+            //判断执行结果
             if($res){
                 return redirect('admin/manager');
             }else{
@@ -93,10 +100,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+    * 重置密码页面
      */
     public function edit($id)
     {
@@ -107,11 +111,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 处理重置密码
      */
     public function update(Request $request, $id)
     {
@@ -142,9 +142,9 @@ class ManagerController extends Controller
     public function destroy($id)
     {
         //删除对应id的用户
-        $re =  User_admin::where('id',$id)->delete();
+        $res =  User_admin::where('id',$id)->delete();
         // 0表示成功 其他表示失败
-        if($re){
+        if($res){
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'

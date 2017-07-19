@@ -46,33 +46,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 	<!-- header-section-starts-here -->
 	<div class="header">
-		<div class="header-top">
-			<div class="wrap">
-				<div class="top-menu">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="about.html">About Us</a></li>
-						<li><a href="privacy-policy.html">Privacy Policy</a></li>
-						<li><a href="contact.html">Contact Us</a></li>
-						@if(session('user_home'))
-								<li><a href="{{url('home/info')}}">个人中心</a></li>
-								<li><a href="{{url('home/quit')}}">退出</a></li>
-						@else
-								<li><a href="{{url('home/zhuce/add')}}">注册</a></li>
-								<li><a href="{{url('home/login/login')}}">登录</a></li>
-						@endif
-					</ul>
-				</div>
+		{{--<div class="header-top">--}}
+			{{--<div class="wrap">--}}
+				{{--<div class="top-menu">--}}
+					{{--<ul>--}}
+
+					{{--</ul>--}}
+				{{--</div>--}}
 
 
-				<div class="clearfix"></div>
-			</div>
-		</div>
+				{{--<div class="clearfix"></div>--}}
+			{{--</div>--}}
+		{{--</div>--}}
 
 		<div class="header-bottom">
-			<div class="logo text-center">
-				<a href="index.html"><img src="{{asset('home')}}/images/logo.jpg" alt="" /></a>
-			</div>
+
 			<div class="navigation">
 				<nav class="navbar navbar-default" role="navigation">
 		   <div class="wrap">
@@ -92,81 +80,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="nav navbar-nav">
 
 					 {{--<li class="active"><a href="{{url('home/info')}}"></a></li>--}}
+					@if(session('user_home'))
 					@foreach ($nav as $k => $v)
-						<li><a href="#">{{$v->nav_name}}</a></li>
-					@endforeach
-				    {{--<li class="dropdown">--}}
-						{{--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>--}}
-						{{--<ul class="dropdown-menu">--}}
-							{{--<li><a href="entertainment.html">Movies</a></li>--}}
-							{{--<li class="divider"></li>--}}
-							{{--<li><a href="entertainment.html">Another action</a></li>--}}
-							{{--<li class="divider"></li>--}}
-							{{--<li><a href="entertainment.html">Articles</a></li>--}}
-							{{--<li class="divider"></li>--}}
-							{{--<li><a href="entertainment.html">celebrity</a></li>--}}
-							{{--<li class="divider"></li>--}}
-							{{--<li><a href="entertainment.html">One more separated link</a></li>--}}
-						{{--</ul>--}}
-					  {{--</li>--}}
-					{{--<li><a href="shortcodes.html">Health</a></li>--}}
-					{{--<li><a href="fashion.html">Fashion</a></li>--}}
-					  {{--<li class="dropdown">--}}
-						{{--<a href="business.html" class="dropdown-toggle" data-toggle="dropdown">Business<b class="caret"></b></a>--}}
-						{{--<ul class="dropdown-menu multi-column columns-2">--}}
-							{{--<div class="row">--}}
-								{{--<div class="col-sm-6">--}}
-									{{--<ul class="multi-column-dropdown">--}}
-										{{--<li><a href="business.html">Action</a></li>--}}
-										{{--<li class="divider"></li>--}}
-										{{--<li><a href="business.html">bulls</a></li>--}}
-									    {{--<li class="divider"></li>--}}
-										{{--<li><a href="business.html">markets</a></li>--}}
-										{{--<li class="divider"></li>--}}
-										{{--<li><a href="business.html">Reviews</a></li>--}}
-										{{--<li class="divider"></li>--}}
-										{{--<li><a href="shortcodes.html">Short codes</a></li>--}}
-									{{--</ul>--}}
-								{{--</div>--}}
-								{{--<div class="col-sm-6">--}}
-									{{--<ul class="multi-column-dropdown">--}}
-									   {{--<li><a href="business.html">features</a></li>	--}}
-										{{--<li class="divider"></li>--}}
-										{{--<li><a href="entertainment.html">Movies</a></li>--}}
-									    {{--<li class="divider"></li>--}}
-										{{--<li><a href="sports.html">sports</a></li>--}}
-										{{--<li class="divider"></li>--}}
-										{{--<li><a href="business.html">Reviews</a></li>--}}
-										{{--<li class="divider"></li>--}}
-										{{--<li><a href="business.html">Stock</a></li>--}}
-									{{--</ul>--}}
-								{{--</div>--}}
-							{{--</div>--}}
-						{{--</ul>--}}
-					{{--</li>--}}
-					{{--<li><a href="technology.html">Technology</a></li>--}}
-					<div class="clearfix"></div>
+							<li><a href="{{url($v->nav_url)}}">{{$v->nav_name}}</a></li>
+						@endforeach
+					@else
+					<li><a href="{{url('home/zhuce/add')}}">注册</a></li>
+					<li><a href="{{url('home/login/login')}}">登录</a></li>
+					@endif
+		<div class="clearfix"></div>
 				</ul>
 
-				<div class="search">
-					<!-- start search-->
-				    <div class="search-box">
-					    <div id="sb-search" class="sb-search">
-							<form>
-								<input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
-								<input class="sb-search-submit" type="submit" value="">
-								<span class="sb-icon-search"> </span>
-							</form>
-						</div>
-				    </div>
-					<!-- search-scripts -->
-					<script src="{{asset('home')}}/js/classie.js"></script>
-					<script src="{{asset('home')}}/js/uisearch.js"></script>
-						<script>
-							new UISearch( document.getElementById( 'sb-search' ) );
-						</script>
-					<!-- //search-scripts -->
-					</div>
 					<div class="clearfix"></div>
 				</div>
 			</div>
@@ -208,7 +132,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="first_half">
 				<div class="newsletter">
 					<h1 class="side-title-head">微博搜索<a href="{{url('/home/microblog')}}" style="float:right">发布微博</a></h1>
-					<p class="sign">Sign up to receive our free newsletters!</p>
 
 					<form>
 						<input type="text" class="text" value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Email Address';}">
@@ -506,50 +429,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</p>
 					 </div>					 
 					 <div class="popular-news">
-						<header>
-							<h3 class="title-popular">好友动态</h3>
-						</header>
-						 @foreach ($data as $k => $v)
-							<div class="popular-grids">
-							<div class="popular-grid">
-								<a class="title" href="single.html">{!!str_limit($v->content, $limit = 20, $end = '...')!!}</a>
-								<p>{!!date('Y-m-d H:i:s',($v->ctime))!!}
-									<a class="span_link" >
-										<span class="glyphicon glyphicon-comment" onclick="fun()"></span>{!! $v->c_count!!}
-									</a>
 
-									<a class="span_link" href="#">
-										<span class="glyphicon glyphicon-eye-open"></span>{!! $v->mcount!!}
-									</a>
-									<a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up">
-										</span>{!!$v->p_count!!}
-									</a>
-									<p id="input" style="display:none">
-									<input  type="text" class="form-control" ><br>
-									<button class="btn btn-primary">确认评论</button>
-									</p>
-
-								</p>
-							</div>
-
-							{{--<div class="popular-grid">--}}
-								{{--<a href="single.html"><img src="{{asset('home')}}/images/popular-1.jpg" alt="" /></a>--}}
-								{{--<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>--}}
-								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
-							{{--</div>--}}
-							{{--<div class="popular-grid">--}}
-								{{--<iframe width="100%" src="http://www.cssmoban.com/" frameborder="0" allowfullscreen></iframe>--}}
-								{{--<a class="title" href="single.html">Aishwarya Rai Bachchan's Latest SHOCKING News For Ex Salman Khan</a>--}}
-								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
-							{{--</div>--}}
-							{{--<div class="popular-grid">--}}
-								{{--<a href="single.html"><img src="{{asset('home')}}/images/popular-3.jpg" alt="" /></a>--}}
-								{{--<a class="title" href="single.html">It is a long established fact that a reader will be distracted</a>--}}
-								{{--<p>On Mar 14, 2015 <a class="span_link" href="#"><span class="glyphicon glyphicon-comment"></span>0 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-eye-open"></span>250 </a><a class="span_link" href="#"><span class="glyphicon glyphicon-thumbs-up"></span>68</a></p>--}}
-							{{--</div>--}}
-
-						</div>
-						 @endforeach
 					</div>
 					</div>
 					<div class="clearfix"></div>

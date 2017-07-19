@@ -10,6 +10,12 @@
                 </div>
             </div>
             <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-2">导航url：</label>
+                <div class="formControls col-xs-1 col-sm-3">
+                    <input type="text" class="input-text" value="" placeholder="" id="" name="nav_url">
+                </div>
+            </div>
+            <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">排序：</label>
                 <div class="formControls col-xs-1 col-sm-3">
                     <input type="text" class="input-text" value="" placeholder="" id="" name="nav_sort">

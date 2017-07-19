@@ -17,21 +17,24 @@
 
 //后台登录页
 Route::get('/admin/login','Admin\LoginController@login');
-
 //处理登录
 Route::post('/admin/dologin','Admin\LoginController@dologin');
-
 //验证码路由
 Route::get('/admin/code','Admin\LoginController@code');
-
+//如果权限不够，重定向路由
+Route::get('/back',function(){
+    return view('errors.403');
+});
 //后台模块
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'], function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['admin.login','has.role']], function(){
 //Route::group(['prefix'=>'admin','namespace'=>'Admin'], function(){
 
     //后台主页面
     Route::resource('index', 'IndexController');
     //后台欢迎页
     Route::get('welcome','IndexController@welcome');
+
+
     //退出登录
     Route::get('quit','IndexController@quit');
     //修改密码
@@ -41,6 +44,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'admin.login'
     Route::resource('user','UserController');
     //后台管理员
     Route::resource('manager','ManagerController');
+
 
     //后台角色管理
     Route::resource('role','RoleController');
@@ -133,7 +137,7 @@ Route::get('/home/login/login','Home\LoginController@login');
 Route::post('/home/login/dologin','Home\LoginController@dologin');
 //退出登录
 Route::get('/home/quit','Home\LoginController@quit');
-//找回密码 手机验证路由
+//忘记密码,找回密码 手机验证路由
 Route::controller('/home/phone','Home\LoginController');
 
 
@@ -145,16 +149,16 @@ Route::get('/home/info','Home\UserController@info');
 Route::get('/home/edit','Home\UserController@edit');
 Route::post('/home/doedit','Home\UserController@doedit');
 //头像上传
-Route::post('/home/upload','Home\UserController@upload');
+Route::post('/home/upload/add','Home\UserController@upload');
 //邮箱激活
 Route::get('/home/email','Home\UserController@email');
 Route::post('/home/doemail','Home\UserController@doemail');
 Route::get('/home/jihuo','Home\UserController@jihuo');
-
-
-//修改密码
+//个人中心的修改密码
 Route::get('/home/repass','Home\PwdController@repass');
 Route::post('/home/dorepass','Home\PwdController@dorepass');
+
+
 
 Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
