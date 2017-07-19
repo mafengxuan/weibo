@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Profit;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,14 +11,19 @@ use App\Http\Controllers\Controller;
 class LineChartController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
+     * 收益折线图
      */
     public function index()
     {
-//        dd(1111);
-        return view('admin/ad/lineChart');
+        $price = [];
+        $date = Profit::where('f_time','>','20170530')->where('f_time','<','20170701')->get()->toArray();
+        foreach ($date as $k=>$v){
+            $price[] = $v['price'];
+        }
+        $stat =  implode(',',$price);
+        return view('admin/ad/lineChart',compact('stat'));
     }
 
     /**

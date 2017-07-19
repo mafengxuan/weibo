@@ -33,7 +33,9 @@ class IndexController extends CommonindexController
             return redirect('home/login/login');
         }
         //获取微博列表
+
         $microblog = Microblog::join('user_commons','microblogs.uid','=','user_commons.uid')->orderBy('ctime','desc')->get();
+
 
         return view('home.index.index',compact('microblog','data'));
 
@@ -42,8 +44,10 @@ class IndexController extends CommonindexController
 
     public function microblog(Request $request){
 
+
         $data = Microblog::orderBy('mcount','desc')->take(10)->get();
         return view('home/microblog/microblog',compact('data'));
+
     }
 
     /**
