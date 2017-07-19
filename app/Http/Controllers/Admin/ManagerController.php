@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Input;
 class ManagerController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+    *  管理员列表显示页面
      */
     public function index(Request $request)
     {
@@ -53,14 +51,14 @@ class ManagerController extends Controller
     {
         $input = Input::except('_token','name');
         $role =[
-            'username'=>'required|between:3,18',
+            'username'=>'required|between:2,18',
             'password'=>'required|between:5,18',
             'password_c'=>'same:password'
         ];
 //       提示信息
         $mess=[
             'username.required'=>'必须输入用户名',
-            'username.between'=>'用户名长度必须在3-18位之间',
+            'username.between'=>'用户名长度必须在2-18位之间',
             'password.required'=>'必须输入密码',
             'password.between'=>'密码长度必须在5-18位之间',
             'password_c.same'=>'确认密码必须与密码一致'
@@ -98,10 +96,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+    * 重置密码页面
      */
     public function edit($id)
     {
@@ -112,11 +107,7 @@ class ManagerController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 处理重置密码
      */
     public function update(Request $request, $id)
     {

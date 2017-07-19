@@ -20,36 +20,25 @@ class UserController extends CommonController
     /**
      *  处理图片上传
      */
-    public function upload()
+    public function upload(Request $request)
     {
-        // 将文件移动到指定目录，并以新文件名命名
+//        将上传文件移动到制定目录，并以新文件名命名
         $file = Input::file('file_upload');
-        if($file->isValid()) {
+        if ($file->isValid()) {
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
-            $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;  //完整的图片名
+            $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
 
-            //将图片上传到本地服务器
-            //$path = $file->move(public_path() . '/uploads', $newName);
+//            将图片上传到本地服务器
+            $path = $file->move(public_path() . '/uploads', $newName);
 
-            //将图片上传到阿里云  OSS
-            $return = OSS::upload('uploads/'.$newName, $file->getRealPath());
-
-            //返回文件的上传路径
+//        返回文件的上传路径
             $filepath = 'uploads/' . $newName;
-            $res = "http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/".$filepath;
-            return $res;
+            return $filepath;
         }
     }
-    /**
-     *  显示个人中心页面
-     */
-    public function index()
-    {
 
-//        return view('home.user.user');
-    }
 
-    /**
+        /**
      *  显示个人信息页面
      */
     public function info()
@@ -157,7 +146,7 @@ class UserController extends CommonController
         }
 
     /**
-     *  激活
+     *  判断是否激活成功,修改状态
      */
         public function Jihuo(Request $request){
         $uid =  $request -> all();

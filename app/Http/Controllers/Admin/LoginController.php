@@ -41,13 +41,13 @@ class LoginController extends Controller
          $input = $request->except('_token');
          //验证规则
         $role = [
-            'username' => 'required|between:5,18',
+            'username' => 'required|between:2,18',
             'password' => 'required|between:6,18'
         ];
         //提示信息
         $mess = [
             'username.required' => '用户名必填',
-            'username.between' => '用户名长度为5-18位',
+            'username.between' => '用户名长度为2-18位',
             'password.required' => '密码必填',
             'password.between' => '密码长度为6-18位',
         ];

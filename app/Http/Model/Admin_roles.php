@@ -23,4 +23,9 @@ class Admin_roles extends Model
 
         return $arr;
     }
+
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Http\Model\Admin_permissions','admin_permission_role','role_id', 'permission_id');
+    }
 }

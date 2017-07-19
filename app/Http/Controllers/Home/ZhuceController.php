@@ -89,7 +89,7 @@ class ZhuceController extends Controller
         echo $res;
     }
     /**
-     *手机验证码
+     * 手机验证码生成
      */
     public static function phoneto($phone)
     {

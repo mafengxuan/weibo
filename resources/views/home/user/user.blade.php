@@ -43,14 +43,15 @@
 
                                         $.ajax({
                                             type: "POST",
-                                            url: "/home/upload",
+                                            url: '/home/upload/add',
                                             data: formData,
                                             async: true,
                                             cache: false,
                                             contentType: false,
                                             processData: false,
                                             success: function(data) {
-                                                $('#pic').attr('src',data);
+
+                                                $('#pic').attr('src','/'+data);
                                                 $('#pic').show();
                                                 $('#face').val(data);
                                             },

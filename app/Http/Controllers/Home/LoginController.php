@@ -89,14 +89,14 @@ class LoginController extends Controller
     }
 
     /**
-     *  显示找回密码页面
+     *  显示找回密码验证手机号的页面
      */
     public function getPhone()
     {
         return view('home.phone.phone');
     }
     /**
-     *  处理手机号
+     *  处理验证的手机号
      */
     public function postInsert(Request $request)
     {
@@ -158,14 +158,14 @@ class LoginController extends Controller
     }
 
     /**
-     *  显示密码页面
+     *  显示找回密码页面
      */
     public function getPwd()
     {
         return view('home.phone.pwd');
     }
     /**
-     *  处理密码
+     *  处理找回密码
      */
     public function postDopwd(Request $request)
     {
