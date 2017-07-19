@@ -118,7 +118,7 @@ class ManagerController extends Controller
     public function update(Request $request, $id)
     {
         //修改对应id的用户
-        $input = $request->input('password')
+        $input = $request->input('password');
 
         $res =  User_admin::where('id',$id)->update(['password'=>Crypt::encrypt($input)]);
         // 0表示成功 其他表示失败
