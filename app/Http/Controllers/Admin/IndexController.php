@@ -26,6 +26,7 @@ class IndexController extends Controller
     */
     public function welcome()
     {
+
         return view('admin.index.welcome');
     }
 
@@ -93,5 +94,12 @@ class IndexController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    //退出登录
+    public function quit(){
+//        清空session
+        session(['user'=>null]);
+        return redirect('admin/login');
     }
 }

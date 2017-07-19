@@ -13,9 +13,16 @@
 <script type="text/javascript" src="{{asset('/admin')}}/lib/respond.min.js"></script>
 
 <![endif]-->
+
+<link rel="stylesheet" href="{{asset('/admin')}}/bootstrap/css/bootstrap.min.css">
+<script src="{{asset('/admin')}}/bootstrap/js/jquery.min.js"></script>
+<script src="{{asset('/admin')}}/bootstrap/js/bootstrap.min.js"></script>
+
 <link href="{{asset('/admin')}}/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
 <link href="{{asset('/admin')}}/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
 <link href="{{asset('/admin')}}/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+@section('css')
+@show
 
 <!--[if IE 6]>
 <script type="text/javascript" src="{{asset('/admin')}}/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
@@ -36,5 +43,8 @@
 <script type="text/javascript" src="{{asset('/admin')}}/lib/jquery.validation/1.14.0/messages_zh.js"></script>
 <script type="text/javascript" src="{{asset('/admin')}}/static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="{{asset('/admin')}}/static/h-ui.admin/js/H-ui.admin.js"></script>
+{{--<script type="text/javascript" src="{{asset('/admin')}}/layer/layer.js"></script>--}}
+@section('js')
+@show
 </body>
 </html>
