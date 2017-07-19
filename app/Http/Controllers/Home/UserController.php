@@ -126,7 +126,7 @@ class UserController extends CommonController
             self::mailto($data['email'], $uid);
         }
         return view('home.user.tishi');
-        }
+    }
 
     /**
      *  判断是否激活成功,修改状态

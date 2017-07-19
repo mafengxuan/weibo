@@ -23,10 +23,8 @@
 	</div>
 	</form>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
-		<span class="l">
-		<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-		</span>
-		<span class="r">共有数据：<strong>54</strong> 条</span>
+
+
 	</div>
 	<table class="table table-border table-bordered table-bg table-hover table-sort">
 		<thead>
@@ -50,8 +48,7 @@
 				<td>{{$v->content}}</td>
 				<td>{{long2ip($v->ip)}}</td>
 				<td>{{date('Y-m-d H:i:s',$v->ctime)}}</td>
-				<td><a title="详情" href="javascript:;" onclick="system_log_show(this,'10001')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe665;</i></a>
-					<a title="删除" href="javascript:;" onclick="system_log_del(this,'10001')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				<td><a title="删除" href="javascript:;" onclick="system_log_del(this,'10001')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 			</tr>
 		@endforeach
 		</tbody>
@@ -65,23 +62,9 @@
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
-//$('.table-sort').dataTable({
-//	"lengthMenu":false,//显示数量选择
-//	"bFilter": false,//过滤功能
-//	"bPaginate": false,//翻页信息
-//	"bInfo": false,//数量信息
-//	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-//	"bStateSave": true,//状态保存
-//	"aoColumnDefs": [
-//	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-//	  {"orderable":false,"aTargets":[0,7]}// 制定列不参与排序
-//	]
-//});
 
-/*查看日志*/
-function system_log_show(){
-	
-}
+
+
 /*搜索*/
 $('#btn_search').submit(function(){
    $.get('{{url('admin/log')}}',$('#search_form').serialize(),function(){

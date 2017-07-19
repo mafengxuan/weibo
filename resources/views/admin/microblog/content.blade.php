@@ -20,7 +20,7 @@
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">内容：</label>
-                <div class="formControls col-xs-8 col-sm-9">
+                <div class="formControls col-xs-8 col-sm-9 img1">
                    {!! $v->content !!}
                     
                 </div>

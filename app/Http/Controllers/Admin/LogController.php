@@ -45,7 +45,7 @@ class LogController extends Controller
             $data = $log->paginate(20);
             return view('admin.log.index', ['data' => $data, 'content' => $old_content, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         } else {
-            $data = Admin_log::orderBy('id', 'desc')->paginate(3);
+            $data = Admin_log::orderBy('id', 'desc')->paginate(20);
             return view('admin.log.index', ['data' => $data, 'content' => $old_content, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         }
 
