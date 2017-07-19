@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\Navigation;
 use Illuminate\Http\Request;
 
@@ -85,6 +86,9 @@ class NavigationController extends Controller
         $re = Navigation::create($input);
 
         if($re){
+            $content = '添加导航: '.$input['nav_name'];
+            Admin_log::dolog($content);
+
             return redirect('admin/navigation');
         }else{
             return back()->with('error','添加失败');
@@ -129,6 +133,8 @@ class NavigationController extends Controller
         $input = Input::except('_token','_method');
         $re = Navigation::where('nid',$id)->update($input);
         if($re){
+            $content = '修改导航: 编号'.$id;
+            Admin_log::dolog($content);
             return redirect('admin/navigation');
         }else{
             return back()->with('error','添加失败');
@@ -146,6 +152,8 @@ class NavigationController extends Controller
         $re =  Navigation::where('nid',$id)->delete();
         //       0表示成功 其他表示失败
         if($re){
+            $content = '删除导航: 编号'.$id;
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'

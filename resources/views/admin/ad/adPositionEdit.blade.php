@@ -32,7 +32,7 @@
             <div class="row cl">
                 <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
                     <input type="submit" class="btn btn-primary radius" value="提交">
-                    <input type="button" class="btn btn-default" onclick="history.go(-2)" value="返回">
+                    <input type="button" class="btn btn-default" onclick="history.go(-1)" value="返回">
                 </div>
             </div>
 

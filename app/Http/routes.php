@@ -11,9 +11,11 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('home.index.index');
-//});
+Route::get('/', function () {
+   return redirect('/home/login/login');
+});
+
+
 
 //后台登录页
 Route::get('/admin/login','Admin\LoginController@login');

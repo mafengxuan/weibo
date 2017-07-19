@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\User;
 use App\Http\Model\User_company;
 use Illuminate\Http\Request;
@@ -151,11 +152,15 @@ class CompanyController extends Controller
             $res = User_company::where('company_id',$id)->update(['status'=>1,'a_time'=>time(),'auditor'=>session('user')->username]);
             $res_1 = User::where('uid',$request->uid)->update(['type'=>2]);
             if($res && $res_1){
+                $content = '企业用户审核通过: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已通过'
                 ];
             }else{
+                $content = '企业用户审核未通过: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核未通过'
@@ -166,11 +171,16 @@ class CompanyController extends Controller
         if($sta == 2){
             $res = User_company::where('company_id',$id)->update(['status'=>3,'a_time'=>time(),'auditor'=>session('user')->username]);
             if($res){
+                $content = '企业用户审核驳回: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已驳回'
                 ];
             }else{
+                $content = '企业用户审核驳回失败: 编号'.$id;
+                Admin_log::dolog($content);
+
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核驳回失败'

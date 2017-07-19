@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\User;
 use App\Http\Model\User_v;
 use Illuminate\Http\Request;
@@ -152,11 +153,16 @@ class BigvController extends Controller
             $res = User_v::where('v_id',$id)->update(['status'=>1,'a_time'=>time(),'auditor'=>session('user')->username]);
             $res_1 = User::where('uid',$request->uid)->update(['type'=>4]);
             if($res && $res_1){
+                $content = '大V审核通过: 编号'.$id;
+                Admin_log::dolog($content);
+
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已通过'
                 ];
             }else{
+                $content = '大V审核未通过: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核未通过'
@@ -167,11 +173,15 @@ class BigvController extends Controller
         if($sta == 2){
             $res = User_v::where('v_id',$id)->update(['status'=>3,'a_time'=>time(),'auditor'=>session('user')->username]);
             if($res){
+                $content = '大V审核驳回: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 0,
                     'msg'    =>'审核已驳回'
                 ];
             }else{
+                $content = '大V审核驳回失败: 编号'.$id;
+                Admin_log::dolog($content);
                 $data = [
                     'status' => 4,
                     'msg'    =>'审核驳回失败'
