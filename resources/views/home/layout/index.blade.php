@@ -397,7 +397,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-4 col-xs-6 col-sm-6 footer-grid">
 					<h4 class="footer-head">女神 高圆圆</h4>
 					<ul class="flickr">
-						@foreach($pic6 as $k=>$v)
+						@foreach($pic5 as $k=>$v)
 						<li><a href="https:\\www.baidu.com"><img src="{{$v->ad_img}}"></a></li>
 						@endforeach
 						<div class="clearfix"></div>

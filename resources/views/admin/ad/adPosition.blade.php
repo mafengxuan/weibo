@@ -10,8 +10,6 @@
                 <tr class="text-c">
                     <th>ID</th>
                     <th>版位名称</th>
-                    <th>广告id</th>
-                    <th>广告名称</th>
                     <th>广告位唯一标识</th>
                     <th>收费标准</th>
                     <th>状态</th>
@@ -23,8 +21,6 @@
                     <tr class="text-c">
                         <td>{{$v->pid}}</td>
                         <td>{{$v->p_name}}</td>
-                        <td>{{$v->aid}}</td>
-                        <td>{{$v->ad_name}}</td>
                         <td>{{$v->ad_tag}}</td>
                         <td>{{$v->standard}}</td>
                         <td class="td-status"><span class="label label-success radius">{{$status[$v->status]}}</span></td>

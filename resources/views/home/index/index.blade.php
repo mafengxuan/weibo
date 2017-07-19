@@ -7,7 +7,7 @@
 						<ul class="rslides" id="slider">
 							@foreach($pic4 as $k=>$v)
 							<li>
-								<img src="{{$v['ad_img']}}" alt="">
+								<img style="width:1125px; height:633px;" src="{{$v['ad_img']}}" alt="">
 								<div class="caption">
 
 									<a href="{{$v['ad_url']}}">{{$v['ad_brief']}}</a>

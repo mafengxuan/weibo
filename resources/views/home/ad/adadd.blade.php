@@ -84,8 +84,8 @@
                                 contentType: false,
                                 processData: false,
                                 success: function(data) {
-                                    $('#pic').attr('src',data);
-                                    $('#pic').show();
+                                    $('#picc').attr('src',data);
+                                    $('#picc').show();
                                     $('#ad_img').val(data);
                                 },
                                 error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -121,7 +121,7 @@
             <div class="am-form-group form-group">
                 <label for="user-safety" class="am-form-label">缩略图：</label>
                 <div class="am-form-content safety">
-                    <img src="" alt="" name="pic" id="pic" style="width:100px;display:none;" >
+                    <img src="" alt="" name="picc" id="picc" style="width:100px;display:none;" >
                 </div>
             </div>
             <div class="am-form-group form-group">
@@ -149,7 +149,7 @@
             <div class="am-form-group form-group">
                 <label for="user-name" class="am-form-label">总价：</label>
                 <div class="am-form-content">
-                    <input type="text" id="price" readonly name="ad_price" value="" placeholder="" style="width:300px;">
+                    <input type="text" id="price" readonly name="ad_price" value="10" placeholder="" style="width:300px;">
                 </div>
             </div>
             <div class="info-btn">
