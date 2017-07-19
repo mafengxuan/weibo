@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class commerceauditController extends CommonController
+class CommerceauditController extends CommonController
 {
     /**
      * Display a listing of the resource.

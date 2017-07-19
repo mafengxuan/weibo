@@ -10,10 +10,12 @@
 								<img src="{{$v['ad_img']}}" alt="">
 								<div class="caption">
 									<a href="{{$v['ad_url']}}">{{$v['ad_brief']}}</a>
+
 									{{--http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/uploads/20170717/201707171501439715.jpg--}}
 								</div>
 							</li>
 							@endforeach
+
 							{{--<li>--}}
 								{{--<img src="{{asset('home')}}/images/2.jpg" alt="">--}}
 								{{--<div class="caption">--}}

@@ -53,7 +53,7 @@
                     <td>{{$v->company_name}}</td>
                     <td>{{$v->username}}</td>
                     @if(!empty($v->company_img))
-                    <td><a href={{'/'.$v->company_img}} data-lightbox="image-1" title="{{$v->company_name}}营业执照">点击查看营业执照</a></td>
+                    <td><a href={{$v->company_img}} data-lightbox="image-1" title="{{$v->company_name}}营业执照">点击查看营业执照</a></td>
                     @else
                     <td><img src=""></td>
                     @endif

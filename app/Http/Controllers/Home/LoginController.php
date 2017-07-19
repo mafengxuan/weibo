@@ -53,6 +53,7 @@ class LoginController extends Controller
 
             //获取图像
             $photo = User_common::where('uid',$user['uid'])->first();
+
             //判断用户名
             if (!$user)
             {

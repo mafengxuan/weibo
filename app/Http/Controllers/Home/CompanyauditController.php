@@ -9,7 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
-class companyauditController extends CommonController
+class CompanyauditController extends CommonController
 {
     /**
      * Display a listing of the resource.
@@ -30,12 +30,17 @@ class companyauditController extends CommonController
     public function upload()
     {
         $file = Input::file('file_upload');
-        if($file->isValid()){
+        if($file->isValid()) {
             $entension = $file->getClientOriginalExtension();//上传文件的后缀名
-            $newName = date('YmdHis').mt_rand(1000,9999).'.'.$entension;
-            $path = $file->move(public_path().'/uploads',$newName);
-            $filepath = 'uploads/'.$newName;
-            return  $filepath;
+            $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
+//            将图片上传到本地服务器
+//            $path = $file->move(public_path() . '/uploads', $newName);
+            // 将图片上传到OSS 阿里云
+            $result = OSS::upload('uploads/'.date('Ymd',time()).'/'.$newName, $file->getRealPath());
+//        返回文件的上传路径
+            $filepath = 'uploads/'.date('Ymd',time()).'/' . $newName;
+            $res = "http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/".$filepath;
+            return $res;
         }
     }
 
