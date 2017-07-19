@@ -58,72 +58,43 @@
                 <!--头像 -->
                 <div class="user-infoPic">
                     <div class="filePic">
-
                         <img class="am-circle am-img-thumbnail" id="pic" src="{{$face}}" alt="" />
-
-                        @if(session('user_home')->type == '1')
-
-                        @elseif(session('user_home')->type == '2')
-                            <img src="/uploads/v2.png" id="jiao"/>
-                        @elseif(session('user_home')->type == '3')
-                            <img src="/uploads/v2.png" id="jiao"/>
-                        @elseif(session('user_home')->type == '4')
-                            <img src="/uploads/v1.png" id="jiao"/>
-                        @endif
-
-
-                        <style type="text/css">
-                            #jiao
-                            {
-                                position:absolute;
-                                left:70px;
-                                top:45px;
-                                z-index:1;
-                                width:20px;
-                                height:20px;
-                            }
-                        </style>
-
-                        {{--asset('/home/user/images/getAvatar.do.jpg')--}}
                     </div>
                     <p class="am-form-help">头像</p>
 
                     <div class="info-m">
                         <div><b>用户名：<i>{{session('user_home')->phone}}</i></b></div>
                         <div class="u-level">
-
                                 <span class="rank r2">
                                      <s class="vip1"></s>@if(session('user_home')->type == '1')
-                                                             普通用户
-                                                             @elseif(session('user_home')->type == '2')
-                                                             公司认证用户
-                                                             @elseif(session('user_home')->type == '3')
-                                                             商业认证用户
-                                                             @elseif(session('user_home')->type == '4')
-                                                             大V认证用户
-                                                             @endif
+                                        普通用户
+                                    @elseif(session('user_home')->type == '2')
+                                        公司认证用户
+                                    @elseif(session('user_home')->type == '3')
+                                        商业认证用户
+                                    @elseif(session('user_home')->type == '4')
+                                        大V认证用户
+                                    @endif
                                 </span>
                         </div>
                         <style>
                             #jiao{width:30px;height:30px}
                         </style>
-                        
-                                @if(session('user_home')->type == '1')
 
-                                @elseif(session('user_home')->type == '2')
-                                    <img src="/uploads/v3.png" id="jiao"/>
-                                @elseif(session('user_home')->type == '3')
-                                    <img src="/uploads/v2.png" id="jiao"/>
-                                @elseif(session('user_home')->type == '4')
-                                    <img src="/uploads/v1.png" id="jiao"/>
-                                @endif
-                        <div class="u-level">
-                            
-                        </div>
+                        @if(session('user_home')->type == '1')
+
+                        @elseif(session('user_home')->type == '2')
+                            <img src="/uploads/v3.png" id="jiao"/>
+                        @elseif(session('user_home')->type == '3')
+                            <img src="/uploads/v2.png" id="jiao"/>
+                        @elseif(session('user_home')->type == '4')
+                            <img src="/uploads/v1.png" id="jiao"/>
+                        @endif
+
                     </div>
                 </div>
-@section('show')
-@show
+                @section('show')
+                @show
 
             </div>
         </div>
@@ -139,15 +110,15 @@
             <li class="person">
                 <a href="{{url('home/index')}}">首页</a>
                 <ul>
-                    <li @if($_SERVER['REQUEST_URI']=='/home/info') class="active" @endif> <a href="{{url('home/info')}}">个人信息</a></li>
-                    <li @if($_SERVER['REQUEST_URI']=='/home/repass') class="active" @endif> <a href="{{url('home/repass')}}">修改密码</a></li>
-                    <li @if($_SERVER['REQUEST_URI']=='/home/email') class="active" @endif> <a href="{{url('home/email')}}">激活邮箱</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/info') class="active" @endif> <a href="{{url('home/info')}}">个人信息</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/repass') class="active" @endif> <a href="{{url('home/repass')}}">修改密码</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/email') class="active" @endif> <a href="{{url('home/email')}}">激活邮箱</a></li>
                 </ul>
             </li>
             <li class="person">
                 <a href="javascript:;">我的交易</a>
                 <ul>
-                    <li @if($_SERVER['REQUEST_URI']=='/home/ad') class="active" @endif><a href="{{url('home/ad')}}">广告中心</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/ad') class="active" @endif><a href="{{url('home/ad')}}">广告中心</a></li>
 
                 </ul>
             </li>
@@ -155,10 +126,10 @@
             <li class="person">
                 <a href="javascript:;">我的认证</a>
                 <ul>
-                    <li @if($_SERVER['REQUEST_URI']=='/home/myaudit') class="active" @endif> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
-                    <li @if($_SERVER['REQUEST_URI']=='/home/company') class="active" @endif> <a href="javascript:;" id="company" onclick="check_audit('company')">公司用户认证</a></li>
-                    <li @if($_SERVER['REQUEST_URI']=='/home/commerce') class="active" @endif> <a href="javascript:;" id="commerce" onclick="check_audit('commerce')">商业用户认证</a></li>
-                    <li @if($_SERVER['REQUEST_URI']=='/home/bigv') class="active" @endif> <a href="javascript:;" id="bigv" onclick="check_audit('bigv')">大V用户认证</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/myaudit') class="active" @endif> <a href="{{url('home/myaudit')}}">我提交的申请</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/company') class="active" @endif> <a href="javascript:;" id="company" onclick="check_audit('company')">公司用户认证</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/commerce') class="active" @endif> <a href="javascript:;" id="commerce" onclick="check_audit('commerce')">商业用户认证</a></li>
+                    <li @if($_SERVER['REDIRECT_URL']=='/home/bigv') class="active" @endif> <a href="javascript:;" id="bigv" onclick="check_audit('bigv')">大V用户认证</a></li>
                 </ul>
             </li>
 
