@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Model\Ad;
 use App\Http\Model\Ad_order;
 use App\Http\Model\Ad_position;
+use App\Http\Model\Admin_log;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -100,6 +101,8 @@ class AdController extends Controller
 
 //        如果成功跳转到文章列表页  如果失败 返回添加页面
         if($re && $res){
+            $content = '添加一条广告: '.$input['ad_name'];
+            Admin_log::dolog($content);
             return redirect('admin/ad');
         }else{
             return back()->with('error','添加失败');
@@ -159,6 +162,8 @@ class AdController extends Controller
         $res = $order->update($orders);
         //如果成功跳转到列表页  失败返回修改页
         if($re && $res){
+            $content = '修改一条广告: 编号'.$id;
+            Admin_log::dolog($content);
             return redirect('admin/ad');
         }else{
             return back()->with('error','修改失败');
@@ -177,6 +182,8 @@ class AdController extends Controller
         $re =  Ad::where('aid',$id)->delete();
 //       0表示成功 其他表示失败
         if($re){
+            $content = '删除一条广告: 编号'.$id;
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'

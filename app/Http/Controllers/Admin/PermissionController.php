@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\Admin_permissions;
 use Illuminate\Http\Request;
 
@@ -61,6 +62,9 @@ class PermissionController extends Controller
         if($validate->passes()){
 
             Admin_permissions::create($input);
+            $content = '添加权限: '.$input['name'];
+            Admin_log::dolog($content);
+
             return back()->with('success','添加成功');
         }else{
             return back()->withErrors($validate);
@@ -91,6 +95,8 @@ class PermissionController extends Controller
         if($validate->passes()){
 
             Admin_permissions::create($input);
+            $content = '添加子权限: '.$input['name'];
+            Admin_log::dolog($content);
             return back()->with('success','添加成功');
         }else{
             return back()->withErrors($validate);
@@ -135,6 +141,8 @@ class PermissionController extends Controller
 
         //如果成功跳转到列表页  失败返回修改页
         if($re){
+            $content = '修改权限: 编号'.$id;
+            Admin_log::dolog($content);
             return back()->with('success','修改成功');
         }else{
             return back()->with('error','修改失败');
@@ -154,6 +162,8 @@ class PermissionController extends Controller
 
 //       0表示成功 其他表示失败
         if($re){
+            $content = '删除权限: 编号'.$input['name'];
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'

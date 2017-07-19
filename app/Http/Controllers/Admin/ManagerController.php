@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Http\Model\Admin_roles;
+use App\Http\Model\Admin_log;
 use App\Http\Model\User_admin;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Http\Request;
@@ -25,11 +26,12 @@ class ManagerController extends Controller
             //去掉二边的空格
             $key = trim($request->input('keywords')) ;
             //从表里查询含有关键字的数据
-            $user = User_admin::join('admin_roles','user_admins.role','=','admin_roles.id')->where('username','like',"%".$key."%")->paginate(2);
+            $user = User_admin::select('*','admin_roles.id as rid','user_admins.id as aid')->join('admin_roles','user_admins.role','=','admin_roles.id')->where('username','like',"%".$key."%")->paginate(2);
             return view('admin.manager.index',['data'=>$user,'key'=>$key]);
         }else {
             //查询用户的所有数据  当二个id一样时给id起别名
             $user = User_admin::select('*','admin_roles.id as rid','user_admins.id as aid')->join('admin_roles','user_admins.role','=','admin_roles.id')->paginate(3);
+            //dd($user);
             return view('admin.manager.index', ['data' => $user]);
         }
     }
@@ -78,6 +80,8 @@ class ManagerController extends Controller
             $res = User_admin::create($input);
             //判断执行结果
             if($res){
+                $content = '添加管理员: '.$input['username'];
+                Admin_log::dolog($content);
                 return redirect('admin/manager');
             }else{
                 return back()->with('error','添加失败');
@@ -116,10 +120,13 @@ class ManagerController extends Controller
     public function update(Request $request, $id)
     {
         //修改对应id的用户
-        $input = $request->only('password');
-        $res =  User_admin::where('id',$id)->update($input);
+        $input = $request->input('password');
+
+        $res =  User_admin::where('id',$id)->update(['password'=>Crypt::encrypt($input)]);
         // 0表示成功 其他表示失败
         if($res){
+            $content = '重置管理员密码: '.$res['username'];
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'重置成功！'
@@ -145,6 +152,8 @@ class ManagerController extends Controller
         $res =  User_admin::where('id',$id)->delete();
         // 0表示成功 其他表示失败
         if($res){
+            $content = '删除管理员: '.$id;
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'

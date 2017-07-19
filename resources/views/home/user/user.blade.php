@@ -13,7 +13,7 @@
                         <div class="am-form-group">
                             <label class="am-form-label">上传头像：</label>
                             <div class="am-form-content">
-                                <input type="text" name="face" id="face" style="width:250px;" value="">
+                                <input type="text" name="face" id="face" style="width:250px;" value="{{$face}}">
                                 <input type="file" name="file_upload" id="file_upload" value="">
                                 <p><img src="/{{$face}}" class="am-circle am-img-thumbnail" alt="" id="pic" style="width:100px" hidden></p>
                                 <script type="text/javascript">
@@ -51,7 +51,7 @@
                                             processData: false,
                                             success: function(data) {
 
-                                                $('#pic').attr('src','/'+data);
+                                                $('#pic').attr('src',data);
                                                 $('#pic').show();
                                                 $('#face').val(data);
                                             },
@@ -87,7 +87,7 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">生日</label>
                             <div class="am-form-content">
-                                <input type="text" onfocus="WdatePicker()" id="datemin" value="{{$data['birth']}}" name="birth" class="input-text Wdate" style="width:250px;">
+                                <input type="text" onfocus="WdatePicker()" id="datemin" value="{{date('Y年m月d日',$data['birth'])}}" name="birth" class="input-text Wdate" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">

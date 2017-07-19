@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\Link;
 use Illuminate\Http\Request;
 
@@ -77,6 +78,9 @@ class LinkController extends Controller
 
 //        如果成功跳转到文章列表页  如果失败 返回添加页面
         if($re){
+            $content = '添加友情链接: '.$input['link_name'];
+            Admin_log::dolog($content);
+
             return redirect('admin/link');
         }else{
             return back()->with('error','添加失败');
@@ -121,6 +125,8 @@ class LinkController extends Controller
         $re = $link->update($input);
 
         if($re){
+            $content = '修改友情链接: '.$id;
+            Admin_log::dolog($content);
 //            如果添加成功跳转到分类列表页
             return redirect('admin/link');
         }else{
@@ -140,6 +146,8 @@ class LinkController extends Controller
         $re =  Link::where('lid',$id)->delete();
 //       0表示成功 其他表示失败
         if($re){
+            $content = '删除友情链接: '.$id;
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\User_admin;
+use Illuminate\Support\Facades\Crypt;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,7 @@ class LoginController extends Controller
      */
     //加载登录页面
     public function login(){
-        //显示登录页面
+
         return view('admin.login.login');
     }
     //验证码
@@ -44,6 +46,7 @@ class LoginController extends Controller
             'username' => 'required|between:2,18',
             'password' => 'required|between:6,18'
         ];
+
         //提示信息
         $mess = [
             'username.required' => '用户名必填',
@@ -64,12 +67,15 @@ class LoginController extends Controller
                 return back()->with('errors','该用户不存在')->withInput();
             }
             //验证密码  用户输入的密码和数据库密码
-            if($input['password']  != $user['password']){
+            if($input['password']  != Crypt::decrypt($user['password'])){
                 return back()->with('errors','密码错误')->withInput();
             }
             //将用户信息添加到session中
             session(['user'=>$user]);
             //登录成功跳到首页
+            $content = '管理员登录: '.$user['username'];
+            Admin_log::dolog($content);
+
             return redirect('admin/index');
         }else{
             return back()->withErrors($validate);

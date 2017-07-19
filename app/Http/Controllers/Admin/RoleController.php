@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\Admin_permissions;
 use App\Http\Model\Admin_roles;
 use Illuminate\Http\Request;
@@ -50,6 +51,8 @@ class RoleController extends Controller
         {
             \DB::insert('insert into admin_permission_role (permission_id, role_id) values (?, ?)', [  $v,$rid]);
         }
+        $content = '添加角色: '.$input['name'];
+        Admin_log::dolog($content);
 
         $data ['msg'] = '添加成功';
         return $data;
@@ -106,7 +109,8 @@ class RoleController extends Controller
         {
             \DB::insert('insert into admin_permission_role (permission_id, role_id) values (?, ?)', [  $v,$id]);
         }
-
+        $content = '修改角色: 编号'.$id;
+        Admin_log::dolog($content);
         $data ['msg'] = '修改成功';
         return $data;
     }
@@ -123,6 +127,8 @@ class RoleController extends Controller
         $re = Admin_roles::destroy($id);
 //       0表示成功 其他表示失败
         if($re){
+            $content = '删除角色: 编号'.$id;
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'

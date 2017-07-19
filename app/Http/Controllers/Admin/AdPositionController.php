@@ -58,6 +58,8 @@ class AdPositionController extends Controller
         $res = Ad_position::create($input);
         // 如果成功跳转到广告列表页  如果失败 返回添加页面
         if($res){
+            $content = '添加广告位: '.$input['p_name'];
+            Admin_log::dolog($content);
             return redirect('admin/adPosition');
         }else{
             return back()->with('error','添加失败');
@@ -109,6 +111,8 @@ class AdPositionController extends Controller
 
         //如果成功跳转到列表页  失败返回修改页
         if($res){
+            $content = '修改广告位: '.$input['p_name'];
+            Admin_log::dolog($content);
             return redirect('admin/adPosition');
         }else{
             return back()->with('error','修改失败');
@@ -127,6 +131,8 @@ class AdPositionController extends Controller
         $re =  Ad_position::where('pid',$id)->delete();
         //0表示成功 其他表示失败
         if($re){
+            $content = '删除广告位: 编号'.$id;
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'

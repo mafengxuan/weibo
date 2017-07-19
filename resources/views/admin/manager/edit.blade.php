@@ -54,6 +54,7 @@
             }, function(){
                 $.post("{{url('admin/manager')}}/"+id,$('form').serialize(),function(data){
                     if(data.status == 0){
+
                         location.href = location.href;
                         layer.msg(data.msg, {icon: 6});
                     }else{
