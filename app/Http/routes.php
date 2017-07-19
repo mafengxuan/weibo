@@ -201,11 +201,16 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     //前台发布微博
     Route::get('microblog','IndexController@microblog');
     Route::post('microblogAjax','IndexController@microblogAjax');
+//    Route::get('navigation','IndexController@navigation');
 
     // 前台广告中心路由
     Route::get('ad','AdController@index');
     // 前台广告申请路由
     Route::resource('adadd','adAddController');
     Route::any('upload','adAddController@upload');
+
+    //前台导航
+//    Route::get('search','IndexController@search');
+
 });
 

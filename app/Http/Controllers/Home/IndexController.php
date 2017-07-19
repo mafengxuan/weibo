@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Model\Comment;
 use App\Http\Model\Microblog;
+use App\Http\Model\Navigation;
 use App\Http\Model\Reply;
 use App\Http\Model\User_commerce;
 use App\Http\Model\User_common;
@@ -30,7 +31,8 @@ class IndexController extends Controller
 
         //查询microblog表的数据 根据浏览量查询前十条
         $data = Microblog::orderBy('mcount','desc')->take(10)->get();
-
+        $nav= Navigation::all();
+//        dd($nav);
         //获取微博列表
         $microblog = Microblog::join('user_commons','microblogs.uid','=','user_commons.uid')->get();
 //        dd($microblog);
@@ -41,7 +43,7 @@ class IndexController extends Controller
         $pic5 = Ad_order::orderBy('price','desc')->join('ads','ad_orders.aid','=','ads.aid')->get();
         $links = Link::all();
 
-        return view('home.index.index',compact('microblog','data','pic','pic2','pic3','pic4','pic5','links'));
+        return view('home.index.index',compact('microblog','nav','data','pic','pic2','pic3','pic4','pic5','links'));
 
 
 //            return view('home.index.index');
@@ -55,8 +57,10 @@ class IndexController extends Controller
         $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',4)->get();
         $pic5 = Ad_order::orderBy('price','desc')->join('ads','ad_orders.aid','=','ads.aid')->get();
         $links = Link::all();
+        $nav= Navigation::all();
         $data = Microblog::orderBy('mcount','desc')->take(10)->get();
-        return view('home/microblog/microblog',compact('data','pic','pic2','pic3','pic4','pic5','links'));
+
+        return view('home/microblog/microblog',compact('data','nav','pic','pic2','pic3','pic4','pic5','links'));
     }
     public function microblogAjax(Request $request){
 
@@ -162,6 +166,5 @@ class IndexController extends Controller
         return $arr;
 
     }
-
 
 }
