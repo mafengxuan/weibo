@@ -162,7 +162,10 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
-
+    //前台收藏页
+    Route::get('collect','DetailsController@collectindex');
+    //前台关注页
+    Route::get('attention','DetailsController@attentionindex');
     //前台获取微博评论
     Route::post('index/comment/{id}','CommonindexController@comment');
     //前台执行评论
