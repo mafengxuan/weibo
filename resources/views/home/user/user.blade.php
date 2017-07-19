@@ -51,7 +51,7 @@
                                             processData: false,
                                             success: function(data) {
 
-                                                $('#pic').attr('src','/'+data);
+                                                $('#pic').attr('src',data);
                                                 $('#pic').show();
                                                 $('#face').val(data);
                                             },

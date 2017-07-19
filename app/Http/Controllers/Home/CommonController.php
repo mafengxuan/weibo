@@ -16,7 +16,7 @@ class CommonController extends Controller
         $uid = session('user_home')->uid;
        $facee =  User_common::where('uid',$uid)->first()['face'];
 
-       $face =  empty($facee) ? 'uploads/201707171538159659.jpg'  : $facee;
+       $face =  empty($facee) ? 'http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/uploads/20170719/201707191939375622.jpg' : $facee;
 
         view()->share('face', $face);
     }

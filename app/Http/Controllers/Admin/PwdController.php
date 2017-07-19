@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Model\User_admin;
+use Illuminate\Support\Facades\Crypt;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class PwdController extends Controller
 
             $user =  User_admin::where('id',session('user')->id)->first();
 
-            if($input['password_o'] != $user->password){
+            if($input['password_o'] != Crypt::decrypt($user->password)){
                 return back()->with('errors','输入的原密码跟数据库中的密码不一致');
             }else{
                 $pass = $input['password'];
