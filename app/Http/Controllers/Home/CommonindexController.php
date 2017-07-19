@@ -27,7 +27,7 @@ class CommonindexController extends Controller
         $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',4)->get();
         $pic5 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',5)->take(12)->get();
         // 友情链接
-        $links = Link::orderBy('link_sort','asc')->get();
+        $links = Link::orderBy('link_sort','asc')->where('status',1)->get();
 
         view()->share('pic', $pic);
         view()->share('pic2', $pic2);

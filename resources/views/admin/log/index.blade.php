@@ -89,4 +89,3 @@ function system_log_del(obj,id){
 	});
 }
 </script>
-@endsection
