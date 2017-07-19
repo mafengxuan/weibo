@@ -42,7 +42,7 @@ class LogController extends Controller
                 $log = $log->where("ctime", '<', $e_time);
                 $old_e_time = $request->get('e_time');
             }
-            $data = $log->paginate(3);
+            $data = $log->paginate(20);
             return view('admin.log.index', ['data' => $data, 'content' => $old_content, 's_time'=> $old_s_time, 'e_time'=> $old_e_time]);
         } else {
             $data = Admin_log::orderBy('id', 'desc')->paginate(3);
