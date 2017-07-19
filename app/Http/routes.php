@@ -215,8 +215,8 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     // 前台广告中心路由
     Route::get('ad','AdController@index');
     // 前台广告申请路由
-    Route::resource('adadd','adAddController');
-    Route::any('upload','adAddController@upload');
+    Route::resource('adadd','AdaddController');
+    Route::any('upload','AdaddController@upload');
 
 
 

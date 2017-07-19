@@ -21,13 +21,13 @@ class CommonindexController extends Controller
     {
         //公共模板广告内容
 
-        $pic  = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',1)->first();
-        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',2)->first();
-        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',3)->first();
-        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',4)->get();
+        $pic  = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',1)->first();
+        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',2)->first();
+        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',3)->first();
+        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',4)->get();
         $pic5 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',5)->take(12)->get();
         // 友情链接
-        $links = Link::orderBy('link_sort','asc')->get();
+        $links = Link::orderBy('link_sort','asc')->where('status',1)->get();
 
         view()->share('pic', $pic);
         view()->share('pic2', $pic2);
