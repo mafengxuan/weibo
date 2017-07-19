@@ -10,4 +10,5 @@ class Collect extends Model
     protected $table = 'collects';
     protected $primaryKey = 'cid';
     public $timestamps = false;
+    protected $guarded = [];
 }

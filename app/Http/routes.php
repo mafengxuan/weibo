@@ -162,12 +162,23 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     Route::get('index','IndexController@index');
 
     //前台获取微博评论
-    Route::post('index/comment/{id}','IndexController@comment');
+    Route::post('index/comment/{id}','CommonindexController@comment');
     //前台执行评论
-    Route::post('index/docomment/{id}','IndexController@docomment');
+    Route::post('index/docomment/{id}','CommonindexController@docomment');
     //前台回复
-    Route::post('index/reply','IndexController@reply');
-
+    Route::post('index/reply','CommonindexController@reply');
+    //前台收藏
+    Route::post('index/collect/{id}','CommonindexController@collect');
+    //前台取消收藏
+    Route::post('index/nocollect/{id}','CommonindexController@nocollect');
+    //前台转发
+    Route::post('index/transpond/{id}','CommonindexController@transpond');
+    //前台关注
+    Route::post('index/attention/{id}','CommonindexController@attention');
+    //前台取消关注
+    Route::post('index/noattention/{id}','CommonindexController@noattention');
+    //前台点赞
+    Route::post('index/zan/{id}','CommonindexController@zan');
 
 
     //个人中心-我提交的申请
