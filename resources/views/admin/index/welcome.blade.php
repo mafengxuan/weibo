@@ -32,10 +32,6 @@
 			</tr>
 
 			<tr>
-				<td>本文件所在文件夹 </td>
-				<td>{{$_SERVER['REDIRECT_URL']}}</td>
-			</tr>
-			<tr>
 				<td>服务器操作系统 </td>
 				<td>{{$_SERVER['SERVER_SOFTWARE']}}</td>
 			</tr>
