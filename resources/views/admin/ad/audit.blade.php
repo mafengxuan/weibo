@@ -36,7 +36,7 @@
                         <td>
                             @if ($v->status ==4)
                             <a href="javascript:;" onclick="charge({{$v->aid}})">收费通过</a>&nbsp;
-                        @else
+                            @else
                             <a href="javascript:;" onclick="Editaudit({{$v->aid}})">通过</a>&nbsp;
                             @endif
                             <a href="javascript:;" onclick="Delaudit({{$v->aid}})">驳回</a>

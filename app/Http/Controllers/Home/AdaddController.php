@@ -14,7 +14,9 @@ use App\Services\OSS;
 
 class AdaddController extends CommonController
 {
-    // 上传图片路由
+    /*
+     * 上传图片
+     */
     public function upload()
     {
 //        将上传文件移动到制定目录，并以新文件名命名
@@ -25,7 +27,7 @@ class AdaddController extends CommonController
 //            将图片上传到本地服务器
 //            $path = $file->move(public_path() . '/uploads', $newName);
             // 将图片上传到OSS 阿里云
-            $result = OSS::upload('uploads/'.date('Ymd',time()).'/'.$newName, $file->getRealPath());
+            OSS::upload('uploads/'.date('Ymd',time()).'/'.$newName, $file->getRealPath());
 //        返回文件的上传路径
             $filepath = 'uploads/'.date('Ymd',time()).'/' . $newName;
             $res = "http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/".$filepath;

@@ -6,7 +6,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户名：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" class="input-text" value="" placeholder="" id="" name="username" style="width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
+                <input type="text" class="input-text" value="{{$session['username']}}" name="username" style="width:500px;"><span style=" text-decoration: none" class="btn btn-link"></span>
             </div>
         </div>
         <div class="row cl">
@@ -159,7 +159,7 @@
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
                 <input type="submit" class="btn btn-primary radius" class="submit" value="提交">
-                <input type="button" class="btn btn-default" onclick="history.go(-2)" value="返回">
+                <input type="button" class="btn btn-default" onclick="history.go(-1)" value="返回">
             </div>
         </div>
 
