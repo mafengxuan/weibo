@@ -3,7 +3,8 @@
     <!--邮箱激活 -->
     <style>
         .xo{
-            color: red;
+            color: green;
+            font-size:30px;
         }
     </style>
 
