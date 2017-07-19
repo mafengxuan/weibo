@@ -91,18 +91,34 @@
                     <div class="info-m">
                         <div><b>用户名：<i>{{session('user_home')->phone}}</i></b></div>
                         <div class="u-level">
-									<span class="rank r2">
-							             <s class="vip1"></s>@if(session('user_home')->type == '1')
-                                                                 普通用户
-                                                                 @elseif(session('user_home')->type == '2')
-                                                                 公司认证用户
-                                                                 @elseif(session('user_home')->type == '3')
-                                                                 商业认证用户
-                                                                 @elseif(session('user_home')->type == '4')
-                                                                 大V认证用户
-                                                                 @endif
-						            </span>
-                            {{--<a class="classes" href="#">普通用户</a>--}}
+
+                                <span class="rank r2">
+                                     <s class="vip1"></s>@if(session('user_home')->type == '1')
+                                                             普通用户
+                                                             @elseif(session('user_home')->type == '2')
+                                                             公司认证用户
+                                                             @elseif(session('user_home')->type == '3')
+                                                             商业认证用户
+                                                             @elseif(session('user_home')->type == '4')
+                                                             大V认证用户
+                                                             @endif
+                                </span>
+                        </div>
+                        <style>
+                            #jiao{width:30px;height:30px}
+                        </style>
+                        
+                                @if(session('user_home')->type == '1')
+
+                                @elseif(session('user_home')->type == '2')
+                                    <img src="/uploads/v3.png" id="jiao"/>
+                                @elseif(session('user_home')->type == '3')
+                                    <img src="/uploads/v2.png" id="jiao"/>
+                                @elseif(session('user_home')->type == '4')
+                                    <img src="/uploads/v1.png" id="jiao"/>
+                                @endif
+                        <div class="u-level">
+                            
                         </div>
                     </div>
                 </div>
