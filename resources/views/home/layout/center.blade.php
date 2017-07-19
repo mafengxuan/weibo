@@ -58,7 +58,31 @@
                 <!--头像 -->
                 <div class="user-infoPic">
                     <div class="filePic">
-                        <img class="am-circle am-img-thumbnail" id="pic" src="/{{$face}}" alt="" />
+                        <img class="am-circle am-img-thumbnail" id="pic" src="{{$face}}" alt="" />
+
+                        @if(session('user_home')->type == '1')
+
+                        @elseif(session('user_home')->type == '2')
+                            <img src="/uploads/v2.png" id="jiao"/>
+                        @elseif(session('user_home')->type == '3')
+                            <img src="/uploads/v2.png" id="jiao"/>
+                        @elseif(session('user_home')->type == '4')
+                            <img src="/uploads/v1.png" id="jiao"/>
+                        @endif
+
+
+                        <style type="text/css">
+                            #jiao
+                            {
+                                position:absolute;
+                                left:70px;
+                                top:45px;
+                                z-index:1;
+                                width:20px;
+                                height:20px;
+                            }
+                        </style>
+
                         {{--asset('/home/user/images/getAvatar.do.jpg')--}}
                     </div>
                     <p class="am-form-help">头像</p>
@@ -67,7 +91,15 @@
                         <div><b>用户名：<i>{{session('user_home')->phone}}</i></b></div>
                         <div class="u-level">
 									<span class="rank r2">
-							             <s class="vip1"></s>普通用户
+							             <s class="vip1"></s>@if(session('user_home')->type == '1')
+                                                                 普通用户
+                                                                 @elseif(session('user_home')->type == '2')
+                                                                 公司认证用户
+                                                                 @elseif(session('user_home')->type == '3')
+                                                                 商业认证用户
+                                                                 @elseif(session('user_home')->type == '4')
+                                                                 大V认证用户
+                                                                 @endif
 						            </span>
                             {{--<a class="classes" href="#">普通用户</a>--}}
                         </div>

@@ -40,8 +40,8 @@
                         <label for="type-3">radio</label>
                     </div>
                     <div class="field_value" style="display: none;">
-                        <input type="text" name="field_value" value="1|开启，0|关闭">
-                        <span>radio选项下格式为：1|开启，0|关闭</span>
+                        <input type="text" name="field_value" value="true|开启，false|关闭">
+                        <span>radio选项下格式为：true|开启，false|关闭</span>
                     </div>
                 </div>
             </div>

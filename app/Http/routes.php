@@ -177,7 +177,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     //个人中心-公司申请
     Route::post('company/doaudit','companyauditController@doaudit');
     Route::resource('company','companyauditController');
-    Route::post('upload','companyauditController@upload');
+    //Route::post('uploadp','companyauditController@uploadpic');
     Route::post('company/checkname','companyauditController@checkname');
     //个人中心-商业申请
     Route::resource('commerce','commerceauditController');
@@ -187,10 +187,6 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     Route::resource('bigv','bigvauditController');
     Route::post('bigv/doaudit','bigvauditController@doaudit');
     Route::post('bigv/checkname','bigvauditController@checkname');
-
-
-
-    Route::resource('pic','HeadController');
 
 
     //前台详情页

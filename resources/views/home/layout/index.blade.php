@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>lamp182-weibo</title>
+<title>{{config('web.web_title')}}</title>
 <link href="{{asset('home')}}/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{asset('home')}}/js/jquery.min.js"></script>
@@ -554,9 +554,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="footer-top">
 			<div class="wrap">
 				<div class="col-md-3 col-xs-6 col-sm-4 footer-grid">
-					<h4 class="footer-head">About Us</h4>
-					<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-					<p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here.</p>
+					<h4 class="footer-head">关于我们</h4>
+					<p>{{config('web.about_us')}}</p>
+					<p>{{config('web.about_us_en')}}</p>
+
 				</div>
 				<div class="col-md-2 col-xs-6 col-sm-2 footer-grid">
 					<h4 class="footer-head">友情链接</h4>
@@ -581,22 +582,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="col-md-3 col-xs-12 footer-grid">
-					<h4 class="footer-head">Contact Us</h4>
-					<span class="hq">Our headquaters</span>
+					<h4 class="footer-head">联系我们</h4>
+					<span class="hq">公司总部</span>
 					<address>
 						<ul class="location">
 							<li><span class="glyphicon glyphicon-map-marker"></span></li>
-							<li>CENTER FOR FINANCIAL ASSISTANCE TO DEPOSED NIGERIAN ROYALTY</li>
+							<li>{{config('web.address')}}</li>
 							<div class="clearfix"></div>
 						</ul>	
 						<ul class="location">
 							<li><span class="glyphicon glyphicon-earphone"></span></li>
-							<li>+0 561 111 235</li>
+							<li>{{config('web.mobile')}}</li>
 							<div class="clearfix"></div>
 						</ul>	
 						<ul class="location">
 							<li><span class="glyphicon glyphicon-envelope"></span></li>
-							<li><a href="mailto:info@example.com">mail@example.com</a></li>
+							<li><a href="mailto:lisicong1982@163.com">{{config('web.email')}}</a></li>
 							<div class="clearfix"></div>
 						</ul>						
 					</address>
