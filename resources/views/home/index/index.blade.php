@@ -12,23 +12,10 @@
 
 									<a href="{{$v['ad_url']}}">{{$v['ad_brief']}}</a>
 
-									{{--http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/uploads/20170717/201707171501439715.jpg--}}
-								</div>
+							</div>
 							</li>
 							@endforeach
 
-							{{--<li>--}}
-								{{--<img src="{{asset('home')}}/images/2.jpg" alt="">--}}
-								{{--<div class="caption">--}}
-									{{--<a href="single.html">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</a>--}}
-								{{--</div>--}}
-							{{--</li>--}}
-							{{--<li>--}}
-								{{--<img src="{{asset('home')}}/images/1.jpg" alt="">--}}
-								{{--<div class="caption">--}}
-									{{--<a href="single.html">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</a>--}}
-								{{--</div>--}}
-							{{--</li>--}}
 						</ul>
 					</div>
 				</div>

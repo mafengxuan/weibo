@@ -35,7 +35,7 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">生日</label>
                             <div class="am-form-content">
-                                <input type="text" onfocus="WdatePicker()" id="datemin" value="{{$user['birth']}}" name="birth" disabled class="input-text Wdate" style="width:250px;">
+                                <input type="text" onfocus="WdatePicker()" id="datemin" value="{{date('Y年m月d日',$user['birth'])}}" name="birth" disabled class="input-text Wdate" style="width:250px;">
                             </div>
                         </div>
                         <div class="am-form-group">

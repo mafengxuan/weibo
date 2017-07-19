@@ -63,7 +63,7 @@ class CommonindexController extends Controller
         view()->share('collect', $collect);
         view()->share('attention', $attention);
 
-        $nav= Navigation::all();
+        $nav= Navigation::orderBy('nav_sort')->get();
         view()->share('nav',$nav);
 
     }

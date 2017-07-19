@@ -26,6 +26,7 @@ class IndexController extends Controller
     */
     public function welcome()
     {
+        dd($_SERVER);
         return view('admin.index.welcome');
     }
 

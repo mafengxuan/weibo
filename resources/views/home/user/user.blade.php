@@ -43,7 +43,7 @@
 
                                         $.ajax({
                                             type: "POST",
-                                            url: '/home/upload/add',
+                                            url: '/home/upload',
                                             data: formData,
                                             async: true,
                                             cache: false,

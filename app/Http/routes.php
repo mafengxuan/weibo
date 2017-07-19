@@ -148,8 +148,6 @@ Route::get('/home/info','Home\UserController@info');
 //修改个人信息
 Route::get('/home/edit','Home\UserController@edit');
 Route::post('/home/doedit','Home\UserController@doedit');
-//头像上传
-Route::post('/home/upload/add','Home\UserController@upload');
 //邮箱激活
 Route::get('/home/email','Home\UserController@email');
 Route::post('/home/doemail','Home\UserController@doemail');
@@ -192,7 +190,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     //个人中心-公司申请
     Route::post('company/doaudit','companyauditController@doaudit');
     Route::resource('company','companyauditController');
-    //Route::post('uploadp','companyauditController@uploadpic');
+
     Route::post('company/checkname','companyauditController@checkname');
     //个人中心-商业申请
     Route::resource('commerce','commerceauditController');
@@ -220,8 +218,7 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     Route::resource('adadd','adAddController');
     Route::any('upload','adAddController@upload');
 
-    //前台导航
-//    Route::get('search','IndexController@search');
+
 
 });
 
