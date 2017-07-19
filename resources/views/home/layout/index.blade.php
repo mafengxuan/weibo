@@ -314,7 +314,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						  </div>
 						  <div>
 						    <input id="label-3" name="lida" type="radio"/>
-						    <label for="label-3" id="item3"><i class="icon-trophy" id="i3"></i>广告排行<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
+						    <label for="label-3" id="item3"><i class="icon-trophy" id="i3"></i><i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
 						    <div class="content" id="a3">
 						       <div class="scrollbar" id="style-2">
 							    <div class="force-overflow">
@@ -449,21 +449,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 </div>
 					 <div class="side-bar-articles">
 						<div class="side-bar-article">
-							<a href="single.html"><img src="{{$pic['ad_img']}}" alt="" /></a>
+							<a href="https:\\www.baidu.com"><img src="{{$pic['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="single.html">{{$pic['ad_brief']}}</a>
+								<a href="https:\\www.baidu.com">{{$pic['ad_brief']}}</a>
 							</div>
 						</div>
 						<div class="side-bar-article">
-							<a href="single.html"><img src="{{$pic2['ad_img']}}" alt="" /></a>
+							<a href="https:\\www.baidu.com"><img src="{{$pic2['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="single.html">{{$pic2['ad_brief']}}</a>
+								<a href="https:\\www.baidu.com">{{$pic2['ad_brief']}}</a>
 							</div>
 						</div>
 						<div class="side-bar-article">
-							<a href="single.html"><img src="{{$pic3['ad_img']}}" alt="" /></a>
+							<a href="https:\\www.baidu.com"><img src="{{$pic3['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="single.html">{{$pic3['ad_brief']}}</a>
+								<a href="https:\\www.baidu.com">{{$pic3['ad_brief']}}</a>
 							</div>
 						</div>
 					 </div>
@@ -562,21 +562,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h4 class="footer-head">友情链接</h4>
 					@foreach($links as $k=>$v)
 					<ul class="cat">
-						<li><a href="{{$v->link_url}}" title="{{$v->link_title}}">{{$v->link_name}}</a></li>
+						<li><a href="https:\\www.baidu.com" title="{{$v->link_title}}">{{$v->link_name}}</a></li>
 					</ul>
 					@endforeach
 				</div>
 				<div class="col-md-4 col-xs-6 col-sm-6 footer-grid">
-					<h4 class="footer-head">Flickr Feed</h4>
+					<h4 class="footer-head">女神 高圆圆</h4>
 					<ul class="flickr">
-						<li><a href="#"><img src="{{asset('home')}}/images/bus4.jpg"></a></li>
-						<li><a href="#"><img src="{{asset('home')}}/images/bus2.jpg"></a></li>
-						<li><a href="#"><img src="{{asset('home')}}/images/bus3.jpg"></a></li>
-						<li><a href="#"><img src="{{asset('home')}}/images/tec4.jpg"></a></li>
-						<li><a href="#"><img src="{{asset('home')}}/images/tec2.jpg"></a></li>
-						<li><a href="#"><img src="{{asset('home')}}/images/tec3.jpg"></a></li>
-						<li><a href="#"><img src="{{asset('home')}}/images/bus2.jpg"></a></li>
-						<li><a href="#"><img src="{{asset('home')}}/images/bus3.jpg"></a></li>
+						@foreach($pic6 as $k=>$v)
+						<li><a href="https:\\www.baidu.com"><img src="{{$v->ad_img}}"></a></li>
+						@endforeach
 						<div class="clearfix"></div>
 					</ul>
 				</div>

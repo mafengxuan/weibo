@@ -14,6 +14,9 @@ use App\Services\OSS;
 
 class AdController extends Controller
 {
+    /**
+     * 上传图片
+     */
     public function upload()
     {
 
@@ -33,9 +36,9 @@ class AdController extends Controller
         }
     }
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * 搜索
+     * 返回广告主页面
      */
     public function index(Request $request)
     {
@@ -56,9 +59,9 @@ class AdController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 返回添加页面
      *
-     * @return \Illuminate\Http\Response
+     *
      */
     public function create(Request $request)
     {
@@ -71,10 +74,10 @@ class AdController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 接收广告添加的数据
+     * 保存到数据库
+     *
      */
     public function store(Request $request)
     {
@@ -116,10 +119,10 @@ class AdController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 获取修改的数据记录
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 返回修改页面
+     *
      */
     public function edit($id)
     {
@@ -135,11 +138,11 @@ class AdController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 获取要修改的数据
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 执行修改
+     *
+     *
      */
     public function update(Request $request, $id)
     {
@@ -163,10 +166,10 @@ class AdController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除广告数据
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     *
      */
     public function destroy($id)
     {

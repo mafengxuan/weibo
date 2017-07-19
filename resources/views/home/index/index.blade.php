@@ -9,7 +9,7 @@
 							<li>
 								<img src="{{$v['ad_img']}}" alt="">
 								<div class="caption">
-									<a href="{{$v['ad_url']}}">{{$v['ad_brief']}}</a>
+									<a href="https:\\www.baidu.com">{{$v['ad_brief']}}</a>
 									{{--http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/uploads/20170717/201707171501439715.jpg--}}
 								</div>
 							</li>
@@ -73,65 +73,6 @@
 							{{--评论内容--}}
 
 							<div class="response" style="display:none">
-								{{--<h4>Responses</h4>--}}
-								{{--<div class="media response-info">--}}
-									{{--<div class="media-left response-text-left">--}}
-										{{--<a href="#">--}}
-											{{--<img class="media-object" src="{{asset('home')}}/images/c1.jpg" alt=""/>--}}
-										{{--</a>--}}
-										{{--<h5><a href="#">Username</a></h5>--}}
-									{{--</div>--}}
-									{{--<div class="media-body response-text-right">--}}
-										{{--<p>评论内容</p>--}}
-										{{--<ul>--}}
-											{{--<li>Sep 21, 2015</li>--}}
-											{{--<li><a href="single.html">Reply</a></li>--}}
-										{{--</ul>--}}
-										{{--<div class="media response-info">--}}
-											{{--<div class="media-left response-text-left">--}}
-
-												{{--<h5><a href="#">Username</a></h5>--}}
-											{{--</div>--}}
-											{{--<div class="media-body response-text-right">--}}
-												{{--<p>回复内容</p>--}}
-												{{--<ul>--}}
-													{{--<li>July 17, 2015</li>--}}
-													{{--<li><a href="single.html">Reply</a></li>--}}
-												{{--</ul>--}}
-											{{--</div>--}}
-											{{--<div class="clearfix"> </div>--}}
-										{{--</div>--}}
-										{{--<div class="media response-info">--}}
-											{{--<div class="media-left response-text-left">--}}
-
-												{{--<h5><a href="#">Username</a></h5>--}}
-											{{--</div>--}}
-											{{--<div class="media-body response-text-right">--}}
-												{{--<p>回复内容</p>--}}
-												{{--<ul>--}}
-													{{--<li>July 17, 2015</li>--}}
-													{{--<li><a href="single.html">Reply</a></li>--}}
-												{{--</ul>--}}
-											{{--</div>--}}
-											{{--<div class="clearfix"> </div>--}}
-										{{--</div>--}}
-										{{--<div class="media response-info">--}}
-											{{--<div class="media-left response-text-left">--}}
-
-												{{--<h5><a href="#">Username</a></h5>--}}
-											{{--</div>--}}
-											{{--<div class="media-body response-text-right">--}}
-												{{--<p>回复内容</p>--}}
-												{{--<ul>--}}
-													{{--<li>July 17, 2015</li>--}}
-													{{--<li><a href="single.html">Reply</a></li>--}}
-												{{--</ul>--}}
-											{{--</div>--}}
-											{{--<div class="clearfix"> </div>--}}
-										{{--</div>--}}
-									{{--</div>--}}
-									{{--<div class="clearfix"> </div>--}}
-								{{--</div>--}}
 
 							</div>
 						</div>

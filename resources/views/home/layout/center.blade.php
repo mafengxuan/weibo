@@ -58,7 +58,7 @@
                 <!--头像 -->
                 <div class="user-infoPic">
                     <div class="filePic">
-                        <img class="am-circle am-img-thumbnail" id="pic" src="/{{$face}}" alt="" />
+                        <img class="am-circle am-img-thumbnail" id="picc" src="/{{$face}}" alt="" />
                         {{--asset('/home/user/images/getAvatar.do.jpg')--}}
                     </div>
                     <p class="am-form-help">头像</p>
@@ -99,17 +99,17 @@
                 <a href="#">我的交易</a>
                 <ul>
                     <li><a href="{{url('home/ad')}}">广告中心</a></li>
-                    <li> <a href="change.html">退款售后</a></li>
+                    {{--<li> <a href="change.html">退款售后</a></li>--}}
                 </ul>
             </li>
-            <li class="person">
-                <a href="#">我的资产</a>
-                <ul>
-                    <li> <a href="coupon.html">优惠券 </a></li>
-                    <li> <a href="bonus.html">红包</a></li>
-                    <li> <a href="bill.html">账单明细</a></li>
-                </ul>
-            </li>
+            {{--<li class="person">--}}
+                {{--<a href="#">我的资产</a>--}}
+                {{--<ul>--}}
+                    {{--<li> <a href="coupon.html">优惠券 </a></li>--}}
+                    {{--<li> <a href="bonus.html">红包</a></li>--}}
+                    {{--<li> <a href="bill.html">账单明细</a></li>--}}
+                {{--</ul>--}}
+            {{--</li>--}}
 
             <li class="person">
                 <ul>
@@ -127,7 +127,9 @@
 
 </body>
 </html>
+@section('js')
 
+@show
 
 <script>
     function check_audit(str)

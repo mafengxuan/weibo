@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Input;
 class LinkController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
+     * 返回友情链接主页面
      */
     public function index(Request $request)
     {
@@ -22,7 +22,9 @@ class LinkController extends Controller
         $status = array(1=>'发布',2=>'未发布');
         return view('admin.ad.link',compact('data','status'));
     }
-
+    /*
+     * 友情链接排序处理
+     */
     public function changeOrder(Request $request)
     {
 
@@ -49,9 +51,9 @@ class LinkController extends Controller
         return $data;
     }
     /**
-     * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     *返回友情链接添加页面
+     *
      */
     public function create()
     {
@@ -59,10 +61,10 @@ class LinkController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *
+     * 执行友情链接添加
+     *
      */
     public function store(Request $request)
     {
@@ -93,10 +95,10 @@ class LinkController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 返回友情链接修改页面
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     *
      */
     public function edit($id)
     {
@@ -105,11 +107,11 @@ class LinkController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * 执行友情链接修改
+     *
+     *
      */
     public function update(Request $request, $id)
     {
@@ -127,10 +129,10 @@ class LinkController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 执行友情链接删除
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     *
      */
     public function destroy($id)
     {

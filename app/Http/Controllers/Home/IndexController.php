@@ -34,14 +34,15 @@ class IndexController extends Controller
         //获取微博列表
         $microblog = Microblog::join('user_commons','microblogs.uid','=','user_commons.uid')->get();
 //        dd($microblog);
-        $pic = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',1)->first();
-        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',2)->first();
-        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',3)->first();
-        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',4)->get();
+        $pic = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',1)->first();
+        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',2)->first();
+        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',3)->first();
+        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',4)->get();
+        $pic6 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',5)->take(12)->get();
         $pic5 = Ad_order::orderBy('price','desc')->join('ads','ad_orders.aid','=','ads.aid')->get();
-        $links = Link::all();
+        $links = Link::orderBy('link_sort','asc')->get();
 
-        return view('home.index.index',compact('microblog','data','pic','pic2','pic3','pic4','pic5','links'));
+        return view('home.index.index',compact('microblog','data','pic','pic2','pic3','pic4','pic5','pic6','links'));
 
 
 //            return view('home.index.index');
@@ -49,14 +50,15 @@ class IndexController extends Controller
 
 
     public function microblog(Request $request){
-        $pic = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',1)->first();
-        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',2)->first();
-        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',3)->first();
-        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',4)->get();
+        $pic = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',1)->first();
+        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',2)->first();
+        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',3)->first();
+        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',4)->get();
+        $pic6 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',5)->take(12)->get();
         $pic5 = Ad_order::orderBy('price','desc')->join('ads','ad_orders.aid','=','ads.aid')->get();
-        $links = Link::all();
+        $links = Link::orderBy('link_sort','asc')->get();
         $data = Microblog::orderBy('mcount','desc')->take(10)->get();
-        return view('home/microblog/microblog',compact('data','pic','pic2','pic3','pic4','pic5','links'));
+        return view('home/microblog/microblog',compact('data','pic','pic2','pic3','pic4','pic5','pic6','links'));
     }
     public function microblogAjax(Request $request){
 
