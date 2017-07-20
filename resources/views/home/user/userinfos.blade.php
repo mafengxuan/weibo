@@ -28,7 +28,7 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-form-label">QQ</label>
                             <div class="am-form-content">
-                                <input type="text" id="user-name2" name="qq" value="{{$user['qq']}}" placeholder="qq" disabled style="width:250px;">
+                                <input type="text" id="user-name2" name="qq" value="{{$user['qq']}}" placeholder="" disabled style="width:250px;">
                             </div>
                         </div>
 
