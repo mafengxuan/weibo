@@ -10,6 +10,7 @@ use App\Http\Model\Link;
 use App\Http\Model\Microblog;
 use App\Http\Model\Navigation;
 use App\Http\Model\Reply;
+use App\Http\Model\User_common;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
