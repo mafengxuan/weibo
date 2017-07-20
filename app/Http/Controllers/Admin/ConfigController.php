@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\Config;
 use Illuminate\Http\Request;
 
@@ -75,6 +76,9 @@ class ConfigController extends Controller
 
         $res = Config::create($input);
         if($res){
+            $content = '创建配置文件: '.$input['conf_title'];
+            Admin_log::dolog($content);
+
             return redirect('admin/config');
         }else{
             return back()->with('error','添加失败');
@@ -123,6 +127,8 @@ class ConfigController extends Controller
         }
         $res = Config::where('id',$id)->update($data);
         if($res){
+            $content = '修改配置文件: '.$input['conf_title'];
+            Admin_log::dolog($content);
             return redirect('admin/config');
         }else{
             return back()->with('error','修改失败')->withInput();
@@ -145,6 +151,8 @@ class ConfigController extends Controller
         $data = Config::find($id);
         $res = $data->delete();
         if($res){
+            $content = '删除配置文件: '.$id;
+            Admin_log::dolog($content);
             $data = [
                 'status' => 0,
                 'msg'    =>'配置删除成功'

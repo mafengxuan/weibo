@@ -101,13 +101,13 @@ class LoginController extends Controller
      */
     public function postInsert(Request $request)
     {
-//        //接收验证码
-//        $phone_code = $request -> input('phone_code');
-//
-//        //判断验证码
-//        if($phone_code != session('phone_code')){
-//            return redirect('/home/phone/phone')->with('error','验证码错误');
-//        }
+        //接收验证码
+        $phone_code = $request -> input('phone_code');
+
+        //判断验证码
+        if($phone_code != session('phone_code')){
+            return redirect('/home/phone/phone')->with('error','验证码错误');
+        }
 
         //接收手机号
         $data = $request -> except('_token','phone_code');

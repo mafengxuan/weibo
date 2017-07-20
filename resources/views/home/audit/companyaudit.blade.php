@@ -35,7 +35,7 @@
                         <script type="text/javascript">
                             $(function () {
                                 $("#file_upload").change(function () {
-                                    $('#pic').show();
+                                    $('#pic1').show();
                                     uploadImage();
                                 });
                             });

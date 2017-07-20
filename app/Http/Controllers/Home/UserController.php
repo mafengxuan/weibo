@@ -28,13 +28,13 @@ class UserController extends CommonController
 
         //获取出用户详情表的信息
         $user = DB::table('users')
-                ->join('user_infos','users.uid','=','user_infos.uid')->where('phone',session('user_home')                ->phone)
-                ->first();
+                ->join('user_infos','users.uid','=','user_infos.uid')
+                ->where('phone',session('user_home')->phone)->first();
         //获取头像表的信息
         $user3 = DB::table('users')->join('user_commons','users.uid','=','user_commons.uid')
-                ->where('phone',session('user_home')->phone)
+                 ->where('phone',session('user_home')->phone)
                  ->first();
-        //获取邮箱
+        //获取邮箱信息
         $uid = session('user_home')->uid;
         $email = User::where('uid',$uid)->first()['email'];
         //把消息传给前台模板
@@ -61,16 +61,17 @@ class UserController extends CommonController
      */
     public function doedit(Request $request)
     {
-        //接收用户的信息
+        //接收用户的信息 user_infos
         $input = $request->except('_token','file_upload','face','nickname','email');
-        //接收用户头像的信息
+
+        //接收用户头像的信息  user_commons
         $data = $request->only('nickname','face');
-        //接收用户邮箱的信息
+        //接收用户邮箱的信息  users
         $email = $request->only('email');
 
         //获取登录者的uid
         $uid = session('user_home')->uid;
-
+        $input['birth'] = strtotime($input['birth']);
         //执行修改
         $res = User_info::where('uid',$uid)->update($input);
         $res2 = User_common::where('uid',$uid)->update($data);

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Model\Admin_log;
 use App\Http\Model\User_admin;
+use Illuminate\Support\Facades\Crypt;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -38,17 +40,20 @@ class PwdController extends Controller
         }
         $v = Validator::make($input,$role,$mess);
         if($v->passes()){
-            //        输入的原密码跟数据库中的密码是否一致
+            //输入的原密码跟数据库中的密码是否一致
 
             $user =  User_admin::where('id',session('user')->id)->first();
 
-            if($input['password_o'] != $user->password){
+            if($input['password_o'] != Crypt::decrypt($user->password)){
                 return back()->with('errors','输入的原密码跟数据库中的密码不一致');
             }else{
-                $pass = $input['password'];
+                $pass = Crypt::encrypt($input['password']);
                 $res =  $user->update(['password'=>$pass]);
                 if($res){
                     //更新密码
+                    $content = '修改密码: '.$user['username'];
+                    Admin_log::dolog($content);
+
                     return redirect('admin/manager');
                 }else{
                     return back()->with('errors','密码修改失败');

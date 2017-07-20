@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Model\Ad;
-use App\Http\Model\Ad_order;
 use App\Http\Model\Attention;
 use App\Http\Model\Collect;
 use App\Http\Model\Comment;
@@ -11,6 +10,7 @@ use App\Http\Model\Link;
 use App\Http\Model\Microblog;
 use App\Http\Model\Navigation;
 use App\Http\Model\Reply;
+use App\Http\Model\User_common;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,24 +18,23 @@ use App\Http\Controllers\Controller;
 
 class CommonindexController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         //公共模板广告内容
 
-        $pic = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',1)->first();
-        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',2)->first();
-        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',3)->first();
-        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('pid',4)->get();
-        $pic5 = Ad_order::orderBy('price','desc')->join('ads','ad_orders.aid','=','ads.aid')->get();
-        $pic6 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',5)->take(12)->get();
-
-        $links = Link::all();
+        $pic  = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',1)->first();
+        $pic2 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',2)->first();
+        $pic3 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',3)->first();
+        $pic4 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',4)->get();
+        $pic5 = Ad::where('ad_ctime','<',time())->where('ad_etime','>',time())->where('status',1)->where('pid',5)->take(12)->get();
+        // 友情链接
+        $links = Link::orderBy('link_sort','asc')->where('status',1)->get();
 
         view()->share('pic', $pic);
         view()->share('pic2', $pic2);
         view()->share('pic3', $pic3);
         view()->share('pic4', $pic4);
         view()->share('pic5', $pic5);
-        view()->share('pic6', $pic6);
         view()->share('links', $links);
 
         $collect = [];

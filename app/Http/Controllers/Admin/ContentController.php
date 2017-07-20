@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Model\Microblog;
+use App\Http\Model\User_common;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -61,7 +62,8 @@ class ContentController extends Controller
      */
     public function edit($id)
     {
-        $data = Microblog::where('mid',$id)->get();
+
+        $data = Microblog::join('user_commons','microblogs.uid','=','user_commons.uid')->where('mid',$id)->get();
 
         return view('admin.microblog.content',compact('data'));
     }

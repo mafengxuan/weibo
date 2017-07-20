@@ -7,7 +7,7 @@
 						<ul class="rslides" id="slider">
 							@foreach($pic4 as $k=>$v)
 							<li>
-								<img src="{{$v['ad_img']}}" alt="">
+								<img style="width:1125px; height:633px;" src="{{$v['ad_img']}}" alt="">
 								<div class="caption">
 
 									<a href="{{$v['ad_url']}}">{{$v['ad_brief']}}</a>
@@ -172,33 +172,34 @@
         {{--var str = "<div class='media response-info'><div class='media-left response-text-left'><a href='#'><img class='media-object' src='{{asset('home')}}/images/c1.jpg' alt=''/></a><h5><a href='#'>Username</a></h5></div><div class='media-body response-text-right'><p>评论内容</p><ul><li>Sep 21, 2015</li><li><a href='single.html'>Reply</a></li></ul><div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>Username</a></h5></div><div class='media-body response-text-right'><p>回复内容</p><ul><li>July 17, 2015</li><li><a href='single.html'>Reply</a></li></ul></div><div class='clearfix'> </div></div></div><div class='clearfix'></div></div>";--}}
 		function showcomment(obj,mid){
 
-		    $.post("{{url('home/index/comment/')}}/"+mid,{'_token':"{{csrf_token()}}"},function(data){
-                $(obj).parent().parent().parent().parent().find('div').eq(5).slideToggle();
-		        var i = 0;
-					for(i;i<data.length;i++){
+            $(obj).parent().parent().parent().parent().find('div').eq(5).slideToggle('slow',function(){
+
+                if ($(this).is(':hidden')) {
+                    location.reload();
+                }
+
+                $.post("{{url('home/index/comment/')}}/"+mid,{'_token':"{{csrf_token()}}"},function(data){
+
+                    var i = 0;
+                    for(i;i<data.length;i++){
 
                         var str = "<div class='media response-info'><div class='media-left response-text-left'><a href='#'><img class='media-object' src='"+data[i].face+"' alt=''/></a><h5><a href='#'>"+data[i].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].content+"</p><ul><li>"+getLocalTime(data[i].ctime)+"</li><li><a href='javascritp:;' onclick='reply(this)'>Reply</a></li></ul><div style='display:none;'><input type='text' name='reply' value='@"+data[i].nickname+":'><a href='javascript:;' onclick='doreply(this,"+data[i].mid+","+data[i].cid+")'>回复</a></div>";
 
-						var j = 0;
-						for(j;j<data[i].reply.length;j++){
-							str += "<div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>"+data[i].reply[j].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].reply[j].content+"</p><ul><li>"+getLocalTime(data[i].reply[j].ctime)+"</li><li><a href='javascritp:;' onclick='reply(this)'>Reply</a></li></ul><div style='display:none;'><input type='text' name='reply' value='@"+data[i].reply[j].nickname+":'><a href='javascript:;' onclick='doreply(this,"+data[i].mid+","+data[i].cid+")'>回复</a></div></div><div class='clearfix'> </div></div>";
+                        var j = 0;
+                        for(j;j<data[i].reply.length;j++){
+                            str += "<div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>"+data[i].reply[j].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+data[i].reply[j].content+"</p><ul><li>"+getLocalTime(data[i].reply[j].ctime)+"</li><li><a href='javascritp:;' onclick='reply(this)'>Reply</a></li></ul><div style='display:none;'><input type='text' name='reply' value='@"+data[i].reply[j].nickname+":'><a href='javascript:;' onclick='doreply(this,"+data[i].mid+","+data[i].cid+")'>回复</a></div></div><div class='clearfix'> </div></div>";
 
                         }
-                        {{--$.post("{{url('home/index/reply')}}/"+data[i].cid,{'_token':"{{csrf_token()}}"},function(reply){--}}
-							{{--var j = 0;--}}
-							{{--for(j;j<reply.length;j++){--}}
-                                {{--str += "<div class='media response-info'><div class='media-left response-text-left'><h5><a href='#'>"+reply[j].nickname+"</a></h5></div><div class='media-body response-text-right'><p>"+reply[j].content+"</p><ul><li>"+reply[j].ctime+"</li><li><a href='single.html'>Reply</a></li></ul></div><div class='clearfix'> </div></div>";--}}
 
-                            {{--}--}}
-
-						{{--})--}}
-
-						str += "</div><div class='clearfix'></div></div>";
+                        str += "</div><div class='clearfix'></div></div>";
 
                         $(obj).parent().parent().parent().parent().find('div').eq(5).append(str);
-					}
+                    }
 
-			})
+                })
+			});
+
+
 
 //		    $(obj).parent().parent().parent().parent().find('div').eq(5).slideToggle();
 //			alert($(obj).parent().parent().parent().find('div').eq(2).show());

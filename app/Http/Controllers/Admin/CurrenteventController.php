@@ -62,8 +62,8 @@ class CurrenteventController extends Controller
      */
     public function edit($id)
     {
-        $data = Microblog::where('mid',$id)->get();
-
+//        $data = Microblog::where('mid',$id)->get();
+        $data = Microblog::join('user_commons','microblogs.uid','=','user_commons.uid')->where('mid',$id)->get();
         return view('admin.microblog.hotcontent',compact('data'));
     }
 

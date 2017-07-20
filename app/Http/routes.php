@@ -11,9 +11,11 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('home.index.index');
-//});
+Route::get('/', function () {
+   return redirect('/home/login/login');
+});
+
+
 
 //后台登录页
 Route::get('/admin/login','Admin\LoginController@login');
@@ -147,6 +149,7 @@ Route::get('/home/userinfo','Home\UserController@index');
 Route::get('/home/info','Home\UserController@info');
 //修改个人信息
 Route::get('/home/edit','Home\UserController@edit');
+//处理个人信息
 Route::post('/home/doedit','Home\UserController@doedit');
 //邮箱激活
 Route::get('/home/email','Home\UserController@email');
@@ -162,7 +165,10 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
 
     //前台首页
     Route::get('index','IndexController@index');
-
+    //前台收藏页
+    Route::get('collect','DetailsController@collectindex');
+    //前台关注页
+    Route::get('attention','DetailsController@attentionindex');
     //前台获取微博评论
     Route::post('index/comment/{id}','CommonindexController@comment');
     //前台执行评论
@@ -215,10 +221,9 @@ Route::group(['prefix'=>'home','namespace'=>'Home'], function() {
     // 前台广告中心路由
     Route::get('ad','AdController@index');
     // 前台广告申请路由
-    Route::resource('adadd','adAddController');
-    Route::any('upload','adAddController@upload');
+    Route::resource('adadd','AdaddController');
+    Route::any('upload','AdaddController@upload');
 
 
 
 });
-

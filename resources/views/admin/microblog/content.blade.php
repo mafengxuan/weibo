@@ -5,28 +5,30 @@
             {{csrf_field()}}
             @foreach ($data as $k=>$v)
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-2">导航id：</label>
+                <label class="form-label col-xs-4 col-sm-2">用户昵称：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="{{$v->nid}}" placeholder="" id="" name="nid">
+                   {{$v->nickname}}
                 </div>
             </div>
+
+
             <div class="row cl">
-                <label class="form-label col-xs-4 col-sm-2">标题id：</label>
+                <label class="form-label col-xs-4 col-sm-2">手机号：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" class="input-text" value="{{$v->tid}}" placeholder="" id="" name="tid">
+                    {{$v->phone}}
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2">内容：</label>
-                <div class="formControls col-xs-8 col-sm-9">
-                    <textarea name="content" cols="" rows="" value="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{{$v->content}}</textarea>
-                    <p class="textarea-numberbar"><em class="textarea-length">0</em>/200</p>
+                <div class="formControls col-xs-8 col-sm-9 img1">
+                   {!! $v->content !!}
+                    
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>日期：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" name="ctime" value="{{date('Y-m-d H:i:s',time())}}" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'datemax\')||\'%y-%M-%d\'}' })" id="datemin" class="input-text Wdate">
+                   {{date('Y-m-d H:i:s',$v->ctime)}}
                 </div>
             </div>
     @endforeach

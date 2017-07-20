@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Model\Ad;
 use App\Http\Model\Ad_order;
 use App\Http\Model\Ad_position;
+use App\Http\Model\Admin_log;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,7 +29,7 @@ class AdController extends Controller
 //            将图片上传到本地服务器
 //            $path = $file->move(public_path() . '/uploads', $newName);
             // 将图片上传到OSS 阿里云
-            $result = OSS::upload('uploads/'.date('Ymd',time()).'/'.$newName, $file->getRealPath());
+            OSS::upload('uploads/'.date('Ymd',time()).'/'.$newName, $file->getRealPath());
 //        返回文件的上传路径
             $filepath = 'uploads/'.date('Ymd',time()).'/' . $newName;
             $res = "http://lamp182-weibo.oss-cn-beijing.aliyuncs.com/".$filepath;
@@ -65,11 +66,10 @@ class AdController extends Controller
      */
     public function create(Request $request)
     {
-//        $data = $request->session()->get('user');
-//        dd($data);
+        // 获取数据
         $adPosition = Ad_position::all();
         $session = $request->session()->get('user');
-
+        // 返回页面
         return view('admin.ad.addAd',compact('adPosition','session'));
     }
 
@@ -101,6 +101,8 @@ class AdController extends Controller
 
 //        如果成功跳转到文章列表页  如果失败 返回添加页面
         if($re && $res){
+            $content = '添加一条广告: '.$input['ad_name'];
+            Admin_log::dolog($content);
             return redirect('admin/ad');
         }else{
             return back()->with('error','添加失败');
@@ -124,17 +126,18 @@ class AdController extends Controller
      * 返回修改页面
      *
      */
-    public function edit($id)
+    public function edit(Request $request,$id)
     {
         // 根据传入的要修改的记录的ID 获取广告记录
         $adPosition = Ad_position::all();
 
         $data = Ad::find($id);
         $res = Ad_order::where('aid',$id)->first();
+        $session = $request->session()->get('user');
 //        dd($res);
 
 //        将文章记录传给修改界面
-        return view('admin.ad.adEdit',compact('adPosition','data','res'));
+        return view('admin.ad.adEdit',compact('adPosition','data','res','session'));
     }
 
     /**
@@ -159,6 +162,8 @@ class AdController extends Controller
         $res = $order->update($orders);
         //如果成功跳转到列表页  失败返回修改页
         if($re && $res){
+            $content = '修改一条广告: 编号'.$id;
+            Admin_log::dolog($content);
             return redirect('admin/ad');
         }else{
             return back()->with('error','修改失败');
@@ -177,6 +182,8 @@ class AdController extends Controller
         $re =  Ad::where('aid',$id)->delete();
 //       0表示成功 其他表示失败
         if($re){
+            $content = '删除一条广告: 编号'.$id;
+            Admin_log::dolog($content);
             $data = [
                 'status'=>0,
                 'msg'=>'删除成功！'
