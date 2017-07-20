@@ -120,13 +120,13 @@
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>发布日期：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" name="ad_ctime" value="{{$data->ad_ctime}}" id="datemin" class="input-text Wdate">
+                    <input type="text" name="ad_ctime" value="{{date('Y-m-d',$data->ad_ctime)}}" id="datemin" class="input-text Wdate">
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>结束日期：</label>
                 <div class="formControls col-xs-8 col-sm-9">
-                    <input type="text" name="ad_etime" value="{{$data->ad_etime}}" id="datemax" class="input-text Wdate">
+                    <input type="text" name="ad_etime" value="{{date('Y-m-d',$data->ad_etime)}}" id="datemax" class="input-text Wdate">
                 </div>
             </div>
             <div class="row cl">

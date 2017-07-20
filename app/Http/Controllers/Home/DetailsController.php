@@ -36,7 +36,7 @@ class DetailsController extends CommonindexController
      */
     public function attentionindex()
     {
-        $data = Attention::where('uid',1)->get();
+        $data = Attention::where('uid',session('user_home')->uid)->get();
         $data = $data->toArray();
         $ids = [];
         foreach($data as $k => $v){
