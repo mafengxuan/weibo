@@ -21,9 +21,9 @@ class MyauditController extends CommonController
     {
         //显示用户提交申请信息
         $username = session('user_home')->phone;
-        $r1 = User_company::where('username',$username)->first();
-        $r2 = User_commerce::where('username',$username)->first();
-        $r3 = User_v::where('username',$username)->first();
+        $r1 = User_company::where('username',$username)->orderby('p_time','desc')->first();
+        $r2 = User_commerce::where('username',$username)->orderby('p_time','desc')->first();
+        $r3 = User_v::where('username',$username)->orderby('p_time','desc')->first();
         if(!empty($r1)){
             $type = '公司认证';
             $r = $r1;

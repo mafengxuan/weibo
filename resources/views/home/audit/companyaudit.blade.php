@@ -13,7 +13,7 @@
                             <label for="company_img">公司营业执照</label>
                             <input type="text" style="width:400px" name="company_img" id="company_img" class="form-control">
                             <input type="file" name="file_upload" id="file_upload" value="">
-                            <img src="" alt="" id="pic" name="pic" style="width:100px; display:none;">
+                            <img src="" alt="" id="pic1" name="pic" style="width:100px; display:none;">
                         </div>
 
                         <div class="form-group">
@@ -63,8 +63,8 @@
                                     contentType: false,
                                     processData: false,
                                     success: function(data) {
-                                        $('#pic').attr('src','/'+data);
-                                        $('#pic').show();
+                                        $('#pic1').attr('src','/'+data);
+                                        $('#pic1').show();
                                         $('#company_img').val(data);
 
 

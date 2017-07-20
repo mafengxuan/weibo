@@ -77,7 +77,7 @@ class CompanyauditController extends CommonController
     public function checkname(Request $request)
     {
         $cname = $request->company_name;
-        $res = User_company::where('company_name',$cname)->first();
+        $res = User_company::where('company_name',$cname)->where('status','<>',3)->first();
         if($res){
             $data = [
                 'status' => '4'

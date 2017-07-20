@@ -80,7 +80,7 @@
                         <style>
                             #jiao{width:30px;height:30px}
                         </style>
-                        
+
                                 @if(session('user_home')->type == '1')
 
                                 @elseif(session('user_home')->type == '2')
@@ -90,9 +90,7 @@
                                 @elseif(session('user_home')->type == '4')
                                     <img src="/uploads/v1.png" id="jiao"/>
                                 @endif
-                        <div class="u-level">
 
-                        </div>
                     </div>
                 </div>
 @section('show')
