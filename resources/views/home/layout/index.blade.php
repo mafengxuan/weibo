@@ -345,21 +345,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 {{--</div>--}}
 					 <div class="side-bar-articles">
 						<div class="side-bar-article">
-							<a href="https:\\www.baidu.com"><img src="{{$pic['ad_img']}}" alt="" /></a>
+							<a href="{{$pic['ad_url']}}"><img src="{{$pic['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="https:\\www.baidu.com">{{$pic['ad_brief']}}</a>
+								<a href="{{$pic['ad_url']}}">{{$pic['ad_brief']}}</a>
 							</div>
 						</div>
 						<div class="side-bar-article">
-							<a href="https:\\www.baidu.com"><img src="{{$pic2['ad_img']}}" alt="" /></a>
+							<a href="{{$pic2['ad_url']}}"><img src="{{$pic2['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="https:\\www.baidu.com">{{$pic2['ad_brief']}}</a>
+								<a href="{{$pic2['ad_url']}}">{{$pic2['ad_brief']}}</a>
 							</div>
 						</div>
 						<div class="side-bar-article">
-							<a href="https:\\www.baidu.com"><img src="{{$pic3['ad_img']}}" alt="" /></a>
+							<a href="{{$pic3['ad_url']}}"><img src="{{$pic3['ad_img']}}" alt="" /></a>
 							<div class="side-bar-article-title">
-								<a href="https:\\www.baidu.com">{{$pic3['ad_brief']}}</a>
+								<a href="{{$pic3['ad_url']}}">{{$pic3['ad_brief']}}</a>
 							</div>
 						</div>
 					 </div>
@@ -390,7 +390,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h4 class="footer-head">友情链接</h4>
 					@foreach($links as $k=>$v)
 					<ul class="cat">
-						<li><a href="https:\\www.baidu.com" title="{{$v->link_title}}">{{$v->link_name}}</a></li>
+						<li><a href="{{$v->link_url}}" title="{{$v->link_title}}">{{$v->link_name}}</a></li>
 					</ul>
 					@endforeach
 				</div>
@@ -398,7 +398,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h4 class="footer-head">女神 高圆圆</h4>
 					<ul class="flickr">
 						@foreach($pic5 as $k=>$v)
-						<li><a href="https:\\www.baidu.com"><img src="{{$v->ad_img}}"></a></li>
+						<li><a href="{{$v['ad_url']}}"><img src="{{$v->ad_img}}"></a></li>
 						@endforeach
 						<div class="clearfix"></div>
 					</ul>
